@@ -40,7 +40,7 @@ const TravelNews = () => {
                         <div className="section-control">
                             <div className="swiper-button-next text-slate-300"></div>
                             <div className="swiper-button-prev text-slate-300"></div>
-                            {/* </div> */}
+                            
                         </div>
                     </div>
                 </div>

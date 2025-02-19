@@ -39,13 +39,14 @@ function PublishNewsPage() {
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
-        const perPage = 8;
+        const perPage = 12;
       
         // Calculate total pages dynamically
         const totalPages = latestNews?.content ? Math.ceil(latestNews?.content?.length / perPage) : 1;
       
         // Extract hotels for the current page
         const paginatedHotels =latestNews?.content?.slice((currentPage - 1) * perPage, currentPage * perPage) || [];
+        console.log("paginatedHotels",paginatedHotels)
 
     return (
        <>

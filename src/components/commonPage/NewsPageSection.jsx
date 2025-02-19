@@ -5,42 +5,48 @@ import { apis, BASEURL } from '@component/apiendpoints/api';
 import HearderNameIcon from '@component/components/hearderNameIcon'
 import useRequest from '@component/hooks/UseRequest';
 import { useRouter } from 'next/navigation';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, EffectFlip, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-flip";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 
-function NewsPageSection({news_id}) {
+function NewsPageSection({ news_id }) {
     const { request, response } = useRequest();
     const route = useRouter();
-    const { request:requestNews, response:responseNews } = useRequest();
+    const { request: requestNews, response: responseNews } = useRequest();
     const [offer_details, setOffer_details] = useState(null)
-    const [newsData,setNewsData] = useState([])
-    const [newsDataSimilar,setNewsDataSimilar] = useState([])
+    const [newsData, setNewsData] = useState([])
+    const [newsDataSimilar, setNewsDataSimilar] = useState([])
     const { request: requestExclusive_offer, response: responseExclusive_offer, clear: clearOffer } = useRequest(true);
 
 
     // const hotel_details = JSON.parse(localStorage.getItem("hotel_details") ?? "{}")
 
-    const GetNews = async()=>{
-      await requestNews("POST", `${apis.GET_NEWS_PAGE_DEATILS}`,{news_id});
+    const GetNews = async () => {
+        await requestNews("POST", `${apis.GET_NEWS_PAGE_DEATILS}`, { news_id });
     }
 
     useEffect(() => {
-     GetNews()
+        GetNews()
     }, [])
 
     useEffect(() => {
-    if(responseNews){
-        setNewsData(responseNews?.content)
-        setNewsDataSimilar(responseNews?.similarNews)
-        if (!offer_details) {
+        if (responseNews) {
+            setNewsData(responseNews?.content)
+            setNewsDataSimilar(responseNews?.similarNews)
+            if (!offer_details) {
 
-            requestExclusive_offer("GET", `${apis.GET_EXCLUSIVEOFFERS_BY_HOTEL_ID}/${responseNews?.content?._id}`)
+                requestExclusive_offer("GET", `${apis.GET_EXCLUSIVEOFFERS_BY_HOTEL_ID}/${responseNews?.content?._id}`)
 
+            }
         }
-    }
 
-    },[responseNews])
+    }, [responseNews])
 
-    
+
 
     useMemo(() => {
 
@@ -51,7 +57,7 @@ function NewsPageSection({news_id}) {
         }
     }, [responseExclusive_offer])
 
-    console.log("offer_details",offer_details);
+    console.log("offer_details", newsData);
 
     const handleRoute = (item) => {
         route.push(`/news/${item}`)
@@ -67,13 +73,13 @@ function NewsPageSection({news_id}) {
                 <section className="singleNewsSection py-8" >
                     <div className="container">
                         <div className="single-news rounded-2xl overflow-hidden mx-8 relative">
-                            <img src={`${BASEURL}/${newsData?.news_images}`} alt="" />
+                            <img src={`${BASEURL}/${newsData?.thumbnail_path}`} alt="" />
                             <div className="news-info p-4  absolute bottom-0 w-full text-white" style={{
                                 backdropFilter: "blur(15px)",
                                 backgroundColor: "rgba(255, 255, 255, 0.1)"
                             }}>
                                 <h3 className="uppercase text-white text-lg font-bold">
-                                   {newsData?.news_title}
+                                    {newsData?.news_title}
                                 </h3>
                             </div>
                         </div>
@@ -86,7 +92,7 @@ function NewsPageSection({news_id}) {
                             <div className='p-5 bg-white rounded-2xl lowercase' style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
                                 <p className="">
                                     {newsData?.news_description}
-                                    </p>
+                                </p>
                             </div>
                             <div className='my-10'>
                                 <div className='row'>
@@ -96,40 +102,40 @@ function NewsPageSection({news_id}) {
                                     </div>
                                     <div className='col-md-3'>
                                         <div className="text-center offerBlockRight min-h-[450px] space-y-3 p-3 special-card flex-1">
-                                            {offer_details ?  (
+                                            {offer_details ? (
                                                 <>
-                                                 <h3 className="text-center text-xl text-golden mt-5">EXCLUSIVE OFFER</h3>
-                                            <svg
-                                                stroke="currentColor"
-                                                fill="currentColor"
-                                                strokeWidth={0}
-                                                viewBox="0 0 448 512"
-                                                className="rotate-90 text-xl text-center w-full"
-                                                height="1em"
-                                                width="1em"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM94 416c-7.033 0-13.057-4.873-14.616-11.627l-14.998-65a15 15 0 0 1 8.707-17.16l69.998-29.999a15 15 0 0 1 17.518 4.289l30.997 37.885c48.944-22.963 88.297-62.858 110.781-110.78l-37.886-30.997a15.001 15.001 0 0 1-4.289-17.518l30-69.998a15 15 0 0 1 17.16-8.707l65 14.998A14.997 14.997 0 0 1 384 126c0 160.292-129.945 290-290 290z" />
-                                            </svg>
-                                            {/* <p className="text-xl text-golden">+9180017233537</p> */}
-                                            <h4 className="uppercase md:text-xl">{offer_details?.offer_name}</h4>
-                                            <p className="uppercase py-3">
-                                                Valid from <span className="text-xl text-golden">{offer_details?.offer_from}</span> to <br />{" "}
-                                                <span className="text-xl text-golden">{offer_details?.offer_to}</span>
-                                            </p>
-                                            <a href={`/${offer_details?.offer_url}`} className="theme-btn">
-                                            REDEEM
-                                        </a>
+                                                    <h3 className="text-center text-xl text-golden mt-5">EXCLUSIVE OFFER</h3>
+                                                    <svg
+                                                        stroke="currentColor"
+                                                        fill="currentColor"
+                                                        strokeWidth={0}
+                                                        viewBox="0 0 448 512"
+                                                        className="rotate-90 text-xl text-center w-full"
+                                                        height="1em"
+                                                        width="1em"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM94 416c-7.033 0-13.057-4.873-14.616-11.627l-14.998-65a15 15 0 0 1 8.707-17.16l69.998-29.999a15 15 0 0 1 17.518 4.289l30.997 37.885c48.944-22.963 88.297-62.858 110.781-110.78l-37.886-30.997a15.001 15.001 0 0 1-4.289-17.518l30-69.998a15 15 0 0 1 17.16-8.707l65 14.998A14.997 14.997 0 0 1 384 126c0 160.292-129.945 290-290 290z" />
+                                                    </svg>
+                                                    {/* <p className="text-xl text-golden">+9180017233537</p> */}
+                                                    <h4 className="uppercase md:text-xl">{offer_details?.offer_name}</h4>
+                                                    <p className="uppercase py-3">
+                                                        Valid from <span className="text-xl text-golden">{offer_details?.offer_from}</span> to <br />{" "}
+                                                        <span className="text-xl text-golden">{offer_details?.offer_to}</span>
+                                                    </p>
+                                                    <a href={`/${offer_details?.offer_url}`} className="theme-btn">
+                                                        REDEEM
+                                                    </a>
                                                 </>
                                             ) : (
-                                                <> 
-                                                <div className=" flex  min-h-96 justify-center">
+                                                <>
+                                                    <div className=" flex  min-h-96 justify-center">
 
-<p className='my-auto'>No exclusive Offer </p>
-</div>
+                                                        <p className='my-auto'>No exclusive Offer </p>
+                                                    </div>
                                                 </>
                                             )}
-                                           
+
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +143,7 @@ function NewsPageSection({news_id}) {
                             <div className='p-5 bg-white rounded-2xl lowercase' style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
                                 <p className="">
                                     {newsData?.news_content}
-                                   </p>
+                                </p>
                             </div>
                             <div className='content-rightBox white-bg mt-5'
                                 style={{
@@ -165,7 +171,7 @@ function NewsPageSection({news_id}) {
                                             <path fill="none" d="M0 0h24v24H0z" />
                                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
                                         </svg>
-                                       {newsData?.email}{" "}
+                                        {newsData?.email}{" "}
                                     </p>
                                     <p className="text-md flex">
                                         <span className="text-golden">
@@ -182,7 +188,7 @@ function NewsPageSection({news_id}) {
                                                 <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z" />
                                             </svg>{" "}
                                         </span>{" "}
-                                        <a onClick={()=>window.location.href = newsData?.facebook_page}>{newsData?.facebook_page}</a>{" "}
+                                        <a onClick={() => window.location.href = newsData?.facebook_page}>{newsData?.facebook_page}</a>{" "}
                                     </p>
                                     {/* <p className="text-md flex">
                                         <span className="text-golden">
@@ -240,7 +246,7 @@ function NewsPageSection({news_id}) {
                                                 />
                                             </svg>{" "}
                                         </span>
-                                      <a onClick={()=> window.location.href =newsData?.website_url }>{newsData?.website_url}</a>
+                                        <a onClick={() => window.location.href = newsData?.website_url}>{newsData?.website_url}</a>
                                     </p>
                                 </div>
                                 <div className="w-full flex flex-col md:flex-row justify-between items-center gap-5">
@@ -373,28 +379,57 @@ function NewsPageSection({news_id}) {
                         </div>
                     </div>
                 </section>
-                <HearderNameIcon name={"You may also like"} />
-
-                 <div className="container whater-effect section-padding" data-aos="zoom-out-up">
+                {/* <HearderNameIcon name={"You may also like"} /> */}
+                 
+                <div className="container whater-effect section-padding" data-aos="zoom-out-up">
+                <div className="container">
+                    <div className="sectionInnerHead section-head">
+                        {/* <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0 my-5 uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">LATEST News</h1> */}
+                        <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0  uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">You may also like</h1>
+                        <div className="section-control">
+                            <div className="swiper-button-next text-slate-300"></div>
+                            <div className="swiper-button-prev text-slate-300"></div>
+                            {/* </div> */}
+                        </div>
+                    </div>
+                </div>
                             <div className="row">
-                                {newsDataSimilar?.map((hotel, index) => (
-                                    <div className="col-lg-3 col-md-4 col-sm-6" key={index}>
-                                        <div className="hotel-cards overflow-hidden">
+                            <div className="col-md-12" data-aos="fade-right">
+                        <Swiper className='newly-listedSwiper'
+                            spaceBetween={24}
+                            modules={[Navigation, Pagination, EffectFlip, Autoplay]} // ✅ Added Autoplay module
+                            navigation={{
+                                prevEl: '.swiper-button-prev',
+                                nextEl: '.swiper-button-next',
+                            }}
+                            // loop={true} // ✅ Enables infinite looping
+                            // autoplay={{
+                            //     delay: 2000, // ✅ Auto-scroll every 2 seconds
+                            //     disableOnInteraction: false, // ✅ Keeps autoplay running even after user interaction
+                            // }}
+                            slidesPerView={4}
+                        >
+                            {newsDataSimilar?.map((hotel, index) => (
+                                <SwiperSlide key={index}>
+                                   
+                                        <div className="hotel-cards  min-h-96 overflow-hidden">
                                             <div className="hotel-img">
-                                                {/* Fix template literal syntax */}
-                                                <img src={`${BASEURL}/${hotel?.news_images}`} alt={hotel.name} />
+                                                <img src={`${BASEURL}/${hotel?.thumbnail_path}`} alt={hotel.name} />
                                             </div>
-                                            <div className="hotel-content">
+                                            <div className="hotel-content whater-effect -mt-28">
                                             <h4 className="hotel-name text-center">{hotel?.news_title}</h4>
                                                 <div className="teams-name" onClick={()=>handleRoute(hotel?.slug)}>{hotel?.hotel}</div>
                                                 <div className="teams-role">{hotel?.country?.country}</div>
                                             </div>
+                                       
                                         </div>
-                                    </div>
-                                ))}
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    </div>
                             </div>
                             </div>
-
+                       
             </div>
         </>
     )

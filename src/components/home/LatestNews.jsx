@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, EffectFlip } from "swiper/modules";
+import { Navigation, Pagination, EffectFlip, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-flip";
 import "swiper/css/pagination";
@@ -29,23 +29,29 @@ const LatestNews = () => {
                     <div className="sectionInnerHead section-head">
                         <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0 uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">LATEST News</h1>
 
-                        <div className="section-control">
-                            {/* Use refs for navigation buttons */}
-                            <div  id="newly-prev2" className="swiper-button-prev"></div>
-                            <div  id="newly-next2" className="swiper-button-next"></div>
+                     
+                            <div className="section-control">
+                            <div className="swiper-button-next text-slate-300"></div>
+                            <div className="swiper-button-prev text-slate-300"></div>
+                            
                         </div>
+                        
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md-9" data-aos="fade-left">
                         <Swiper className='newly-listedSwiper2'
                             spaceBetween={24}
-                            modules={[Navigation]}
-                        // navigation={{
-                        //     prevEl: prevRef.current,
-                        //     nextEl: nextRef.current,
-                        // }}
-                            loop={true}
+                            modules={[Navigation, Pagination, EffectFlip, Autoplay]}
+                            navigation={{
+                                prevEl: '.swiper-button-prev',
+                                nextEl: '.swiper-button-next',
+                            }}
+                            loop={true} // ✅ Enables infinite looping
+                            autoplay={{
+                                delay: 2000, // ✅ Auto-scroll every 2 seconds
+                                disableOnInteraction: false, // ✅ Keeps autoplay running even after user interaction
+                            }}
                             slidesPerView={3} // Adjust the number of slides visible at once
                         // breakpoints={{
                         //   768: {

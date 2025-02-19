@@ -230,7 +230,7 @@ const PublishNews = () => {
                   >
                     <option value="">SELECT BUSINESS</option>
                     <option value="hotel">HOTEL</option>
-                    <option value="others_business">OTHER BUSINESS</option>
+                    <option value="other_business">OTHER BUSINESS</option>
                   </select>
                   {errors.businessType && (
                     <p className="text-red-500 text-sm">{errors.businessType.message}</p>
