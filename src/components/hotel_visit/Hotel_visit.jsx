@@ -4,7 +4,7 @@ import Icon from '../icon'
 import ViewMap from '@component/modals/ViewMap'
 import PropertyDescription from '@component/modals/PropertyDescription'
 import Map from '../Map';
-import useRequest from '@component/hooks/useRequest'
+import useRequest from '@component/hooks/UseRequest'
 import { Fancybox } from "@fancyapps/ui";
 import { apis, BASEURL } from '@component/apiendpoints/api';
 import { useSelector } from 'react-redux'

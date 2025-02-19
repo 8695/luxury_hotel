@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import useRequest from "@component/hooks/useRequest";
+import useRequest from "@component/hooks/UseRequest";
 import WinHolidayConditions from "@component/modals/WinHolidayCondition";
 import { apis } from "@component/apiendpoints/api";
 import Link from "next/link";

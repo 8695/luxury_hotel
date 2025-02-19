@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Link from 'next/link'
 import { useRouter } from "next/navigation";
-import useRequest from "@component/hooks/useRequest";
+import useRequest from "@component/hooks/UseRequest";
 import { apis } from "@component/apiendpoints/api";
 import { siteContentActions } from "@component/lib/slice/sitesSetting";
 import { useDispatch, useSelector } from "react-redux";

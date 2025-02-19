@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import useRequest from "@component/hooks/useRequest";
+import useRequest from "@component/hooks/UseRequest";
 import { apis } from "@component/apiendpoints/api";
 
 import { loadStripe } from "@stripe/stripe-js";

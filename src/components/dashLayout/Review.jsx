@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 
-import useRequest from "@component/hooks/useRequest";
+import useRequest from "@component/hooks/UseRequest";
 import { apis, BASEURL } from "@component/apiendpoints/api";
 import moment from "moment";
 

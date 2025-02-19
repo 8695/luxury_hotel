@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import HeadingWithoutSwiper from "./headingWithoutSwiper";
-import useRequest from "@component/hooks/useRequest";
+import useRequest from "@component/hooks/UseRequest";
 import { apis } from "@component/apiendpoints/api";
 import toast from "react-hot-toast";
 

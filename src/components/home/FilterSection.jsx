@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles 
 import CreatableSelect from "react-select/creatable";
-import useRequest from "@component/hooks/useRequest";
+import useRequest from "@component/hooks/UseRequest";
 import { apis } from "@component/apiendpoints/api";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";

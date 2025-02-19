@@ -10,7 +10,7 @@ import {
   MDBBadge,
   MDBBtn
 } from "mdb-react-ui-kit"; // Correct imports
-import useRequest from "@component/hooks/useRequest";
+import useRequest from "@component/hooks/UseRequest";
 import { apis } from "@component/apiendpoints/api";
 import moment from "moment";
 import VoteinfoModal from "@component/modals/VoteinfoModal";

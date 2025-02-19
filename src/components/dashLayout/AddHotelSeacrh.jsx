@@ -1,6 +1,6 @@
 "use client"
 import { apis, BASEURL } from '@component/apiendpoints/api'
-import useRequest from '@component/hooks/useRequest'
+import useRequest from '@component/hooks/UseRequest'
 import { siteContentActions } from '@component/lib/slice/sitesSetting'
 import axios from 'axios'
 import Link from 'next/link'

@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import NominateHotel from "./dashLayout/NominateHotel";
-import useRequest from "@component/hooks/useRequest";
 import { useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
+import useRequest from "@component/hooks/UseRequest";
 const paymentMethods = [
   {
       id: "credit",

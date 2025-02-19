@@ -3,7 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
 import HeadingWithoutSwiper from "../headingWithoutSwiper";
 import { useForm } from "react-hook-form";
-import useRequest from "@component/hooks/useRequest";
+import useRequest from "@component/hooks/UseRequest";
 import { apis } from "@component/apiendpoints/api";
 
 const NewsletterSection = () => {
