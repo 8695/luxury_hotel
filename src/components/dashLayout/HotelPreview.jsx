@@ -1,6 +1,6 @@
 "use client"
 import { apis, BASEURL } from '@component/apiendpoints/api';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import React, { useEffect, useMemo, useState } from 'react'
 import Map from '../Map';
 import Link from 'next/link';

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import { apis } from '@component/apiendpoints/api';
 
 function NewsLetterPopUp({ closeNewsLetter }) {

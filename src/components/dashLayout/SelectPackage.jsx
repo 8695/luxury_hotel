@@ -7,7 +7,7 @@ import CheckoutModal from '@component/modals/CheckoutModal';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { useForm } from 'react-hook-form';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import { apis } from '@component/apiendpoints/api';
 import moment from 'moment';
 import { useRouter } from 'next/navigation';

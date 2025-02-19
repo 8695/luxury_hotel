@@ -1,6 +1,6 @@
 // components/PhotoUploader.js
 import { apis, BASEURL } from '@component/apiendpoints/api';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import { useEffect, useRef, useState } from 'react';
 
 const PhotoUploader = ({ closeModal2, images, hotel_logo }) => {

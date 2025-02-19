@@ -1,6 +1,6 @@
 "use client"
 import { apis } from '@component/apiendpoints/api';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';

@@ -2,7 +2,6 @@
 import { apis } from '@component/apiendpoints/api';
 import Footer from '@component/components/footer';
 import Navbar from '@component/components/Navbar';
-import useRequest from '@component/hooks/useRequest';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import ReduxProvider from './ReduxProvider';
@@ -14,6 +13,7 @@ import { getCountry, getHotelfacility, getHotelHightlight, getRommenimeties } fr
 // import LiveChat from '@component/components/LiveChat';
 import { initGA, logPageView } from '@component/googleAnalytics';
 import { usePathname } from 'next/navigation';
+import useRequest from '@component/hooks/UseRequest';
 
 
 

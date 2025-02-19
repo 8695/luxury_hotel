@@ -1,6 +1,6 @@
 "use client";
 import { apis } from '@component/apiendpoints/api';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import React, { useEffect, useState } from 'react'
 import Table from './Table';
 

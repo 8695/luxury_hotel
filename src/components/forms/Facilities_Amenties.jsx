@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import { apis, BASEURL } from '@component/apiendpoints/api';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';

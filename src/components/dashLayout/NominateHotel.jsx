@@ -1,6 +1,6 @@
 "use client"
 import { apis } from '@component/apiendpoints/api';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import CheckoutModal from '@component/modals/CheckoutModal';
 import PaypaModal from '@component/modals/PaypaModal';
 import Link from 'next/link'

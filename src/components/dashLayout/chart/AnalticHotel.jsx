@@ -15,7 +15,7 @@ import Barchart from './Barchart';
 import LineChart from './Linchart';
 import CountryAnalytics from './CountryAnalytics'
 import Link from 'next/link';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import { apis } from '@component/apiendpoints/api';
 import CounrtyAnaltics from './CounrtyAnaltics';
 import GooGleAnalyticsNews from '@component/modals/GooGleAnalyticsNews';

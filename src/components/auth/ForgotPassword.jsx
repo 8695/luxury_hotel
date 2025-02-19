@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { apis } from '@component/apiendpoints/api';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 const ForgetPassword = () => {

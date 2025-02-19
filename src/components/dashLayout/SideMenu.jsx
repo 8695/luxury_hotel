@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect } from 'react'
 import Link from "next/link";
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import { apis } from '@component/apiendpoints/api';
 import { usePathname, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';

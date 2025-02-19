@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useStripe, useElements, CardNumberElement, CardCvcElement, CardExpiryElement, Elements } from '@stripe/react-stripe-js';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import { apis } from '@component/apiendpoints/api';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';

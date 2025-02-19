@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { apis, BASEURL } from '@component/apiendpoints/api';
 import HearderNameIcon from '@component/components/hearderNameIcon'
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import { useRouter } from 'next/navigation';
 
 

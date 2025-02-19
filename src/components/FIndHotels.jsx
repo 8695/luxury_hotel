@@ -7,7 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css"
 
 import Pagination from './commonPage/Pagination';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import { apis, BASEURL } from '@component/apiendpoints/api';
 
 function FIndHotels() {

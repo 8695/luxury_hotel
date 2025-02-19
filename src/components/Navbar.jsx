@@ -5,7 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Cookies from 'js-cookie';
 import { apis } from '@component/apiendpoints/api';
-import useRequest from '@component/hooks/useRequest';
+import useRequest from '@component/hooks/UseRequest';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 
