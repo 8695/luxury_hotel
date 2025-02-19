@@ -43,62 +43,7 @@ export default function useRequest(toNotLoad) {
     setError(null);
   };
 
-  // const requestData = (method, url, data) => {
-  //   let config;
-  //   if (token) {
-  //     config = {
-  //       method,
-  //       url: `${BASEURL}/${url}`,
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       data,
-  //     };
-  //   } else {
-  //     config = {
-  //       method,
-  //       url: `${BASEURL}/${url}`,
-  //       data,
-  //     };
-  //   }
 
-  //   startFetching();
-
-  //   axios(config)
-  //     .then((res) => {
-  //       const token = res.headers["access-token"];
-
-  //       if (token) {
-  //         //   dispatch(updateToken({ token }));
-  //       }
-
-  //       const url = "";
-
-  //       if (url !== "/login") {
-  //         localStorage.setItem("url", url);
-  //       }
-
-  //       fetchedData();
-  //       setResponse(res.data);
-  //       return res.data
-  //     })
-  //     .catch((err) => {
-  //       fetchedData();
-  //       if (err.response) {
-  //         if (err.response.status === 401) {
-  //           // dispatch(logout());
-  //           toast.error(err.response.data.message);
-  //         } else if (err.response.status === 404) {
-  //         } else {
-  //           toast.error(err.response.data.message);
-  //         }
-  //       } else if (err.request) {
-  //         toast.error("Slow Network Speed. Try Again later.");
-  //       } else {
-  //         toast.error("Oops!! Unusual error occurred");
-  //       }
-  //     });
-  // };
 
   const requestData = async (method, url, data) => {
     try {
