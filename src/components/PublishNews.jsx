@@ -782,7 +782,7 @@ const PublishNews = () => {
       </div>
 
       {/* {showModal && <PaypaModal />} */}
-      {showModal && res_data && <Elements stripe={stripePromise}> <CheckoutModal response_data={res_data} stripePromise={stripePromise} setShowModal={setShowModal} amount={amount} payment_method={watch("payment_method")} detils_data={getValues()} purpose="publish-news" time={"1 Months"} create_function={create_news} redirect={watch("businessType") == "others_business" ? "travel-news" : "latest-news"} /></Elements>}
+      {showModal && res_data && <Elements stripe={stripePromise}> <CheckoutModal response_data={res_data} stripePromise={stripePromise} setShowModal={setShowModal} amount={amount} payment_method={watch("payment_method")} detils_data={getValues()} purpose="publish-news" time={"1 Months"} create_function={create_news} redirect={watch("businessType") == "other_business" ?  "latest-news" : "travel-news"} /></Elements>}
     </>
   );
 };
