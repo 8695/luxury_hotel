@@ -89,11 +89,11 @@ function NewsPageSection({ news_id }) {
                     <HearderNameIcon name={newsData?.news_title} />
                     <div className='py-12'>
                         <div className='container'>
-                            <div className='p-5 bg-white rounded-2xl lowercase' style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
+                            {/* <div className='p-5 bg-white rounded-2xl lowercase' style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
                                 <p className="">
                                     {newsData?.news_description}
                                 </p>
-                            </div>
+                            </div> */}
                             <div className='my-10'>
                                 <div className='row'>
                                     <div className='col-md-9'>

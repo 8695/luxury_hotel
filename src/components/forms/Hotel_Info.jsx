@@ -809,7 +809,7 @@ const Hotel_Info = () => {
                     <div className="col-md-6 col-lg-4">
                         {!is_edit ? <div className="form-group">
                             <input className='d-none' multiple type='file' id='upload-img-1' {...register("images", {
-                                required: "hotel Photos is required",
+                                // required: "hotel Photos is required",
                                 onChange: (e) => {
                                     const selectedFiles = Array.from(e.target.files);
                                     setHotelPhotos(prevPhotos => [...prevPhotos, ...selectedFiles]);
@@ -897,7 +897,10 @@ const Hotel_Info = () => {
                     <div className="col-md-6 col-lg-4">
                         {!is_edit ?
                             <div className="form-group">
-                                <input className='d-none' type='file' id='upload-img-2' {...register("hotel_logo", { required: "hotel logo is required" , onChange:(e)=>handleImageChange(e) })}
+                                <input className='d-none' type='file' id='upload-img-2' {...register("hotel_logo", 
+                                { 
+                                    // required: "hotel logo is required" 
+                                 onChange:(e)=>handleImageChange(e) })}
                                     accept="image/jpeg, image/jpg, image/png"
                                 />
                                 <label htmlFor="upload-img-2" className="form-label uploadBox">

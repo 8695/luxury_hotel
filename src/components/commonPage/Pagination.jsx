@@ -8,7 +8,10 @@ function Pagination({ setCurrentPage, totalPages, currentPage }) {
     <ResponsivePagination
       current={currentPage}
       total={totalPages}
-      onPageChange={setCurrentPage} // Updates the current page
+      onPageChange={setCurrentPage} 
+      previousLabel="Previous" // Text for Previous button
+      nextLabel="Next" // Text for Next button
+      renderNav={true} 
     />
   );
 }

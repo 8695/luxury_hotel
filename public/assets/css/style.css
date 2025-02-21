@@ -3655,6 +3655,17 @@ span.offer-time {
     text-decoration: var(--pagination-hover-text-decoration);
 }
 
+.page-item:last-child .page-link {
+    border-top-right-radius: var(--bs-pagination-border-radius);
+    border-bottom-right-radius: var(--bs-pagination-border-radius);
+    width: 100%;
+}
+.page-item:first-child .page-link {
+    border-top-left-radius: var(--bs-pagination-border-radius);
+    border-bottom-left-radius: var(--bs-pagination-border-radius);
+    width: 100%;
+}
+
 .pagination .page-link {
     transition: none;
     width: 34px;

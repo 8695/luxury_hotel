@@ -102,8 +102,9 @@ function ReviewForm({new_fetch_hotel_info}) {
                           className="form-control"
                           placeholder='Description'
                           style={{ height: "auto", minHeight: "100px" }}
-                          {...register("review", { required: true })}
+                          {...register("review", { required: "Your Review Is Required" })}
                         ></textarea>
+                         {errors.review && <span className='text-danger'>{errors.review.message}</span>}
                       </div>
                     </div>
 
@@ -114,7 +115,8 @@ function ReviewForm({new_fetch_hotel_info}) {
                       { name: "freewifi_rating", label: "Free WiFi" },
                     ].map(({ name, label }) => (
                       <div className='col-md-3' key={name}>
-                        <label className='uppercase inline-block mb-2'>{label}</label>
+                        <div className='flex justify-between'>
+                        <label className='uppercase inline-block mb-2 p-1'>{label}</label>
                         <div className='rating'>
                           {[1, 2, 3, 4, 5].map((value) => (
                             <input
@@ -127,6 +129,7 @@ function ReviewForm({new_fetch_hotel_info}) {
                           ))}
                         </div>
                       </div>
+                      </div>
                     ))}
 
                     <div className='col-md-12'>
@@ -134,14 +137,16 @@ function ReviewForm({new_fetch_hotel_info}) {
                         <input
                           type="checkbox"
                           className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 mt-1"
-                          {...register("certify", { required: true })}
+                          {...register("certify", { required: "You must certify this review before submitting."})}
                         />
+                        
                         <p className="text-gray-500 text-sm">
                           Note:- I certify that this review is based on my own experience and is my
                           genuine opinion of this hotel, and that I have no personal or business
                           relationship with this establishment.
                         </p>
                       </div>
+                        {errors.certify && <span className='text-danger'>{errors.certify.message}</span>}
                     </div>
 
                     <div className='col-md-12'>

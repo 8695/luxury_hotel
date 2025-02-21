@@ -97,5 +97,8 @@ export const apis={
     ADD_TO_CART:`hotels/addtocart/create`,
     GET_ADD_TO_CART:`hotels/addtocart/get`,
     DELETE_ADD_TO_CART:`hotels/addtocart/delete`,
+    LIKE_HOTELS:`hotels/updatelike`,
+    UPDATE_VISIT:`hotels/updatevisit`,
+
     
 }
