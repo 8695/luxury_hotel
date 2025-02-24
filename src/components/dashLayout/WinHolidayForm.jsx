@@ -303,7 +303,7 @@ function WinHolidayForm() {
                     <button type="submit" className="save-btn" disabled={loading}>
                       {loading ? "Submitting..." : "Submit"}
                     </button>
-                    <Link href="/nominate-hotel" className="next-btn">Continue</Link>
+                    <Link href="/dashboard/nominate-hotel" className="next-btn">Continue</Link>
                   </div>
                 </div>
               </form>

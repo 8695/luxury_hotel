@@ -61,7 +61,7 @@ const PublishNews = () => {
   const [showModal, setShowModal] = useState(false);
 
   const onSubmit = (data) => {
-    console.log("data",data);
+    console.log("data", data);
     const payload = {
       amount: amount,          // Keep the static amount or make it dynamic
       months: 6,               // If months is static (like 6 months), set it here
@@ -84,8 +84,8 @@ const PublishNews = () => {
   };
 
   const create_news = (paymaent_status) => {
-    const { businessType, hotelName, country, yourName, websiteLink, facebook, instagrameLink, youtubeLink, newsDescription, email, newsTitle, file ,offer_image} = getValues()
-   
+    const { businessType, hotelName, country, yourName, websiteLink, facebook, instagrameLink, youtubeLink, newsDescription, email, newsTitle, file, offer_image } = getValues()
+
     const formdata = new FormData
     // Append fields to FormData
     formdata.append('news_type', businessType || '');
@@ -101,14 +101,15 @@ const PublishNews = () => {
     formdata.append('news_title', newsTitle);
     formdata.append('paymaent_status', paymaent_status);
     formdata.append('business_name', hotelName);
-    
+
     formdata.append("offer_name", getValues().offer_name)
     formdata.append("offer_url", getValues().offer_url)
     formdata.append("offer_description", getValues().offer_description ?? "")
     formdata.append("offer_from", getValues().offer_from)
     formdata.append("offer_to", getValues().offer_to)
     formdata.append("hotel_id", hotel_details._id)
-    formdata.append("show_on_home", paidExclusiveOffer )
+    formdata.append("show_on_home", paidExclusiveOffer)
+    formdata.append("offer_time",getValues().offer_time)
 
     // paymaent_status,contactNo,active 
 
@@ -180,7 +181,7 @@ const PublishNews = () => {
     }
   }, [countryData])
 
-  const [countrySearch ,setCountrySearch] = useState("")
+  const [countrySearch, setCountrySearch] = useState("")
   const [selectedCountry, setSelectedCountry] = useState("");
 
   const filteredCountryData = countryData?.filter((country) =>
@@ -190,20 +191,20 @@ const PublishNews = () => {
   );
 
   const handleSelectCountry = (country) => {
-    console.log("country",country)
-    setValue("country", country?._id); 
-    setSelectedCountry(country?.country); 
-    setCountrySearch(""); 
+    console.log("country", country)
+    setValue("country", country?._id);
+    setSelectedCountry(country?.country);
+    setCountrySearch("");
   };
-  
-  const handlclose =()=>{
+
+  const handlclose = () => {
     reset({
       offer_name: '',
       offer_url: "",
-      offer_description : "",
+      offer_description: "",
       offer_from: "",
       offer_to: "",
-      offer_image:"",
+      offer_image: "",
     })
     setShowAddExclusiveOffer(false)
   }
@@ -218,6 +219,7 @@ const PublishNews = () => {
             backgroundImage: "url('/new/assets/img/nominate-hotel-bg.png')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
+            padding: " 0px 129px"
           }}
         >
           <form onSubmit={handleSubmit(onSubmit)} className='m-4'>
@@ -258,24 +260,24 @@ const PublishNews = () => {
                     className="form-control"
                     placeholder='Country'
                     value={selectedCountry || countrySearch}
-                  //     {...register("country", {
-                  //     required: "Please select a country", onChange: (e) => {
-                  //       setCountrySearch(e.target.value)  
-                  //       setSelectedCountry("");  
-                  //     }
-                  // })}
-                  onChange={(e) => {
-                    setCountrySearch(e.target.value);
-                    setSelectedCountry(""); // Clear selected country when typing
-                  }}
+                    //     {...register("country", {
+                    //     required: "Please select a country", onChange: (e) => {
+                    //       setCountrySearch(e.target.value)  
+                    //       setSelectedCountry("");  
+                    //     }
+                    // })}
+                    onChange={(e) => {
+                      setCountrySearch(e.target.value);
+                      setSelectedCountry(""); // Clear selected country when typing
+                    }}
                   />
-                   <input type="hidden" {...register("country")} />
+                  <input type="hidden" {...register("country")} />
                   {filteredCountryData && (
                     <ul className="country-list">
-                      {filteredCountryData?.map((country) =>(
-                      <li className="country-item" onClick={() => handleSelectCountry(country)}>{country?.country}</li>
+                      {filteredCountryData?.map((country) => (
+                        <li className="country-item" onClick={() => handleSelectCountry(country)}>{country?.country}</li>
                       ))}
-                      </ul>
+                    </ul>
                   )}
                   {/* <Controller
                     name="country"
@@ -635,12 +637,15 @@ const PublishNews = () => {
                           type="radio"
                           value="false"
                           checked={paidExclusiveOffer === false}
-                          onChange={() => setPaidExclusiveOffer(false)}
+                          onChange={() => {
+                            setPaidExclusiveOffer(false);
+                            setValue("homepage", 0); // Set homepage amount to zero
+                          }}
                           className="h-4 w-4 p-1"
-                        // name="payment"
                         />
                         No
                       </label>
+
                     </div>
 
                     {paidExclusiveOffer && (
@@ -701,15 +706,17 @@ const PublishNews = () => {
                               {/* <label className="form-label black-color">
                 
               </label> */}
-                              <select
+                              {/* <select
                                 className="form-control p-2"
-                                {...register("homepage",{onchange:(e) => {
-                                                    
-                                }})}
-                              // onChange={(e) => handleOptionChange(key.key, e.target.value)}
+                                {...register("homepage", {
+                                  onchange: (e) => {
+
+                                  }
+                                })}
+                                placeholder="Select Option"
+                             
                               >
                                 <option value="">SELECT OPTION</option>
-
                                 <option value={5} >
                                   Week € 5
                                 </option>
@@ -717,7 +724,22 @@ const PublishNews = () => {
                                   Month € 10
                                 </option>
 
+                              </select> */}
+                              <select
+                                className="form-control p-2"
+                                {...register("homepage", {
+                                  onChange: (e) => {
+                                    const selectedValue = e.target.value;
+                                    const offerTime = selectedValue === "5" ? "7" : selectedValue === "10" ? "30" : "";
+                                    setValue("offer_time", offerTime); 
+                                  },
+                                })}
+                              >
+                                <option value="">SELECT OPTION</option>
+                                <option value="5">Week € 5</option>
+                                <option value="10">Month € 10</option>
                               </select>
+
                             </div>
                           </div>
                         </div>
@@ -727,7 +749,7 @@ const PublishNews = () => {
 
                     <div className='footer-btn text-end'>
                       {/* <button onClick={() => setShowAddExclusiveOffer(false)} className='next-btn'>  Cancel </button> */}
-                      
+
                       <button onClick={handlclose} className='next-btn'>  Cancel </button>
                       {/* <button type='submit' className='save-btn'>  Add Offer </button> */}
                       {/* <Link href="/win-a-holiday" className='next-btn'>Next</Link> */}
@@ -738,7 +760,7 @@ const PublishNews = () => {
 
               <div className="col-span-full">
                 <h3 className="text-lg md:text-2.7xl font-bold uppercase mb-4">
-                  Price: €{parseFloat(watch("homepage") || 0) + parseFloat(amount) }
+                  Price: €{parseFloat(watch("homepage") || 0) + parseFloat(amount)}
                 </h3>
               </div>
 
@@ -782,7 +804,7 @@ const PublishNews = () => {
       </div>
 
       {/* {showModal && <PaypaModal />} */}
-      {showModal && res_data && <Elements stripe={stripePromise}> <CheckoutModal response_data={res_data} stripePromise={stripePromise} setShowModal={setShowModal} amount={amount} payment_method={watch("payment_method")} detils_data={getValues()} purpose="publish-news" time={"1 Months"} create_function={create_news} redirect={watch("businessType") == "other_business" ?  "latest-news" : "travel-news"} /></Elements>}
+      {showModal && res_data && <Elements stripe={stripePromise}> <CheckoutModal response_data={res_data} stripePromise={stripePromise} setShowModal={setShowModal} amount={amount} payment_method={watch("payment_method")} detils_data={getValues()} purpose="publish-news" time={"1 Months"} create_function={create_news} redirect={watch("businessType") == "other_business" ? "latest-news" : "travel-news"} /></Elements>}
     </>
   );
 };

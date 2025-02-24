@@ -43,8 +43,8 @@ export const apis={
     
     // win a holiday Api 
     WIN_A_HOLIDAY_API :`hotels/create-holiday`,
-    // GET_ALL_WIN_HOLIDAY_DATA :`hotels/get-holiday-hotels`,
-    GET_ALL_WIN_HOLIDAY__DATA:`hotels/get-all-holidays`,
+    GET_ALL_WIN_HOLIDAY_DATA :`hotels/get-holiday-hotels`,
+    GET_ALL_WIN_HOLIDAY__DATA_DASHBOARD:`hotels/get-holiday-hotels`,
     PAYMENT_POST:`payment`,
     // voter info mation api
     GET_ALL_VOTER_INFORMATION:`nominate/nominator-listing`,

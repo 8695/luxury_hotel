@@ -31,8 +31,10 @@ const NewsletterSection = () => {
 
   return (
     <>
-      <HeadingWithoutSwiper name={"SUBSCRIBE NEWSLETTER"} />
-      <section className="section-padding  bg-[#fffcf5]">
+      {/* <HeadingWithoutSwiper name={"SUBSCRIBE NEWSLETTER"} /> */}
+      <h3 className="text-center">SUBSCRIBE NEWSLETTER</h3>   
+       <div className="newsletter-section">
+      <section className="section-padding-newsletter  bg-[#fffcf5] shadow-lg">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center text-white ">
             {/* Left Side - Image */}
@@ -79,6 +81,7 @@ const NewsletterSection = () => {
                     type="submit"
                     className="flex-grow-0 text-[16px] px-2 m-1 hover:bg-[#121212]-700 h-8 w-48 rounded-md bg-[#D2122E] grid place-items-center focus:outline-none"
                     disabled={loading}
+                    style={{ background: 'linear-gradient(to right, rgb(204, 164, 89), rgb(230, 205, 113), rgb(204, 163, 86))' }}
                   >
                     {loading ? "Loading..." : "SUBSCRIBE"}
                   </button>
@@ -88,6 +91,8 @@ const NewsletterSection = () => {
           </div>
         </div>
       </section>
+      </div>
+    
     </>
   );
 };

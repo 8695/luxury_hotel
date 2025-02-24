@@ -1,6 +1,6 @@
 import React from 'react'
 
-function hearderNameIcon({name}) {
+function HearderNameIcon({name}) {
   return (
     <div className="section-head">
     <div className="container">
@@ -12,4 +12,4 @@ function hearderNameIcon({name}) {
   )
 }
 
-export default hearderNameIcon;
+export default HearderNameIcon;

@@ -91,6 +91,10 @@ body.scroll-off {
     padding-top: 40px;
     padding-bottom: 40px;
 }
+.section-padding-news{
+    padding-bottom: 40px;
+}
+
 
 .section-heading {
     /* <<<<<<< HEAD */
@@ -804,7 +808,7 @@ ul.footer-links.socialize li a i {
 
 .footer_wrapper {
     background: #D2122E;
-    padding: 55px 0 0;
+    padding: 142px 0 0;
     border-top: 1px solid #f1f1f1;
     /* background-image: linear-gradient(19deg, #001b23 0%, #ff3e21 100%);
     background-color: #712100; */
@@ -1583,6 +1587,7 @@ figure.banner-logo {
     color: #fff;
 }
 
+
 .theme-btn:hover {
     color: #C1121F;
     border: 1px solid #C1121F;
@@ -1666,7 +1671,7 @@ figure.banner-logo {
 }
 
 .newly-listed {
-    margin-top: 80px;
+    margin-top: 40px;
     margin-bottom: 40px;
 }
 
@@ -1680,6 +1685,21 @@ figure.banner-logo {
     padding-top: 25px;
     margin-top: 40px;
 }
+.section-head-new {
+    background: #C1121F;
+    padding-block: 14px;
+    color: #fff;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    margin-top: -10px;
+}
+.newly-listed-award {
+    margin-top: 40px;
+    margin-bottom: 0px;
+}
+
 
 .same-cards {
     padding: 30px 24px 30px 0;
@@ -1697,6 +1717,11 @@ figure.banner-logo {
 }
 
 .sectionInnerHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sectionInnerHead-new {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2758,10 +2783,10 @@ span.offer-time {
     color: #fff;
 }
 
-.st-btn img {
+/* .st-btn img {
     height: 16px;
     margin-right: 2px;
-}
+} */
 
 .same-cards {
     padding: 40px 0 0 0;
@@ -2793,6 +2818,12 @@ span.offer-time {
     height: 100%;
 }
 
+.same-cards-best-luxury{
+    padding: 40px 0 0 0;
+    margin-block: 0;
+    height: 71% !important;
+    min-height: 380px;
+}
 
 
 .travel-news-sec .same-cards {
@@ -2805,6 +2836,21 @@ span.offer-time {
 .travel-news-sec.letestNews .same-cards {
     padding: 0;
 }
+
+.sectionInnerHead-new.section-head-new {
+    background: transparent;
+    padding-bottom: 0px;
+}
+
+.sectionInnerHead-new.section-head-new .swiper-button-next,
+.sectionInnerHead-new.section-head-new .swiper-button-prev {
+    position: unset;
+    background: #e7e7e7;
+    height: 35px;
+    border-radius: 6px;
+    width: 35px;
+}
+
 
 .sectionInnerHead.section-head {
     background: transparent;
@@ -3864,7 +3910,7 @@ section.our-story {
     font-size: 14px;
 }
 
-.st-btn {
+/* .st-btn {
     border-radius: 4px;
     border: none;
     cursor: pointer;
@@ -3880,7 +3926,7 @@ section.our-story {
     vertical-align: top;
     white-space: nowrap;
     text-transform: capitalize;
-}
+} */
 .info-p{
     font-size: 14px !important;
     margin-bottom: 5px;
@@ -3912,3 +3958,145 @@ section.our-story {
     font-size: 22px;
     margin-top: 20px;
 }
+
+.bg-golden {
+    --tw-bg-opacity: 1;
+    background-color: rgb(132 99 22 / var(--tw-bg-opacity));
+}
+#st-1.st-animated {
+    -moz-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in;
+    -ms-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in;
+    -o-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in;
+    -webkit-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in;
+    transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in;
+}
+#st-1 {
+    font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;
+    direction: ltr;
+    display: block;
+    opacity: 1;
+    text-align: center;
+    z-index: 94034;
+}
+#st-1.st-has-labels .st-btn {
+    min-width: 145px;
+}
+#st-1 .st-btn {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-transition: opacity 0.2s ease-in, top 0.2s ease-in;
+    -ms-transition: opacity 0.2s ease-in, top 0.2s ease-in;
+    -o-transition: opacity 0.2s ease-in, top 0.2s ease-in;
+    -webkit-transition: opacity 0.2s ease-in, top 0.2s ease-in;
+    transition: opacity 0.2s ease-in, top 0.2s ease-in;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    /* height: 32px; */
+    line-height: 34px;
+    margin-right: 8px;
+    padding: 0px 27px;
+    position: relative;
+    text-align: right;
+    top: 0;
+    vertical-align: top;
+    white-space: nowrap;
+}
+#st-1 .st-btn > img {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    position: relative;
+    top: 8px;
+    vertical-align: top;
+}
+
+#st-1 .st-btn > span {
+    -moz-transition: all 0.2s ease-in;
+    -ms-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    color: #fff;
+    display: inline-block;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    min-width: 60px;
+    opacity: 1;
+    padding: 0 6px;
+    position: relative;
+    vertical-align: top;
+}
+.hotel-cards {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hotel-cards::after {
+    content: "";
+    position: absolute;
+    bottom: -50%;  /* Reflection ko neeche shift karne ke liye */
+    left: 0;
+    width: 100%;
+    height: 50%;  /* Reflection ka size (aadha) */
+    background: inherit; /* Same image copy karna */
+    transform: scaleY(-1); /* Mirror effect */
+    opacity: 0.4; /* Reflection transparency */
+    filter: blur(2px); /* Soft blur effect */
+    mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0)); 
+    -webkit-mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  }
+
+  .hotel-img-effect{
+    height: 370px;
+    position: relative;
+}
+
+.hotel-img-effect:hover .hotel-content{
+    
+    display: block;
+}
+.hotel-img-reflect{
+    position: relative;
+    
+    }
+    .hotel-img-reflect::after{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: rgb(0 0 0 / 70%);
+    top: 0;
+    border-radius: 10px;
+    }
+    .hotel-main-image-reflect{
+        height: 170px;
+        border-radius: 10px;
+        opacity: 10px;
+        object-fit: cover;
+        transform: rotate(180deg);
+        width: 100%;
+    }
+    .newsletter-section {
+        position: relative;
+        top: 90px;
+        width: 80%;
+        /* top: 1300%; */
+        left: 9rem;
+        border: 2px solid #d8b705;
+        border-radius: 30px;
+    }
+    .section-padding-newsletter {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        border-radius: 30px;
+    }
+    
+
+    
+    

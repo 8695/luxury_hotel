@@ -5,6 +5,7 @@ import NominateHotel from "./dashLayout/NominateHotel";
 import { useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import useRequest from "@component/hooks/UseRequest";
+import toast from "react-hot-toast";
 const paymentMethods = [
   {
       id: "credit",
@@ -45,12 +46,14 @@ const NominateForm = () => {
 
     const [isVisitHotel, setIsVisitHotel] = useState(false);
     const { request: requestfetch, response: responsefetch } = useRequest();
-    const { register, handleSubmit, formState: { errors }, watch, getValues, reset } = useForm();
+    const { register, handleSubmit, formState: { errors }, watch, getValues, reset,setValue } = useForm();
     const [res_data, steRes_data] = useState(null)
     const { request, response, loading } = useRequest(true);
-    let amount = 60;
+    let amount = 0.6;
     const hotel_details = localStorage.getItem("hotel_details") ? JSON.parse(localStorage.getItem("hotel_details")) : null
     const user_details = localStorage.getItem('userdetails') ? JSON.parse(localStorage.getItem('userdetails')) : null
+
+    const [privewImage,setPreViewImage] = useState(null)
 
 
     const [showModal, setShowModal] = useState(true);
@@ -64,6 +67,24 @@ const NominateForm = () => {
         request("POST", apis.ADD_NOMINEE_CHECKOUT_HOTEL, payload)
     }
    
+    const handleImageChange = (event) => {
+      
+      const file = event.target.files[0];
+  
+      if (file) {
+        const validTypes = ["image/jpeg", "image/jpg", "image/png"];
+        console.log("validTypes", validTypes)
+        if (!validTypes.includes(file.type)) {
+          toast.error("Only JPG, JPEG, and PNG files are allowed.");
+          setPreViewImage(null);
+          setValue("file", null); // Reset input
+          return;
+        }
+  
+  
+        setPreViewImage(URL.createObjectURL(file));
+      }
+    };
 
   const onSubmitTraveler = (data) => {
     console.log("Traveler Form Submitted", data);
@@ -105,6 +126,11 @@ const NominateForm = () => {
       
           request_create("POST",apis.CREATE_NOMAINATE,formdata)
           }
+          const handleRemoveImage = () => {
+            setPreViewImage(null);
+            setValue("file", null); // Reset form field
+          };
+
 
   return (
     <section
@@ -281,9 +307,9 @@ const NominateForm = () => {
 
                 <div className="col-md-12">
                     <div className="form-group">
-                        <label htmlFor="description" className="form-label">
+                        {/* <label htmlFor="description" className="form-label">
                             Description
-                        </label>
+                        </label> */}
                         <textarea
                             placeholder="Description"
                             className="form-control"
@@ -294,7 +320,9 @@ const NominateForm = () => {
 
                 <div className="col-md-12 mt-4">
                     <div className="form-group">
-                        <input {...register("file", { required: "file is required" })} className="d-none" type="file" id="upload-img-2" />
+                        <input {...register("file", { required: "file is required",onChange: (e) => handleImageChange(e) })} className="d-none" type="file" id="upload-img-2" />
+                      
+                            
                         <label htmlFor="upload-img-2" className="form-label uploadBox">
                             <div className="flex items-center gap-3">
                                 <svg
@@ -313,8 +341,22 @@ const NominateForm = () => {
                             </div>
                         </label>
                         <p className="text-xs uppercase leading-5 text-grayDark mt-1">
-                            Only one ({ }) photo allowed
+                            Only one photo allowed
                         </p>
+                        {privewImage && (
+                              <div className="relative mt-2">
+                                <img src={privewImage} alt="Selected" className="w-32 h-32 object-cover rounded-md shadow-md" />
+                                <button
+                                  type="button"
+                                  onClick={handleRemoveImage}
+                                  className="absolute -top-2 -right-3 bg-red-500 text-white p-1 rounded-2xl shadow-md"
+                                >
+                                  ✕
+                                </button>
+                              </div>
+                            )}
+
+                            {errors?.file && <p className="text-red-500 text-xs mt-1">{errors?.file?.message}</p>}
                     </div>
                 </div>
 

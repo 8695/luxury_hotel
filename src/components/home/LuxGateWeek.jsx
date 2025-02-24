@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from "react";
+import HearderNameIcon from "../hearderNameIcon";
 
 function LuxGateWeek() {
   // Hotel data
@@ -40,32 +41,38 @@ function LuxGateWeek() {
   );
 
   return (
+    <>
+     <HearderNameIcon name={"NEW LUXE GETAWAYS EVERY WEEK"} />
+          <div style={{ backgroundImage: "url('/new/assets/img/splash.png')",backgroundSize: 'contain'}}>
+          
     <div
-      className="flex justify-center items-center py-[30px] bg-cover bg-center"
-      
+      className="flex justify-center items-center py-[30px]"
     >
       {/* Container */}
-      <div className="flex gap-8 p-4 rounded-lg shadow-lg">
+      <div className="flex gap-8 p-4 rounded-lg">
         {/* Sidebar Buttons */}
         <div className="flex flex-col space-y-4">
           {hotelData.map((hotel) => (
-            <button
-              key={hotel.country}
-              className={`px-4 py-2 ${
-                hotel.country === selectedCountry
-                  ? "bg-red-600 text-white"
-                  : "bg-white border border-gray-300 text-[#9e7922]"
-              } rounded-md hover:bg-gray-100`}
-              onClick={() => setSelectedCountry(hotel.country)}
-            >
-              {hotel.country}
-            </button>
+           <button
+           key={hotel.country}
+           className={`px-4 py-2 
+               bg-white border border-gray-300 text-[#9e7922] rounded-md hover:bg-gray-100`}
+           style={
+             hotel.country === selectedCountry
+               ? { background: "linear-gradient(to right, rgb(204, 164, 89), rgb(230, 205, 113), rgb(204, 163, 86))" ,color:"white",borderRadius:"10px" } :{}
+              
+           }
+           onClick={() => setSelectedCountry(hotel.country)}
+         >
+           {hotel.country}
+         </button>
+         
           ))}
         </div>
 
         {/* Main Content */}
         <div
-          className="flex flex-col bg-white p-4 rounded-md"
+          className="flex flex-col pl-4 pt-0 pb-4 pr-4 rounded-md"
           style={{ width: "820px" }}
         >
          <div style={{display:"flex",gap:"15px",justifyContent:"space-between"}}>
@@ -79,7 +86,7 @@ function LuxGateWeek() {
          </div>
 
           {/* YouTube Video */}
-          <div className="w-[775px] h-[315px]">
+          <div className="w-[790px] h-[360px]">
             <iframe
               width="100%"
               height="315"
@@ -93,6 +100,8 @@ function LuxGateWeek() {
         </div>
       </div>
     </div>
+    </div>
+    </>
   );
 }
 

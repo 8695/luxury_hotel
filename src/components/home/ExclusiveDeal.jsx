@@ -14,14 +14,15 @@ const ExclusiveDeal = () => {
     console.log("getExclusiveOffers",filterExlusiveOffers)
     return (
         <>
-            <section className="ExclusiveDeal ExclusiveDealSec">
+            <section className="ExclusiveDeal ExclusiveDealSec" style={{  backgroundImage: 'url("/new/assets/img/5.png")',
+                backgroundSize: 'cover'}}>
                 
                 <HearderNameSection name={"Exclusive Deal"} />
                 <div data-aos="zoom-in" className="container">
-                    <div className="grid my-[40px] grid-cols-2 md:grid-cols-6 lg:grid-cols-4 gap-4">
+                    <div className="grid my-[40px] grid-cols-2 md:grid-cols-6 lg:grid-cols-4 gap-4 pb-9">
                         {filterExlusiveOffers?.map((hotel) => {
                             return (
-                                <div className="card w-40">
+                                <div className="card w-40" style={{borderRadius:"20px"}}>
                                     <div className="card__content  relative  transition-transform duration-1000  font-bold">
                                         <div className="card__front absolute top-0 bottom-0 right-0 left-0 bg-[#C1121F]">
                                             <img style={{ maxHeight: "350px", height: "350px" }} src={`${BASEURL}/${hotel?.offer_image}`} />
@@ -44,13 +45,13 @@ const ExclusiveDeal = () => {
 
    
 
-                        <div className="card w-40 " data-aos="fade-right" >
+                        <div className="card w-40 " data-aos="fade-right" style={{    borderRadius: "16px"}} >
                             <div className='' style={{
                             backgroundImage: 'url("/new/assets/img/nominate-hotel-bg.png")',
                             backgroundSize: "cover",
                             backgroundPosition: "center center",
                             border: "2px solid #b79d13",
-                            borderRadius: "31px",
+                            borderRadius: "16px",
                             marginTop: "2px",
                             height: "100%"
                         }}>

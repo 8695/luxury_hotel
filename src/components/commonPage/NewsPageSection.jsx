@@ -63,6 +63,21 @@ function NewsPageSection({ news_id }) {
         route.push(`/news/${item}`)
     }
 
+    const getYouTubeEmbedURL = (url) => {
+        if (!url) return "";
+    
+        // Improved regex to match different YouTube URL formats
+        const videoIdMatch = url.match(
+            /(?:youtube\.com\/(?:.*[?&]v=|embed\/|shorts\/)|youtu\.be\/)([^"&?\/\s]{11})/
+        );
+    
+        console.log("url:", url, "videoIdMatch:", videoIdMatch);
+    
+        return videoIdMatch ? `https://www.youtube.com/embed/${videoIdMatch[1]}` : "";
+    };
+
+    const videoUrl = getYouTubeEmbedURL(newsData?.youtube_video_url);
+
     return (
         <>
             <div style={{
@@ -86,7 +101,7 @@ function NewsPageSection({ news_id }) {
                     </div>
                 </section>
                 <section className='nominate-hotel-section'>
-                    <HearderNameIcon name={newsData?.news_title} />
+                    <HearderNameIcon name={newsData?.business_name} />
                     <div className='py-12'>
                         <div className='container'>
                             {/* <div className='p-5 bg-white rounded-2xl lowercase' style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
@@ -94,10 +109,15 @@ function NewsPageSection({ news_id }) {
                                     {newsData?.news_description}
                                 </p>
                             </div> */}
+                            <div className='p-5 bg-white rounded-2xl lowercase' style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
+                                <p className="">
+                                    {newsData?.news_content}
+                                </p>
+                            </div>
                             <div className='my-10'>
                                 <div className='row'>
                                     <div className='col-md-9'>
-                                        <iframe width="100%" height="100%" className="rounded-2xl" src={newsData?.youtube_video_url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen=""></iframe>
+                                        <iframe width="100%" height="100%" className="rounded-2xl" src={videoUrl} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen=""></iframe>
                                         {/* <vedio src={newsData?.youtube_video_url}></vedio> */}
                                     </div>
                                     <div className='col-md-3'>
@@ -140,11 +160,11 @@ function NewsPageSection({ news_id }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className='p-5 bg-white rounded-2xl lowercase' style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
+                            {/* <div className='p-5 bg-white rounded-2xl lowercase' style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
                                 <p className="">
                                     {newsData?.news_content}
                                 </p>
-                            </div>
+                            </div> */}
                             <div className='content-rightBox white-bg mt-5'
                                 style={{
                                     backgroundImage: 'url("/new/assets/img/nominate-hotel-bg.png")',
@@ -262,7 +282,11 @@ function NewsPageSection({ news_id }) {
                                         </button>
                                     </div>
                                     <div className="">
-                                        <button className="px-7 py-2 rounded bg-golden text-white uppercase">
+                                        <button 
+                                        // className="px-7 py-2 rounded bg-golden text-white uppercase"
+                                        className="px-7 py-2 rounded bg-golden text-white uppercase"
+                                        onClick={() => window.location.href = newsData?.website_url}
+                                        >
                                             Visit Our Website
                                         </button>
                                     </div>
@@ -350,7 +374,7 @@ function NewsPageSection({ news_id }) {
                                             alt="snapchat sharing button"
                                             src="https://platform-cdn.sharethis.com/img/snapchat.svg"
                                         />
-                                        <span className="st-label">Snap</span>
+                                        <span className="st-label" style={{color:"black"}}>Snap</span>
                                     </div>
                                     <div
                                         className="st-btn"
@@ -363,17 +387,7 @@ function NewsPageSection({ news_id }) {
                                         />
                                         <span className="st-label">Email</span>
                                     </div>
-                                    <div
-                                        className="st-btn st-last"
-                                        data-network="sharethis"
-                                        style={{ display: "inline-block", backgroundColor: '#95D03A' }}
-                                    >
-                                        <img
-                                            alt="sharethis sharing button"
-                                            src="https://platform-cdn.sharethis.com/img/sharethis.svg"
-                                        />
-                                        <span className="st-label">Share</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -381,9 +395,9 @@ function NewsPageSection({ news_id }) {
                 </section>
                 {/* <HearderNameIcon name={"You may also like"} /> */}
                  
-                <div className="container whater-effect section-padding" data-aos="zoom-out-up">
+                <div className="container whater-effect section-padding-news" data-aos="zoom-out-up">
                 <div className="container">
-                    <div className="sectionInnerHead section-head">
+                    <div className="sectionInnerHead section-head" style={{paddingTop:"0px",marginTop:"0px"}}>
                         {/* <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0 my-5 uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">LATEST News</h1> */}
                         <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0  uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">You may also like</h1>
                         <div className="section-control">
@@ -418,7 +432,7 @@ function NewsPageSection({ news_id }) {
                                             </div>
                                             <div className="hotel-content whater-effect -mt-28">
                                             <h4 className="hotel-name text-center">{hotel?.news_title}</h4>
-                                                <div className="teams-name" onClick={()=>handleRoute(hotel?.slug)}>{hotel?.hotel}</div>
+                                                <div className="teams-name cursor-pointer" onClick={()=>handleRoute(hotel?.slug)}>{hotel?.hotel}</div>
                                                 <div className="teams-role">{hotel?.country?.country}</div>
                                             </div>
                                        

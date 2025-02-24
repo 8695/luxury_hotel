@@ -47,7 +47,7 @@ const HeroBanner = () => {
           style={{
             position: "relative",
             width: "100vw",
-            height: "100vh",
+            height: "95vh",
             overflow: "hidden",
           }}
         >
@@ -75,8 +75,8 @@ const HeroBanner = () => {
         <div className="banner-content">
           <div className="container">
             <div className="row align-items-center">
-              {/* Left content */}
-              <div className="col-md-6">
+
+              {/* <div className="col-md-6">
                 <div className="banner-left-text">
                   <p className="banner-text">
                     Luxury Hotels, a renowned global brand founded in England 17
@@ -94,10 +94,11 @@ const HeroBanner = () => {
                     without any commission fees.
                   </p>
                 </div>
-              </div>
+              </div> */}
+             
 
               {/* Right content */}
-              <div className="col-md-6">
+              <div className="col-md-12">
                 <figure className="banner-logo">
                   <img
                     src="/new/assets/img/logo.svg"

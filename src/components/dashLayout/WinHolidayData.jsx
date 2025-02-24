@@ -19,7 +19,7 @@ function WinHolidayData() {
         // if (!showModal) {
         if (hotelDetailsJsonString?._id) {
     
-          requestData("GET", `${apis.GET_ALL_WIN_HOLIDAY__DATA}/${hotelDetailsJsonString?._id}`);
+          requestData("GET", `${apis.GET_ALL_WIN_HOLIDAY__DATA_DASHBOARD}/${hotelDetailsJsonString?._id}`);
         }
         // }
       }, []);

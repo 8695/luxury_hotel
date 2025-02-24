@@ -17,7 +17,7 @@ function Footer() {
   };
 
   return (
-    <footer className="footer_wrapper">
+    <footer className="footer_wrapper footer">
       <div className="container">
         <div className="row">
           <div className="col-lg-3">
@@ -48,7 +48,7 @@ function Footer() {
                     <Link href="/latest-news">LATEST NEWS</Link>
                   </li>
                   <li>
-                    <Link href="/win-a-holyday">WIN A HOLIDAY</Link>
+                    <Link href="/win-a-holiday">WIN A HOLIDAY</Link>
                   </li>
                 </ul>
               </div>
@@ -82,14 +82,14 @@ function Footer() {
                     <Link href="/distribution">DISTRIBUTION</Link>
                   </li>
                   <li>
-                    <Link href="publish-news">PUBLISH NEWS</Link>
+                    <Link href="/publish-news">PUBLISH NEWS</Link>
                   </li>
                   <li>
                     <Link href="/media-kit">Media Kit</Link>
                   </li>
                   
                   <li>
-                    <Link href="/advertise-with-us">LIST YOUR HOTEL</Link>
+                    <Link href="/dashboard">LIST YOUR HOTEL</Link>
                   </li>
                   
                   <li>
@@ -177,6 +177,8 @@ const SocialLinks = () => {
           ))}
         </div>
       </div>
+      <hr />
+      <p className="text-center mt-4 text-slate-50">© 2024 Luxury Hotels. All Rights Reserved.</p>
     </div>
   );
 };

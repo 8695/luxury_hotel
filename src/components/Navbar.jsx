@@ -40,7 +40,7 @@ const Navbar = () => {
       // request("POST", apis.LOGOUT_API, { authToken: userDetails.authToken });
       localStorage.removeItem("userdetails");
 
-      window.location.href="/new"
+      window.location.href = "/new"
 
     } else {
       console.error("No user details or authToken found in localStorage");
@@ -67,7 +67,7 @@ const Navbar = () => {
                 <div className=" navbar-collapse">
                   <ul className="navbar-nav ms-auto">
                     <li className="nav-item">
-                      <Link className="nav-link" href="/dashboard/hotel-info">LIST YOUR HOTEL</Link>
+                      <Link className="nav-link" href="/dashboard/">LIST YOUR HOTEL</Link>
                     </li>
                     <li className="nav-item">
                       <Link href="/publish-news"
@@ -143,9 +143,10 @@ const Navbar = () => {
                               </div>
                     )} */}
                     <li className="nav-item">
-                      <Link className="nav-link theme-btn" href="/luxury-hotels-find">
+                      <Link href="/luxury-hotels-find" className="nav-link theme-btn" style={{ background: 'linear-gradient(to right, rgb(204, 164, 89), rgb(230, 205, 113), rgb(204, 163, 86))' }}>
                         FIND A HOTEL
                       </Link>
+
                     </li>
                   </ul>
                 </div>

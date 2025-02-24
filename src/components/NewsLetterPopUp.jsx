@@ -81,6 +81,7 @@ function NewsLetterPopUp({ closeNewsLetter }) {
                     type="submit"
                     className="flex-none rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
                     disabled={loading}
+                    style={{ background: 'linear-gradient(to right, rgb(204, 164, 89), rgb(230, 205, 113), rgb(204, 163, 86))' }}
                   >
                     {loading ? 'Submitting...' : 'SUBSCRIBE'}
                   </button>
