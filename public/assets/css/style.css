@@ -67,6 +67,13 @@ iframe {
     display: block;
     margin: 0 auto;
 }
+.border-luxe iframe{
+    border: 0;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    border :1px solid #e2ac2e 
+}
 
 p {
     font-size: 16px;
@@ -688,8 +695,8 @@ body.scroll-off {
 }
 
 .copyright {
-    padding: 15px 0;
-    border-top: 1px solid #ffffff1a;
+    padding: 3px 0;
+    /* border-top: 1px solid #ffffff1a; */
     color: #737777;
     font-size: 14px;
     margin-top: 30px;
@@ -4073,6 +4080,7 @@ section.our-story {
     background: rgb(0 0 0 / 70%);
     top: 0;
     border-radius: 10px;
+    border: none;
     }
     .hotel-main-image-reflect{
         height: 170px;
@@ -4081,6 +4089,7 @@ section.our-story {
         object-fit: cover;
         transform: rotate(180deg);
         width: 100%;
+        border: none;
     }
     .newsletter-section {
         position: relative;
@@ -4088,13 +4097,13 @@ section.our-story {
         width: 80%;
         /* top: 1300%; */
         left: 9rem;
-        border: 2px solid #d8b705;
-        border-radius: 30px;
+        /* border: 2px solid #d8b705;
+        border-radius: 30px; */
     }
     .section-padding-newsletter {
         padding-top: 40px;
         padding-bottom: 40px;
-        border-radius: 30px;
+        /* border-radius: 30px; */
     }
     
 

@@ -31,10 +31,23 @@ const NewsletterSection = () => {
 
   return (
     <>
-      {/* <HeadingWithoutSwiper name={"SUBSCRIBE NEWSLETTER"} /> */}
-      <h3 className="text-center">SUBSCRIBE NEWSLETTER</h3>   
-       <div className="newsletter-section">
-      <section className="section-padding-newsletter  bg-[#fffcf5] shadow-lg">
+      <HeadingWithoutSwiper name={"SUBSCRIBE NEWSLETTER"} />
+      {/* <h3 className="text-center">SUBSCRIBE NEWSLETTER</h3>    */}
+      <div
+          style={{
+            backgroundImage: 'url("/new/assets/img/transparent-bg.png")',
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            // padding: "100px 0",
+            backgroundRepeat: "no-repeat",
+            bottom: "-250px",
+            left: "40%",
+            transform: "translate(-50%)",
+          }}
+          className="container newsletter-section"
+        >
+       {/* <div className="newsletter-section"> */}
+      <section className="section-padding-newsletter">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center text-white ">
             {/* Left Side - Image */}
@@ -48,10 +61,11 @@ const NewsletterSection = () => {
 
             {/* Right Side - Content */}
             <div className="md:w-2/3 mt-[-50px] md:mt-0 md:ml-8 md:text-left">
-              <h2 className="text-2xl font-bold">NEWSLETTER SIGN UP</h2>
-              <p className="mt-3">
-                SIGN UP NOW TO RECEIVE HOT SPECIAL OFFERS AND INFORMATION ABOUT THE
-                BEST TOURS!
+              <h3 className="text-2xl font-bold">SIGN UP For Our NEWSLETTER</h3>
+              <p className="mt-3 text-capitalize">
+                {/* SIGN UP NOW TO RECEIVE HOT SPECIAL OFFERS AND INFORMATION ABOUT THE
+                BEST TOURS! */}
+                To Recieve the latest news, exclusive deals, and a chence to win a free holiday while discovering the best luxury hotels and top destination !
               </p>
               <form className="mt-6" onSubmit={handleSubmit(handleSubmitNewsLatter)}>
                 <div className="border-b pb-3 d-flex">
@@ -91,6 +105,7 @@ const NewsletterSection = () => {
           </div>
         </div>
       </section>
+      {/* </div> */}
       </div>
     
     </>

@@ -72,10 +72,10 @@ function LuxGateWeek() {
 
         {/* Main Content */}
         <div
-          className="flex flex-col pl-4 pt-0 pb-4 pr-4 rounded-md"
-          style={{ width: "820px" }}
+          className="flex flex-col pl-4 pt-0 pb-4 pr-4 rounded-md shadow-lg"
+          style={{ width: "820px",border:"2px solid #e2ac2e" }}
         >
-         <div style={{display:"flex",gap:"15px",justifyContent:"space-between"}}>
+         <div style={{display:"flex",gap:"15px",justifyContent:"space-between"}} className="mt-4">
          
 
           <h1 style={{color:"#C1121F",fontSize:"1.25rem"}}>LUXURY HOTELS</h1>
@@ -86,15 +86,16 @@ function LuxGateWeek() {
          </div>
 
           {/* YouTube Video */}
-          <div className="w-[790px] h-[360px]">
+          <div className="w-[790px] h-[400px] border-luxe mt-3">
             <iframe
               width="100%"
-              height="315"
+              height="385"
               src={selectedHotel?.youtubeLink}
               title={selectedHotel?.name}
               className="rounded-lg border"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              
             ></iframe>
           </div>
         </div>

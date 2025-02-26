@@ -19,8 +19,8 @@ const Fourthcoming = () => {
     return (
         <section className="fourthcoming-section coming-sectionEdition" style={{  backgroundImage: 'url("/new/assets/img/1.png")',
             backgroundSize: 'cover',}}>
-            {/* <HeadingWithoutSwiper name={"FOURTHCOMING LUXURY HOTEL EDITIONS"} /> */}
-            <h2 className="text-center pt-6 mt-0 text-white">FOURTHCOMING LUXURY HOTEL EDITIONS</h2>
+            <HeadingWithoutSwiper name={"FOURTHCOMING LUXURY HOTEL EDITIONS"} />
+            {/* <h2 className="text-center pt-6 mt-0 text-white">FOURTHCOMING LUXURY HOTEL EDITIONS</h2> */}
             <div className="container">
                 <div className="grid mt-10 grid-cols-12 gap-4">
                     {/* Left Side - Magazine Covers */}

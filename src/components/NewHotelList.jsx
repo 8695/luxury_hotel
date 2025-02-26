@@ -37,18 +37,8 @@ const NewlyListedHotels = () => {
   return (
     <section className="newly-listed newly-listedSec mt-10">
       
-    <div className="container">
-                    <div className="sectionInnerHead-new section-head-new">
-                        {/* <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0 my-5 uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">LATEST News</h1> */}
-                        <h3 className="text-center text-[#846316]">NEWLY LISTED HOTELS</h3>
-                        <div className="section-control">
-                            <div className="swiper-button-next text-slate-300"></div>
-                            <div className="swiper-button-prev text-slate-300"></div>
-                            
-                        </div>
-                    </div>
-                </div>
-    
+                       
+   <HearderNameSection name={" NEWLY LISTED HOTELS"} />
       <div>
         <div className="container">
           <div className="row whater-effect">

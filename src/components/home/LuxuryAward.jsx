@@ -49,7 +49,8 @@ const LuxuryAward = () => {
       <div className="container pt-4">
                     <div className="sectionInnerHead-new section-head-new">
                         {/* <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0 my-5 uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">LATEST News</h1> */}
-                        <h3 className="text-center text-[#846316]">Best luxury hotel of the year</h3>
+                        
+                        <h2 className="section-heading">Best luxury hotel of the year</h2>
                         <div className="section-control">
                             <div className="swiper-button-next text-slate-300"></div>
                             <div className="swiper-button-prev text-slate-300"></div>

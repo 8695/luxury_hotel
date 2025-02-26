@@ -177,8 +177,7 @@ const SocialLinks = () => {
           ))}
         </div>
       </div>
-      <hr />
-      <p className="text-center mt-4 text-slate-50">© 2024 Luxury Hotels. All Rights Reserved.</p>
+      <p className="text-center mt-4 text-slate-50 text-capitalize">© 2023-2024 Luxury Hotels. All Rights Reserved.</p>
     </div>
   );
 };
