@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import SquarePayment from '@component/modals/SquarePaymentGateway';
 import NominateHotelNewsModal from '@component/modals/NominateHotelNewsModal';
+import toast from 'react-hot-toast';
 
 // const paymentMethods = [
 //     {
@@ -50,7 +51,7 @@ const NominateHotel = () => {
 
     const [isVisitHotel, setIsVisitHotel] = useState(false);
     const { request: requestfetch, response: responsefetch } = useRequest();
-    const { register, handleSubmit, formState: { errors }, watch, getValues,setValue, reset ,control} = useForm();
+    const { register, handleSubmit, formState: { errors }, watch, getValues, setValue, reset, control } = useForm();
     const [res_data, steRes_data] = useState(null)
     const { request, response, loading } = useRequest(true);
     let amount = 0.5;
@@ -59,6 +60,7 @@ const NominateHotel = () => {
 
 
     const [showModal, setShowModal] = useState(true);
+    const [preview, setPreview] = useState(null);
 
     // const onSubmit = (data) => {
     //     const payload = {
@@ -89,6 +91,29 @@ const NominateHotel = () => {
             requestfetch("GET", `${apis.GETHOTEL_PROFILE}${hotel_details?._id}`)
         }
     }, [])
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+
+        if (file) {
+            const validTypes = ["image/jpeg", "image/jpg", "image/png"];
+            console.log("validTypes", validTypes)
+            if (!validTypes.includes(file.type)) {
+                toast.error("Only JPG, JPEG, and PNG files are allowed.");
+                setPreview(null);
+                setValue("file", null); // Reset input
+                return;
+            }
+
+
+            setPreview(URL.createObjectURL(file));
+        }
+    };
+
+    const handleRemoveImage = () => {
+        setPreview(null);
+        setValue("file", null); // Reset form field
+    };
 
 
     // const new_fetch_hotel_info = useMemo(() => {
@@ -165,90 +190,90 @@ const NominateHotel = () => {
     //     }
     // }
 
-        //   const countyOptions = useMemo(() => {
-        //         if (countryData) {
-        //             return countryData?.map((it) => {
-        //                 return { value: it.code, label: it.country }
-        //             })
-        //         }
-        //     }, [countryData])
-        const [countrySearch ,setCountrySearch] = useState("")
-          const [selectedCountry, setSelectedCountry] = useState("");
-          const [showNomiNateHotelNews,setShowNomiNateHotelNews] = useState(false);
-        
-          const filteredCountryData = countryData?.filter((country) =>
-            countrySearch
-              ? country?.country.toLowerCase().includes(countrySearch.toLowerCase())
-              : ""
-          );
-        
-          const handleSelectCountry = (country) => {
-            console.log("country",country)
-            setValue("country", country?._id); 
-            setSelectedCountry(country?.country); 
-            setCountrySearch(""); 
-          };
+    //   const countyOptions = useMemo(() => {
+    //         if (countryData) {
+    //             return countryData?.map((it) => {
+    //                 return { value: it.code, label: it.country }
+    //             })
+    //         }
+    //     }, [countryData])
+    const [countrySearch, setCountrySearch] = useState("")
+    const [selectedCountry, setSelectedCountry] = useState("");
+    const [showNomiNateHotelNews, setShowNomiNateHotelNews] = useState(false);
 
-          const onSubmit =async()=>{
-         const { businessType, hotelName, country, name, websiteLink, instagramLink,facebookLink,facebook, instagrameLink, youtubeLink, newsDescription, email, newsTitle, file, validTo, validFrom, description, hotelVisit, } = getValues()
-         
-         console.log("country",country);
+    const filteredCountryData = countryData?.filter((country) =>
+        countrySearch
+            ? country?.country.toLowerCase().includes(countrySearch.toLowerCase())
+            : ""
+    );
 
-        const payload ={
+    const handleSelectCountry = (country) => {
+        console.log("country", country)
+        setValue("country", country?._id);
+        setSelectedCountry(country?.country);
+        setCountrySearch("");
+    };
+
+    const onSubmit = async () => {
+        const { businessType, hotelName, country, name, websiteLink, instagramLink, facebookLink, facebook, instagrameLink, youtubeLink, newsDescription, email, newsTitle, file, validTo, validFrom, description, hotelVisit, } = getValues()
+
+        console.log("country", country);
+
+        const payload = {
             nomination_type: "hotel",
-            hotelName:hotelName,
+            hotelName: hotelName,
             country: selectedCountry,
-            nominatorName:name,
-            hotelWebsite:websiteLink,
-            nominatorEmail:email,
+            nominatorName: name,
+            hotelWebsite: websiteLink,
+            nominatorEmail: email,
             // paymaent_status:paymaent_status,
-            desc:description,
-            nominationStartDate:validFrom,
-            nominationEndDate:validTo,
-            youtube_video_url:youtubeLink,
-            pay_amount:amount,
-            instagramLink:instagramLink,
-            facebookLink:facebookLink,
+            desc: description,
+            nominationStartDate: validFrom,
+            nominationEndDate: validTo,
+            youtube_video_url: youtubeLink,
+            pay_amount: amount,
+            instagramLink: instagramLink,
+            facebookLink: facebookLink,
             // images:file[0],
             // leave_message:leaveMessage,
-            request_to_visit:hotelVisit == "true" ? "yes" : "no",
-            key:"nominate"
+            request_to_visit: hotelVisit == "true" ? "yes" : "no",
+            key: "nominate"
         }
 
-        console.log("payload",payload)
+        console.log("payload", payload)
 
         const formData = new FormData();
         // if (data.offer_image) {
         //   formData.append("offer_image", getValues().offer_image[0]);
         // }
-       
-        formData.append("addOns","")
-        formData.append("packages","")
-        formData.append("exclusiveoffer","")
-        formData.append("nominate_hotel",JSON.stringify(payload))
-        formData.append("file",file[0])
+
+        formData.append("addOns", "")
+        formData.append("packages", "")
+        formData.append("exclusiveoffer", "")
+        formData.append("nominate_hotel", JSON.stringify(payload))
+        formData.append("file", file[0])
         formData.append("hotel", hotel_details?._id);
-        formData.append("user_id",user_details?._id)
-        const  res_data=await request("POST",apis.ADD_TO_CART,formData)
+        formData.append("user_id", user_details?._id)
+        const res_data = await request("POST", apis.ADD_TO_CART, formData)
 
-        if(res_data){
+        if (res_data) {
             router.push('/dashboard/payment')
-          }
-          }
+        }
+    }
 
-           useEffect(() => {
-                const hasModalShown = localStorage.getItem("hasModalNominateShown");
-            
-                if (!hasModalShown) {
-                  setShowNomiNateHotelNews(true);
-                  localStorage.setItem("hasModalNominateShown", "true"); // Store flag in localStorage
-                }
-              }, []);
+    useEffect(() => {
+        const hasModalShown = localStorage.getItem("hasModalNominateShown");
 
-              const closeNewsLetter = ()=>{
-                setShowNomiNateHotelNews(false)
-              }
-          
+        if (!hasModalShown) {
+            setShowNomiNateHotelNews(true);
+            localStorage.setItem("hasModalNominateShown", "true"); // Store flag in localStorage
+        }
+    }, []);
+
+    const closeNewsLetter = () => {
+        setShowNomiNateHotelNews(false)
+    }
+
 
     return (
         <>
@@ -296,31 +321,31 @@ const NominateHotel = () => {
                     <div className="col-md-6">
                         <div className="form-group">
 
-                        <input
-                    className="form-control"
-                    placeholder='Search your country name'
-                    value={selectedCountry || countrySearch}
-                  //     {...register("country", {
-                  //     required: "Please select a country", onChange: (e) => {
-                  //       setCountrySearch(e.target.value)  
-                  //       setSelectedCountry("");  
-                  //     }
-                  // })}
-                  onChange={(e) => {
-                    setCountrySearch(e.target.value);
-                    setSelectedCountry(""); // Clear selected country when typing
-                  }}
-                  />
-                   <input type="hidden" {...register("country")} />
-                  {filteredCountryData && (
-                    <ul className="country-list">
-                      {filteredCountryData?.map((country) =>(
-                      <li className="country-item" onClick={() => handleSelectCountry(country)}>{country?.country}</li>
-                      ))}
-                      </ul>
-                  )}
-                           
-                        {/* <Controller
+                            <input
+                                className="form-control"
+                                placeholder='Search your country name'
+                                value={selectedCountry || countrySearch}
+                                //     {...register("country", {
+                                //     required: "Please select a country", onChange: (e) => {
+                                //       setCountrySearch(e.target.value)  
+                                //       setSelectedCountry("");  
+                                //     }
+                                // })}
+                                onChange={(e) => {
+                                    setCountrySearch(e.target.value);
+                                    setSelectedCountry(""); // Clear selected country when typing
+                                }}
+                            />
+                            <input type="hidden" {...register("country")} />
+                            {filteredCountryData && (
+                                <ul className="country-list">
+                                    {filteredCountryData?.map((country) => (
+                                        <li className="country-item" onClick={() => handleSelectCountry(country)}>{country?.country}</li>
+                                    ))}
+                                </ul>
+                            )}
+
+                            {/* <Controller
                                 name="country"
                                 control={control}
                                 rules={{ required: "Country selection is required" }}
@@ -335,7 +360,7 @@ const NominateHotel = () => {
                                     />
                                 )}
                             /> */}
-                          
+
                             {/* <select
                                 id="countrySelect"
                                 {...register("country", {
@@ -376,7 +401,7 @@ const NominateHotel = () => {
                                         className="h-4 w-4"
                                     />
                                     <span>YES</span>
-                                     {errors.hotelVisit && <span className="text-danger">{errors.hotelVisit.message}</span>}
+                                    {errors.hotelVisit && <span className="text-danger">{errors.hotelVisit.message}</span>}
                                 </label>
                                 <label className="flex items-center space-x-1">
                                     <input
@@ -386,7 +411,7 @@ const NominateHotel = () => {
                                         onChange={() => setIsVisitHotel(false)}
                                         className="h-4 w-4"
                                     />
-                                     {/* {errors.hotelVisit && <span className="text-danger">{errors.hotelVisit.message}</span>} */}
+                                    {/* {errors.hotelVisit && <span className="text-danger">{errors.hotelVisit.message}</span>} */}
                                     <span>NO</span>
                                 </label>
                             </div>
@@ -418,7 +443,7 @@ const NominateHotel = () => {
                                         className="form-control"
                                         {...register("validTo")}
                                     />
-                                     {/* {errors.validTo && <span className="text-danger">{errors.validTo.message}</span>} */}
+                                    {/* {errors.validTo && <span className="text-danger">{errors.validTo.message}</span>} */}
                                 </div>
                             </div>
                         </div>
@@ -440,8 +465,8 @@ const NominateHotel = () => {
 
                     <div className="col-md-12 mt-4">
                         <div className="form-group">
-                            <input {...register("file", { required: "file is required" })} className="d-none" type="file" id="upload-img-2" />
-                            <label htmlFor="upload-img-2" className="form-label uploadBox">
+                            <input {...register("file", { required: "file is required", setValueAs: (v) => v, onChange: (e) => handleImageChange(e) })} className="d-none" type="file" id="upload-img-2" />
+                            {/* <label htmlFor="upload-img-2" className="form-label uploadBox">
                                 <div className="flex items-center gap-3">
                                     <svg
                                         stroke="currentColor"
@@ -457,13 +482,44 @@ const NominateHotel = () => {
                                     </svg>
                                     <p className="uppercase text-grayDark mb-0">Upload a file</p>
                                 </div>
-                            </label>
+                            </label> */}
+                            {!preview ? (
+                                <label htmlFor="upload-img-2" className="form-label uploadBox cursor-pointer">
+                                    <div className="flex items-center gap-3">
+                                        <svg
+                                            stroke="currentColor"
+                                            fill="currentColor"
+                                            strokeWidth={0}
+                                            viewBox="0 0 256 256"
+                                            className="text-xl"
+                                            height="1em"
+                                            width="1em"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path d="M228,144v64a12,12,0,0,1-12,12H40a12,12,0,0,1-12-12V144a12,12,0,0,1,24,0v52H204V144a12,12,0,0,1,24,0ZM96.49,80.49,116,61v83a12,12,0,0,0,24,0V61l19.51,19.52a12,12,0,1,0,17-17l-40-40a12,12,0,0,0-17,0l-40,40a12,12,0,1,0,17,17Z"></path>
+                                        </svg>
+                                        <p className="uppercase text-grayDark mb-0">Upload a file</p>
+                                    </div>
+                                </label>
+                            ) : (
+                                <div className="relative mt-2">
+                                    <img src={preview} alt="Selected" className="w-32 h-32 object-cover rounded-md shadow-md" />
+                                    <button
+                                        type="button"
+                                        onClick={handleRemoveImage}
+                                        className="absolute -top-2 -right-3 bg-red-500 text-white p-1 rounded-2xl shadow-md"
+                                    >
+                                        ✕
+                                    </button>
+                                </div>
+                            )}
                             <p className="text-xs uppercase leading-5 text-grayDark mt-1">
-                                Only one ({ }) photo allowed
+                                Only one ({1}) photo allowed
                             </p>
-                                    {errors.file && <span className="text-danger">{errors.file.message}</span>}
+                            {errors.file && <span className="text-danger">{errors.file.message}</span>}
                         </div>
                     </div>
+
 
                     <div className="col-md-12">
                         <div className="form-group">
@@ -512,11 +568,11 @@ const NominateHotel = () => {
                                 placeholder="Enter hotel instagram link"
                                 className="form-control"
                                 {...register("instagramLink")}
-                                
+
                             />
                         </div>
                     </div>
-                                                {/* <button type="submit" className="save-btn" style={{width:"98%",margin:"0px"}}>PROCEED TO CHECKOUT</button> */}
+                    {/* <button type="submit" className="save-btn" style={{width:"98%",margin:"0px"}}>PROCEED TO CHECKOUT</button> */}
 
 
                     <div className="col-span-full">

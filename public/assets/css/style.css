@@ -2,7 +2,9 @@ body {
     margin: 0 auto;
     font-size: 16px;
     padding: 0;
-    font-family: "Radley", serif;
+    /* font-family: "Radley", serif; */
+    font-family: "Lora", serif;
+
     color: #000;
     /* text-transform: uppercase; */
     overflow-x: hidden;
@@ -3828,7 +3830,8 @@ section.our-story {
 }
 
 .mapView_right {
-    height: 320px;
+    /* height: 320px; */
+    height: 500px;
 }
 
 .mapView_right .text-2xl {

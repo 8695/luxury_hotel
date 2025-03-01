@@ -67,8 +67,8 @@ const PublishNews = () => {
       months: 6,               // If months is static (like 6 months), set it here
       hotel: data.hotelName,   // Use the hotel name from the form input
     };
-    // create_news("pending")
-    request("POST", apis.ADD_NOMINEE_CHECKOUT_HOTEL, payload);
+    create_news("pending")
+    // request("POST", apis.ADD_NOMINEE_CHECKOUT_HOTEL, payload);
   };
 
   useEffect(() => {
@@ -82,6 +82,7 @@ const PublishNews = () => {
   const handleShowExclusiveOffer = () => {
     setShowAddExclusiveOffer(!showAddExclusive);
   };
+  console.log("paidExclusiveOffer",paidExclusiveOffer);
 
   const create_news = (paymaent_status) => {
     const { businessType, hotelName, country, yourName, websiteLink, facebook, instagrameLink, youtubeLink, newsDescription, email, newsTitle, file, offer_image } = getValues()
@@ -107,9 +108,9 @@ const PublishNews = () => {
     formdata.append("offer_description", getValues().offer_description ?? "")
     formdata.append("offer_from", getValues().offer_from)
     formdata.append("offer_to", getValues().offer_to)
-    formdata.append("hotel_id", hotel_details._id)
+    formdata.append("hotel_id", hotel_details?._id ?? " ")
     formdata.append("show_on_home", paidExclusiveOffer)
-    formdata.append("offer_time",getValues().offer_time)
+    formdata.append("offer_time", getValues().offer_time)
 
     // paymaent_status,contactNo,active 
 
@@ -209,6 +210,16 @@ const PublishNews = () => {
     setShowAddExclusiveOffer(false)
   }
 
+  const handleWordCountValidation = (value) => {
+    console.log(value,"value")
+    const wordCount = value.trim().split(/\s+/).filter(Boolean).length;
+    
+    if (wordCount > 10) {
+      toast.error("You can enter a maximum of 10 words");
+      
+    } 
+  };
+
   return (
     <>
       <HeadingWithoutSwiper name={"Publish News"} />
@@ -219,7 +230,7 @@ const PublishNews = () => {
             backgroundImage: "url('/new/assets/img/nominate-hotel-bg.png')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            padding: " 0px 129px"
+            padding: " 0px 42px"
           }}
         >
           <form onSubmit={handleSubmit(onSubmit)} className='m-4'>
@@ -571,8 +582,12 @@ const PublishNews = () => {
                           type="text"
                           placeholder="Offer description"
                           className="form-control"
-                          {...register("offer_description", { required: "Offer description is required" })}
+                          {...register("offer_description", {
+                            required: "Offer description is required",
+                            onChange: (e) => handleWordCountValidation(e.target.value),
+                          })}
                         />
+
                         <span className="error_message">
                           {errors["offer_description"] && `${errors.offer_description.message}`}
                         </span>
@@ -731,7 +746,7 @@ const PublishNews = () => {
                                   onChange: (e) => {
                                     const selectedValue = e.target.value;
                                     const offerTime = selectedValue === "5" ? "7" : selectedValue === "10" ? "30" : "";
-                                    setValue("offer_time", offerTime); 
+                                    setValue("offer_time", offerTime);
                                   },
                                 })}
                               >

@@ -67,7 +67,7 @@ const Hotel_Info = () => {
           if (!validTypes.includes(file.type)) {
             toast.error("Only JPG, JPEG, and PNG files are allowed.");
             setPreview(null);
-            setValue("hotel_logo", null); // Reset input
+            setValue("hotel_logo", null); 
             return;
           }
     
@@ -973,7 +973,7 @@ const Hotel_Info = () => {
                                     hotelPhotos.map((file, index) => (
                                         <div key={index} className="relative inline-block mr-2">
                                             <img
-                                                src={typeof file=="object"? URL.createObjectURL(file):file} // Ensure `img` is a valid URL
+                                                src={typeof file=="object"? URL.createObjectURL(file):file} 
                                                 alt="Selected"
                                                 className="w-32 h-32 object-cover rounded-md shadow-md"
                                             />

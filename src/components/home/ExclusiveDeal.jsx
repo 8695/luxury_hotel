@@ -26,7 +26,7 @@ const ExclusiveDeal = () => {
                                     <div className="card__content  relative  transition-transform duration-1000  font-bold">
                                         <div className="card__front absolute top-0 bottom-0 right-0 left-0 bg-[#C1121F]">
                                             <img style={{ maxHeight: "350px", height: "350px" }} src={`${BASEURL}/${hotel?.offer_image}`} />
-                                            <span className="exclu_deal_name">{hotel?.hotel?.hotel_name}</span>
+                                            <span className="exclu_deal_name">{hotel?.hotel?.hotel_name ? hotel?.hotel?.hotel_name : hotel?.offer_name}</span>
                                         </div>
                                         <div className="card__back absolute top-0 bottom-0 right-0 left-0 p-8 bg-[#9e7922]">
                                             <span className='offer-time'>
@@ -35,7 +35,10 @@ const ExclusiveDeal = () => {
                                             <span className='offer-heading'>  {hotel?.offer_name} </span>
 
                                             <div className='text-center mt-4'>
-                                                <Link href={`/hotels/${hotel?.hotel?.slug}`} className='theme-btn'> CLAIM  </Link>
+                                            <button onClick={() => window.location.href = hotel?.offer_url} className="theme-btn">
+  CLAIM
+</button>
+
                                             </div>
                                         </div>
                                     </div>

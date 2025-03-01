@@ -14,7 +14,7 @@ const SignUp = () => {
     formState: { errors },
     watch
   } = useForm();
-  const router = useRouter();
+  // const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const [showInfoPage, setShowInfoPage] = useState(false)
   
@@ -27,10 +27,10 @@ const SignUp = () => {
  
   useEffect(() => {
     if (response) {
-      console.log("response: " + response)
+      // console.log("response: " + response)
       if (response.status) {
-        localStorage.setItem("userdetails",JSON.stringify(response.user))
-        localStorage.setItem("hotel_details",JSON.stringify(response.detail))
+        // localStorage.setItem("userdetails",JSON.stringify(response.user))
+        // localStorage.setItem("hotel_details",JSON.stringify(response.detail))
         toast.success("SIGNUP SUCCESSFULLY AND PLEASE CHECK YOUR EMAIL TO VERIFY YOUR ACCOUNT.")
         setShowInfoPage(true)
         // router.push('/login')

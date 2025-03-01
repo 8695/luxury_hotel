@@ -13,8 +13,8 @@ const getDistance = async (originLat, originLng, destLat, destLng) => {
         console.error('Error fetching distance data:', error);
     }
 };
-const ViewMap = ({ setIViewModal, nearbyData, hotel_details_fetch }) => {
-    console.log("nearbyData", nearbyData);
+const ViewMap = ({ setIViewModal, nearbyData, hotel_details_fetch,nearbyAttraction }) => {
+    console.log("nearbyData", nearbyAttraction);
     return (
         <>
             <div className="modal d-block" tabIndex="-1" role="dialog">
@@ -43,12 +43,38 @@ const ViewMap = ({ setIViewModal, nearbyData, hotel_details_fetch }) => {
                                         setIViewModal={setIViewModal}
 
                                     />
+                                      <div className=" main-border-topMap p-6 pb-0 pt-4 rounded-md">
+                                        <h3 className="text-xl font-bold text-gray-800 mb-4 ">
+                                            Top Attraction
+                                        </h3>
+                                        {nearbyAttraction?.attraction?.length > 0 ? (<>
+                                            {nearbyAttraction?.attraction?.map((item) => (
+                                                <div className="my-4 border-topMap">
+                                                    <h4 className="text-lg font-semibold text-[#9e7922] flex items-center gap-2">
+                                                        <img src={item?.icon} alt="Airport Icon" style={{ width: "1rem", height: "1rem" }} />
+                                                        </h4>
+                                                    <ul className="text-gray-600 ps-0">
+                                                        <li> <strong>{item?.name}</strong> <br /> About {item?.distance?.duration?.text}(s) from hotel by car ({item?.distance?.distance?.text})</li>
+                                                        {/* <li> <strong>Amtrak Railway Station</strong> <br />
+                                                    About 32min(s) from hotel by car (15.3 miles)
+                                                </li> */}
+                                                    </ul>
+                                                </div>
+                                            ))}
+                                        </>) : (
+                                            <div className="my-4 border-topMap">
+                                                <h4 className="text-lg font-semibold text-[#9e7922] flex items-center gap-2"> <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M448 96v256c0 51.815-61.624 96-130.022 96l62.98 49.721C386.905 502.417 383.562 512 376 512H72c-7.578 0-10.892-9.594-4.957-14.279L130.022 448C61.82 448 0 403.954 0 352V96C0 42.981 64 0 128 0h192c65 0 128 42.981 128 96zm-48 136V120c0-13.255-10.745-24-24-24H72c-13.255 0-24 10.745-24 24v112c0 13.255 10.745 24 24 24h304c13.255 0 24-10.745 24-24zm-176 64c-30.928 0-56 25.072-56 56s25.072 56 56 56 56-25.072 56-56-25.072-56-56-56z"></path></svg>
+                                                    <span>No Nearby top Attractions</span>
+                                                </h4>
+                                            </div>
+                                        )}
+                                        </div>
                                 </div>
 
                                 {/* Right Section: Hotel Info */}
                                 <div className="mapView_right ">
                                     {/* Hotel Details */}
-                                    <div className="bg-white p-6 shadow rounded-md">
+                                    <div className="bg-white p-6 rounded-md">
                                         <h2 className="text-2xl font-bold text-gray-800">
                                             {hotel_details_fetch?.hotel_name}                                        </h2>
                                         <p className="text-gray-600 flex items-center gap-2">
@@ -65,7 +91,7 @@ const ViewMap = ({ setIViewModal, nearbyData, hotel_details_fetch }) => {
                                     </div>
 
                                     {/* Transportation Details */}
-                                    <div className="bg-white main-border-topMap p-6 pb-0 pt-0 shadow rounded-md">
+                                    <div className="bg-white main-border-topMap p-6 pb-0 pt-0 rounded-md">
                                         <h3 className="text-xl font-bold text-gray-800 mb-4 ">
                                             Transportation
                                         </h3>

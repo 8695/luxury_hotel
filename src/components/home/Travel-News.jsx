@@ -107,7 +107,7 @@ const TravelNews = () => {
                                             <div className="hotel-cards">
                                                 <div className="hotel-img">
                                                     <img
-                                                        src={`https://www.luxuryhotels.click/img/blog/blog.png`}
+                                                        src={`${BASEURL}/${hotel?.thumbnail_path}`}
                                                         alt={hotel.name}
                                                     />
                                                 </div>

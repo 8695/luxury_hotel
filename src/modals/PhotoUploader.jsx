@@ -35,11 +35,11 @@ const PhotoUploader = ({ closeModal2, images, hotel_logo }) => {
             // setSelectedImage([...selectedImage, imageUrl]);
         }
     };
-
+   console.log("currentimages",currentimages);
     useEffect(() => {
         if (selectedTab) {
             if (selectedTab == "Photos") {
-                setSelectedImage(currentimages ? currentimages?.map(filePath => `${BASEURL}/${filePath}`) : [])
+                setSelectedImage(currentimages ? currentimages?.map(filePath => filePath.slice(0, 5) == "https" ? filePath : `${BASEURL}/${filePath}`) : [])
             } else {
                 console.log(logo, "logo", hotel_logo)
                 let log = logo ? [`${BASEURL}/${logo}`] : []
@@ -47,6 +47,7 @@ const PhotoUploader = ({ closeModal2, images, hotel_logo }) => {
             }
         }
     }, [selectedTab])
+  
 
     const handleRemoveImage = async (url) => {
         // setSelectedImage(null)
@@ -58,7 +59,7 @@ const PhotoUploader = ({ closeModal2, images, hotel_logo }) => {
         if (res_data) {
             if (selectedTab == "Photos") {
 
-                setSelectedImage(res_data?.data?.images?.map(filePath => `${BASEURL}/${filePath}`))
+                setSelectedImage(res_data?.data?.images?.map(filePath => filePath.slice(0, 5) == "https" ? filePath : `${BASEURL}/${filePath}`))
             } else {
                 setSelectedImage([`${BASEURL}/${res_data?.data?.hotel_logo}`])
             }
@@ -89,7 +90,7 @@ const PhotoUploader = ({ closeModal2, images, hotel_logo }) => {
         if (res_data) {
             if (selectedTab == "Photos") {
                 console.log(res_data?.data?.hotel?.images?.map(filePath => `${BASEURL}/${filePath}`), "filePath")
-                setSelectedImage(res_data?.data?.hotel?.images?.map(filePath => `${BASEURL}/${filePath}`))
+                setSelectedImage(res_data?.data?.hotel?.images?.map(filePath => filePath.slice(0, 5) == "https" ? filePath : `${BASEURL}/${filePath}`))
             } else {
                 console.log(res_data?.data, "res_data?.data")
                 setSelectedImage([`${BASEURL}/${res_data?.data?.hotel?.hotel_logo}`])

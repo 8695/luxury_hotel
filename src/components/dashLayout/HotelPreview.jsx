@@ -9,6 +9,7 @@ import PropertyDescription from '@component/modals/PropertyDescription';
 import HotelPreviewModal from './HotelPreviewModal';
 import axios from 'axios';
 import ImagesModal from "@component/modals/ImagesModal"
+import { useSelector } from 'react-redux';
 
 
 
@@ -22,9 +23,12 @@ const HotelPreview = () => {
     const [ShowMore, SetShowMore] = useState(false);
     const [latLong, setLatLong] = useState(null);
     const [nearbyData, setNearbyData] = useState([]);
+    const [nearbyAttraction, setNearbyAttraction] = useState([]);
+    const {request:request_atraction,response:response_atraction} = useRequest(true)
     const [isOpen, setIsOpen] = useState(false);
 
     const { request: requestNearby, response: responseNearby, loading } = useRequest(true)
+    const { hotel_highlight, hotel_facility,room_enimities} = useSelector((state) => state.siteSetting)
 
     console.log(ViewModal, "ViewModal");
 
@@ -93,7 +97,8 @@ const HotelPreview = () => {
             const getLatLong = async () => {
                 try {
 
-                    const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${hotel_details_fetch?.location}&key=${GOOGLE_API_KEY}`;
+                    const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${hotel_details_fetch?.location}&key=${GOOGLE_API_KEY}`; 
+
                     const geocodeResponse = await axios.get(geocodeUrl);
 
                     console.log(geocodeResponse, 'geocode');
@@ -114,17 +119,32 @@ const HotelPreview = () => {
 
     const NearByHotels = async () => {
         try {
-            const response = await requestNearby("POST", apis.NEARBY_BY_HOTEL, latLong);
-
-            console.log("response", response)
-            if (response) {
-                setIViewModal(true)
-                setNearbyData(response?.transport)
+            // Ensure latLong is defined before making requests
+            if (!latLong) {
+                console.error("Error: latLong is undefined.");
+                return;
             }
-        } catch (erorr) {
-            console.log("error", erorr)
+    
+            // Fetch nearby hotels & transport
+            const response = await requestNearby("POST", apis.NEARBY_BY_HOTEL, latLong);
+            
+            // Fetch nearby attractions
+            const attractionResponse = await request_atraction("POST", apis.NEARBY_BY_ATTRACTIONS, latLong);
+            
+            console.log("Attraction Response:", attractionResponse);
+            console.log("Nearby Hotels Response:", response);
+    
+            // Update state if response contains data
+            if (response?.transport || attractionResponse?.attraction) {
+                setIViewModal(true);
+                setNearbyData(response?.transport);
+                setNearbyAttraction(attractionResponse?.attraction)
+            }
+        } catch (error) {
+            console.error("Error fetching nearby places:", error);
         }
-    }
+    };
+    
 
     // const getYouTubeEmbedURL = (url) => {
     //     if (!url) return "";
@@ -152,8 +172,18 @@ const HotelPreview = () => {
 
     const videoUrl = getYouTubeEmbedURL(hotel_details_fetch?.youtube);
 
-    console.log("videoUrl", videoUrl)
+    const selectedFacilities = hotel_facility.filter(facility => 
+        hotel_details_fetch?.hotel_facilities.includes(facility._id)
+    );
+    const selectedAminties = room_enimities.filter(facility => 
+        hotel_details_fetch?.room_amenities.includes(facility._id)
+    );
+    const selectedHighLights = hotel_highlight.filter(facility => 
+        hotel_details_fetch?.hotel_highlights.includes(facility._id)
+    );
+    
 
+ 
 
     return (
         <>
@@ -318,120 +348,63 @@ const HotelPreview = () => {
                                 <div className='col-md-12'>
                                     <h3 className="comman-heading3">Highlights</h3>
                                     <div className="grid  service-outerBox p-3 bg-gray my-3 rounded-xl shadow-sm">
-                                        <div className="text-center serviceBox">
+                                    {selectedHighLights?.map((icon)=>{
+                                            return(
+                                                <div className="text-center serviceBox">
                                             <img
-                                                src="/new/assets/img/Bar.svg"
+                                                src={`${BASEURL}/${icon?.Icon}`}
                                                 className="mx-auto"
                                                 alt="Ideal Location"
                                             />
-                                            <h3 className='service-text mb-2'>Ideal Location</h3>
+                                            <h3 className='service-text mb-2'>{icon?.highlight}
+                                            </h3>
                                         </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/Private-Driver.svg"
-                                                className="mx-auto"
-                                                alt="Free airport transfers"
-                                            />
-                                            <h3 className='service-text'>Laundry service</h3>
-                                        </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/PARKING.svg"
-                                                className="mx-auto"
-                                                alt="Free Parking"
-                                            />
-                                            <h3 className='service-text'>Business center</h3>
-                                        </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/CONFERENCE-MEETING-ROOM.svg"
-                                                className="mx-auto"
-                                                alt="Varied Breakfast"
-                                            />
-                                            <h3 className='service-text'>Gym</h3>
-                                        </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/BREAKFAST.svg"
-                                                className="mx-auto"
-                                                alt="Free Breakfast"
-                                            />
-                                            <h3 className='service-text'>Shopping</h3>
-                                        </div>
+                                            )
+                                        })}
                                     </div>
                                     <h3 className="comman-heading3">Hotel Facilities</h3>
                                     <div className="grid  service-outerBox p-3 bg-gray my-3 rounded-xl shadow-sm">
-                                        <div className="text-center serviceBox">
+                                        {selectedFacilities?.map((icon)=>{
+                                            return(
+                                                <div className="text-center serviceBox">
                                             <img
-                                                src="/new/assets/img/Bar.svg"
+                                                src={`${BASEURL}/${icon?.Icon}`}
                                                 className="mx-auto"
                                                 alt="Ideal Location"
                                             />
-                                            <h3 className='service-text mb-2'>Laundry service
+                                            <h3 className='service-text mb-2'>{icon?.facility}
                                             </h3>
                                         </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/Private-Driver.svg"
-                                                className="mx-auto"
-                                                alt="Free airport transfers"
-                                            />
-                                            <h3 className='service-text'>Bathrobes</h3>
-                                        </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/PARKING.svg"
-                                                className="mx-auto"
-                                                alt="Free Parking"
-                                            />
-                                            <h3 className='service-text'>Minibar</h3>
-                                        </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/CONFERENCE-MEETING-ROOM.svg"
-                                                className="mx-auto"
-                                                alt="Varied Breakfast"
-                                            />
-                                            <h3 className='service-text'>Pillow Menu</h3>
-                                        </div>
+                                            )
+                                        })}
                                         <div className="text-center serviceBox">
                                             <a href="#" className='theme-btn'>Hotel Facilities</a>
                                         </div>
                                     </div>
 
-                                    <h3 className="comman-heading3">Transportation</h3>
+                                    <h3 className="comman-heading3">Hotel Aminities</h3>
 
                                     <div className="grid  service-outerBox p-3 bg-gray my-3 rounded-xl shadow-sm">
-                                        <div className="text-center serviceBox">
+                                    {selectedAminties?.map((icon)=>{
+                                            return(
+                                                <div className="text-center serviceBox">
                                             <img
-                                                src="/new/assets/img/Bar.svg"
+                                                src={`${BASEURL}/${icon?.amenityIcon}`}
                                                 className="mx-auto"
                                                 alt="Ideal Location"
                                             />
-                                            <h3 className='service-text mb-2'>Airport</h3>
+                                            <h3 className='service-text mb-2'>{icon?.amenity}
+                                            </h3>
                                         </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/Private-Driver.svg"
-                                                className="mx-auto"
-                                                alt="Free airport transfers"
-                                            />
-                                            <h3 className='service-text'>Train Station</h3>
-                                        </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/PARKING.svg"
-                                                className="mx-auto"
-                                                alt="Free Parking"
-                                            />
-                                            <h3 className='service-text'>Metro Station</h3>
-                                        </div>
+                                            )
+                                        })}
+                                      
 
                                         <div className="text-center serviceBox">
-                                            <a href="#" className='theme-btn'>Hotel Facilities</a>
+                                            <a href="#" className='theme-btn'>Hotel Aminities</a>
                                         </div>
                                     </div>
-                                    <h3 className="comman-heading3">Top Attraction</h3>
+                                    {/* <h3 className="comman-heading3">Top Attraction</h3>
 
                                     <div className="grid  service-outerBox p-3 bg-gray my-3 rounded-xl shadow-sm">
                                         <div className="text-center serviceBox">
@@ -471,7 +444,7 @@ const HotelPreview = () => {
                                             <a href="#" className='theme-btn'>Top Attraction</a>
 
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
 
                             </div>
@@ -484,7 +457,7 @@ const HotelPreview = () => {
 
                             {/* <iframe title="map" className="w-full h-full mx-auto" id="gmap_canvas" src="https://maps.google.com/maps?q=Rosen Inn Lake Buena Vista&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe> */}
                         </div>
-                        {ViewModal && (<ViewMap setIViewModal={setIViewModal} nearbyData={nearbyData} hotel_details_fetch={hotel_details_fetch} />)}
+                        {ViewModal && (<ViewMap setIViewModal={setIViewModal} nearbyData={nearbyData} hotel_details_fetch={hotel_details_fetch} nearbyAttraction={nearbyAttraction} />)}
                         <div className='mt-3'
                         >
                             <div className="accordion theme-accordion" id="accordionExample">
@@ -642,9 +615,9 @@ const HotelPreview = () => {
                                 No Hotel Listed
                             </div>
                             <div className='footer-btn text-end'>
-                                <Link href="/dashboard/nominate-hotel" className='next-btn'>Previous</Link>
+                                <Link href="/dashboard/contact-info" className='next-btn'>Previous</Link>
 
-                                <Link href="/dashboard/review" className='next-btn'>Continue</Link>
+                                <Link href="/dashboard/select-package" className='next-btn'>Continue</Link>
                             </div>
                         </div>
                     </div>

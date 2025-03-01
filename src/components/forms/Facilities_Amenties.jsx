@@ -29,7 +29,7 @@ const Facilities_Amenties = () => {
     }, []);
 
     useEffect(() => {
-        if (responsefetch) {
+        if (responsefetch?.data) {
             const { room_amenities, hotel_highlights, hotel_facilities } = responsefetch?.data;
             reset({ room_amenities, hotel_highlights, hotel_facilities });
             setSelectedHighlights(hotel_highlights || []); // Initialize highlights selection

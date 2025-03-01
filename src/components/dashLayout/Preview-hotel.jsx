@@ -22,26 +22,24 @@ function Previewhotel() {
 
     
     useEffect(() => {
-        if (response) {
+        if (response?.data) {
             console.log(response, "response")
 
             setData(response?.data)
-            let {description,
+            let {
+                description,
                 about,
                 rooms_suites,
                 restaurants_bars,
                 spa_wellness,
-                // images,
-                
                 other_facilities,
                 additional_information,}=response?.data
-            reset({description,
+            reset({
+                description,
                 about,
                 rooms_suites,
                 restaurants_bars,
                 spa_wellness,
-                
-                
                 other_facilities,
                 additional_information,})
         }
@@ -59,12 +57,12 @@ function Previewhotel() {
         <>
         {data ? (<> 
             <h3 className='comman-heading3'>
-                Please complete all sections with*. The rest of the sections are optional
+                Edit Your Hotel ALL Text Fields
             </h3>
             <div className="aboutHotel-card">
-                <div className="hotelImg">
+                {/* <div className="hotelImg">
                     <img src={`${BASEURL}/${data?.hotel_logo}`} />
-                </div>
+                </div> */}
                 <h3 className="hotelName">
                     {data?.hotel_name}
                 </h3>

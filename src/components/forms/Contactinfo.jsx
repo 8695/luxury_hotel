@@ -108,7 +108,7 @@ const Contactinfo = () => {
 
     useEffect(() => {
     
-            if (responsefetch) {
+            if (responsefetch?.data) {
                 let { hotel_manager_name, 
                     hotel_manager_email , 
                     hotel_manager_telephone ,marketing_manager_email ,marketing_manager_name,marketing_manager_telephone,actual_person_name,

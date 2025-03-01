@@ -13,9 +13,10 @@ function ImagesModal({ previewImages, setIsOpen }) {
   return (
     <>
       {/* Full-Screen Background Blur */}
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-50">
-        <div className="modal d-block" tabIndex="-1" role="dialog">
-          <div className="modal-dialog modal-xl modal-dialog-centered bg-white" role="document">
+      <div className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-50 mt-10">
+        <div className="modal d-block mt-10" tabIndex="-1" role="dialog">
+          <div className="modal-dialog modal-lg
+           modal-dialog-centered bg-white mt-4" role="document">
             <div className="modal-content" style={{ maxHeight: '80vh' }}>
               <div className="modal-header">
                 <h5 className="text-lg font-semibold">Gallery</h5>

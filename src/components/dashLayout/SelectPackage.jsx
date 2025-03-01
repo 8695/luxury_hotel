@@ -186,7 +186,7 @@ function SelectPackage() {
             </h3>
            
 
-            {addondata_details && <TeamVisitForm addondata_details={addondata_details} />}
+            {/* {addondata_details && <TeamVisitForm addondata_details={addondata_details} />} */}
                 <div className="plan_outerBox">
                     {/* Premium Plan */}
                     { all_subscription  && all_subscription?.map((it) => {

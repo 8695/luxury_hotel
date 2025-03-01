@@ -10,6 +10,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Map from '../Map'
 import AddOnsModal from '@component/modals/AddOnsModal'
+import toast from 'react-hot-toast'
 
 
 
@@ -81,6 +82,22 @@ function AddHotelSeacrh() {
   const closeNewsLetter =()=>{
     setShowModal(false);
   }
+
+
+ 
+
+  useEffect(() => {
+    if (router?.query?.userDetails) {
+      try {
+        const userDetails = JSON.parse(decodeURIComponent(router.query.userDetails));
+        // Save to localStorage
+        localStorage.setItem("userdetails", JSON.stringify(userDetails));
+      } catch (error) {
+        console.error("Error parsing user details from URL:", error);
+        toast.error("Error parsing user details from URL:", error);
+      }
+    }
+  }, [router?.query?.userDetails])
 
   return (
     <>

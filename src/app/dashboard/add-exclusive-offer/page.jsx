@@ -1,12 +1,11 @@
-import AddExclusive from '@component/components/dashLayout/AddExclusive'
-import React from 'react'
+"use client"; // Mark this file as a client component
 
-function page() {
-    return (
-        <>
-           <AddExclusive />
-        </>
-    )
+import AddExclusive from "@component/components/dashLayout/AddExclusive";
+import AuthDasbard from "@component/helper/AuthDasbard";
+import React from "react";
+
+function Page() {
+  return <AddExclusive />;
 }
 
-export default page
+export default AuthDasbard(Page);

@@ -1,5 +1,5 @@
-export const BASEURL=  "https://backend.luxuryhotelsplatform.com"
-// export const BASEURL=  "http://localhost:3200"
+// export const BASEURL=  "https://backend.luxuryhotelsplatform.com"
+export const BASEURL=  "http://localhost:3200"
 
 export const apis={
     LOGIN:  `representatives/login`,
@@ -91,6 +91,7 @@ export const apis={
     GET_HOTEL_FACILITY:`hotel-facilities`,
     POST_GUEST_REVIEWS:`hotelsAPI/guest-reviews`,
     NEARBY_BY_HOTEL:`hotels/nearby-transport`,
+    NEARBY_BY_ATTRACTIONS:`hotels/nearby-attraction`,
     GET_NEWS_PAGE_DEATILS:`news/get-news-details`,
   
     upDateLike:`news/updatelike`,

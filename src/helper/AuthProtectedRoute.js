@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const AuthMiddleware = ({ children }) => {
   const router = useRouter();
@@ -34,7 +35,7 @@ const AuthMiddleware = ({ children }) => {
   }, []);
 
   if (loading) return <p>Loading...</p>; // Prevents flashing
-  if (!isAuthenticated) return null; // Prevents rendering if not authenticated
+  if (!isAuthenticated) return toast.success("Please login first"); 
 
   return <>{children}</>;
 };

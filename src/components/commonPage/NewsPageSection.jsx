@@ -65,14 +65,14 @@ function NewsPageSection({ news_id }) {
 
     const getYouTubeEmbedURL = (url) => {
         if (!url) return "";
-    
+
         // Improved regex to match different YouTube URL formats
         const videoIdMatch = url.match(
             /(?:youtube\.com\/(?:.*[?&]v=|embed\/|shorts\/)|youtu\.be\/)([^"&?\/\s]{11})/
         );
-    
+
         console.log("url:", url, "videoIdMatch:", videoIdMatch);
-    
+
         return videoIdMatch ? `https://www.youtube.com/embed/${videoIdMatch[1]}` : "";
     };
 
@@ -111,7 +111,7 @@ function NewsPageSection({ news_id }) {
                             </div> */}
                             <div className='p-5 bg-white rounded-2xl lowercase' style={{ boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
                                 <p className="">
-                                    {newsData?.news_content}
+                                    {newsData?.news_description}
                                 </p>
                             </div>
                             <div className='my-10'>
@@ -143,9 +143,9 @@ function NewsPageSection({ news_id }) {
                                                         Valid from <span className="text-xl text-golden">{offer_details?.offer_from}</span> to <br />{" "}
                                                         <span className="text-xl text-golden">{offer_details?.offer_to}</span>
                                                     </p>
-                                                    <a href={`/${offer_details?.offer_url}`} className="theme-btn">
+                                                    <button onClick={() => window.location.href = offer_details?.offer_url} className="theme-btn">
                                                         REDEEM
-                                                    </a>
+                                                    </button>
                                                 </>
                                             ) : (
                                                 <>
@@ -210,7 +210,7 @@ function NewsPageSection({ news_id }) {
                                         </span>{" "}
                                         <a onClick={() => window.location.href = newsData?.facebook_page}>{newsData?.facebook_page}</a>{" "}
                                     </p>
-                                    {/* <p className="text-md flex">
+                                    <p className="text-md flex">
                                         <span className="text-golden">
                                             <svg
                                                 stroke="currentColor"
@@ -222,11 +222,14 @@ function NewsPageSection({ news_id }) {
                                                 width="1em"
                                                 xmlns="http://www.w3.org/2000/svg"
                                             >
-                                                <path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48zm-16.39 307.37l-15 65A15 15 0 0 1 354 416C194 416 64 286.29 64 126a15.7 15.7 0 0 1 11.63-14.61l65-15A18.23 18.23 0 0 1 144 96a16.27 16.27 0 0 1 13.79 9.09l30 70A17.9 17.9 0 0 1 189 181a17 17 0 0 1-5.5 11.61l-37.89 31a231.91 231.91 0 0 0 110.78 110.78l31-37.89A17 17 0 0 1 299 291a17.85 17.85 0 0 1 5.91 1.21l70 30A16.25 16.25 0 0 1 384 336a17.41 17.41 0 0 1-.39 3.37z" />
-                                            </svg>{" "}
-                                        </span>{" "}
-                                        +1 012 321 1236
-                                    </p> */}
+                                                <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.9 224.1 370.9 339 319.6 339 256 287.7 141 224.1 141zm0 189.6c-41.2 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.5 74.7-74.7 74.7zm146.4-194.3c0 14.9-12.1 27-27 27s-27-12.1-27-27 12.1-27 27-27 27 12.1 27 27zM448 128v256c0 70.7-57.3 128-128 128H128C57.3 512 0 454.7 0 384V128C0 57.3 57.3 0 128 0h192c70.7 0 128 57.3 128 128zM398.4 128c0-35.3-28.7-64-64-64H113.6c-35.3 0-64 28.7-64 64v256c0 35.3 28.7 64 64 64h220.8c35.3 0 64-28.7 64-64V128z" />
+                                            </svg>
+                                        </span>
+
+                                        <a onClick={() => window.location.href = newsData?.instagram_link}>{newsData?.instagram_link}</a>{" "}
+                                    </p>
+
+
                                     <p className="text-md flex">
                                         <span className="text-golden">
                                             <svg
@@ -272,7 +275,7 @@ function NewsPageSection({ news_id }) {
                                 <div className="w-full flex flex-col md:flex-row justify-between items-center gap-5">
                                     <div className="flex gap-3">
                                         <button className="uppercase px-7 py-2 rounded border border-golden text-golden">
-                                            {newsData?.views}Profile Views
+                                            {newsData?.views} Profile Views
                                         </button>
                                         <button className="uppercase px-7 py-2 rounded border border-golden text-golden">
                                             {newsData?.likes} Likes
@@ -282,10 +285,10 @@ function NewsPageSection({ news_id }) {
                                         </button>
                                     </div>
                                     <div className="">
-                                        <button 
-                                        // className="px-7 py-2 rounded bg-golden text-white uppercase"
-                                        className="px-7 py-2 rounded bg-golden text-white uppercase"
-                                        onClick={() => window.location.href = newsData?.website_url}
+                                        <button
+                                            // className="px-7 py-2 rounded bg-golden text-white uppercase"
+                                            className="px-7 py-2 rounded bg-golden text-white uppercase"
+                                            onClick={() => window.location.href = newsData?.website_url}
                                         >
                                             Visit Our Website
                                         </button>
@@ -374,7 +377,7 @@ function NewsPageSection({ news_id }) {
                                             alt="snapchat sharing button"
                                             src="https://platform-cdn.sharethis.com/img/snapchat.svg"
                                         />
-                                        <span className="st-label" style={{color:"black"}}>Snap</span>
+                                        <span className="st-label" style={{ color: "black" }}>Snap</span>
                                     </div>
                                     <div
                                         className="st-btn"
@@ -387,63 +390,64 @@ function NewsPageSection({ news_id }) {
                                         />
                                         <span className="st-label">Email</span>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
                 {/* <HearderNameIcon name={"You may also like"} /> */}
-                 
+                {newsDataSimilar?.length > 0 && (
                 <div className="container whater-effect section-padding-news" data-aos="zoom-out-up">
-                <div className="container">
-                    <div className="sectionInnerHead section-head" style={{paddingTop:"0px",marginTop:"0px"}}>
-                        {/* <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0 my-5 uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">LATEST News</h1> */}
-                        <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0  uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">You may also like</h1>
-                        <div className="section-control">
-                            <div className="swiper-button-next text-slate-300"></div>
-                            <div className="swiper-button-prev text-slate-300"></div>
-                            {/* </div> */}
+                    <div className="container">
+                        <div className="sectionInnerHead section-head" style={{ paddingTop: "0px", marginTop: "0px" }}>
+                            {/* <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0 my-5 uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">LATEST News</h1> */}
+                            <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0  uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">You may also like</h1>
+                            <div className="section-control">
+                                <div className="swiper-button-next text-slate-300"></div>
+                                <div className="swiper-button-prev text-slate-300"></div>
+                                {/* </div> */}
+                            </div>
                         </div>
                     </div>
-                </div>
-                            <div className="row">
-                            <div className="col-md-12" data-aos="fade-right">
-                        <Swiper className='newly-listedSwiper'
-                            spaceBetween={24}
-                            modules={[Navigation, Pagination, EffectFlip, Autoplay]} // ✅ Added Autoplay module
-                            navigation={{
-                                prevEl: '.swiper-button-prev',
-                                nextEl: '.swiper-button-next',
-                            }}
-                            // loop={true} // ✅ Enables infinite looping
-                            // autoplay={{
-                            //     delay: 2000, // ✅ Auto-scroll every 2 seconds
-                            //     disableOnInteraction: false, // ✅ Keeps autoplay running even after user interaction
-                            // }}
-                            slidesPerView={4}
-                        >
-                            {newsDataSimilar?.map((hotel, index) => (
-                                <SwiperSlide key={index}>
-                                   
+                    <div className="row">
+                        <div className="col-md-12" data-aos="fade-right">
+                            <Swiper className='newly-listedSwiper'
+                                spaceBetween={24}
+                                modules={[Navigation, Pagination, EffectFlip, Autoplay]} // ✅ Added Autoplay module
+                                navigation={{
+                                    prevEl: '.swiper-button-prev',
+                                    nextEl: '.swiper-button-next',
+                                }}
+                                // loop={true} // ✅ Enables infinite looping
+                                // autoplay={{
+                                //     delay: 2000, // ✅ Auto-scroll every 2 seconds
+                                //     disableOnInteraction: false, // ✅ Keeps autoplay running even after user interaction
+                                // }}
+                                slidesPerView={4}
+                            >
+                                {newsDataSimilar?.map((hotel, index) => (
+                                    <SwiperSlide key={index}>
+
                                         <div className="hotel-cards  min-h-96 overflow-hidden">
                                             <div className="hotel-img">
                                                 <img src={`${BASEURL}/${hotel?.thumbnail_path}`} alt={hotel.name} />
                                             </div>
                                             <div className="hotel-content whater-effect -mt-28">
-                                            <h4 className="hotel-name text-center">{hotel?.news_title}</h4>
-                                                <div className="teams-name cursor-pointer" onClick={()=>handleRoute(hotel?.slug)}>{hotel?.hotel}</div>
+                                                <h4 className="hotel-name text-center">{hotel?.news_title}</h4>
+                                                <div className="teams-name cursor-pointer" onClick={() => handleRoute(hotel?.slug)}>{hotel?.hotel}</div>
                                                 <div className="teams-role">{hotel?.country?.country}</div>
                                             </div>
-                                       
+
                                         </div>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        </div>
                     </div>
-                            </div>
-                            </div>
-                       
+                </div>
+                )}
+
             </div>
         </>
     )
