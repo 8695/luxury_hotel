@@ -63,7 +63,7 @@ function WinHolidayPage() {
                     onClick={() => handleNavigate(hotel?.slug)}
                     className="bg-[#ffffff] text-[#846316] px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full text-center"
                   >
-                    {hotel?.hotelId?.hotel_name}
+                    {hotel?.title}
                   </button>
                   {/* <p>End Date{moment(hotel?.competitionclosure).format("DD-MM-YY")}</p> */}
                   <button className="bg-[#846316] text-white px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full">
