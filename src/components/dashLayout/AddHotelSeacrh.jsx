@@ -72,7 +72,7 @@ function AddHotelSeacrh() {
   
   useEffect(() => {
     const userDetailsFromUrl = searchParams.get("userDetails");
-    console.log(router?.query?.userDetails,"query",userDetailsFromUrl);
+    
 
    if (userDetailsFromUrl) {
      try {

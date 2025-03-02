@@ -289,6 +289,7 @@ const Hotel_Info = () => {
             console.log(imagesArray,"imagesArray")
 
             const hotelLogoFile = preview?.file || null;
+            console.log("hotelLogoFile",hotelLogoFile);
 
             console.log(imagesArray)
 
