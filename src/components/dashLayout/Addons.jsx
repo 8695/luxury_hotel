@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import useRequest from "@component/hooks/UseRequest";
@@ -53,10 +53,11 @@ const Addons = () => {
   const [showModal, setShowModal] = useState(true);
   const [res_data, setResData] = useState(null);
   const { request: request_create,response:reponse_create } = useRequest(true);
+  const { request: request_get,response:reponse_get } = useRequest(true);
   const { hotel_add_on_Data } = useSelector((state) => state.siteSetting);
   const router = useRouter();
+  const default_addtocart_id=useRef()
 
-console.log(hotel_add_on_Data,"hotel_add_on_Data")
   const hotel_details = localStorage.getItem("hotel_details")
     ? JSON.parse(localStorage.getItem("hotel_details"))
     : null;
@@ -64,6 +65,31 @@ console.log(hotel_add_on_Data,"hotel_add_on_Data")
   const user_details = localStorage.getItem("userdetails")
     ? JSON.parse(localStorage.getItem("userdetails"))
     : null;
+  const get_addtocart=async()=>{
+    const res_data=await request_get("POST",apis.GET_ADD_TO_CART,{user_id:user_details?._id})
+    const objectsWithAddOns = res_data.data.find(item => item.addOns && item.addOns !== "");
+    
+    if(objectsWithAddOns){
+
+      const parsedAddOns = JSON.parse(objectsWithAddOns.addOns)
+      console.log(parsedAddOns,'res_data')
+
+      if (Array.isArray(keys)) {
+        keys.forEach((keyObj) => {
+            if (keyObj?.key) {
+              console.log(parsedAddOns[keyObj.key],keyObj.key,"suraj")
+              setValue(keyObj.key, parsedAddOns[keyObj.key] || "");
+            }
+        });
+    }
+    default_addtocart_id.current=objectsWithAddOns?._id
+      // setAddOnData(parsedAddOns)
+    }
+
+  }
+
+
+  
 
   const [amount, setAmount] = useState(0);
 
@@ -88,6 +114,7 @@ console.log(hotel_add_on_Data,"hotel_add_on_Data")
 
   useEffect(() => {
     request("GET", apis.GET_ALL_ADDONS);
+    get_addtocart()
   }, []);
 
   useMemo(() => {
@@ -145,11 +172,13 @@ console.log(hotel_add_on_Data,"hotel_add_on_Data")
     formdata.append("nominate_hotel","")
     formdata.append("file","")
     formdata.append("user_id",user_details?._id)
-
-    
+    if(default_addtocart_id?.current){
+      formdata.append("id",default_addtocart_id.current)
+    }
 
     const res_data= await request_create("POST",apis.ADD_TO_CART,formdata) 
-
+    console.log(res_data,"res_data")
+    default_addtocart_id.current=res_data?.data?._id
     // console.log.log("res_data",res_data)
     // if(res_data){
     //   router.push('/dashboard/add-exclusive-offer')

@@ -404,47 +404,7 @@ const HotelPreview = () => {
                                             <a href="#" className='theme-btn'>Hotel Aminities</a>
                                         </div>
                                     </div>
-                                    {/* <h3 className="comman-heading3">Top Attraction</h3>
-
-                                    <div className="grid  service-outerBox p-3 bg-gray my-3 rounded-xl shadow-sm">
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/Bar.svg"
-                                                className="mx-auto"
-                                                alt="Ideal Location"
-                                            />
-                                            <h3 className='service-text mb-2'>Ideal Location</h3>
-                                        </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/Private-Driver.svg"
-                                                className="mx-auto"
-                                                alt="Free airport transfers"
-                                            />
-                                            <h3 className='service-text'>Free airport transfers</h3>
-                                        </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/PARKING.svg"
-                                                className="mx-auto"
-                                                alt="Free Parking"
-                                            />
-                                            <h3 className='service-text'>Free Parking</h3>
-                                        </div>
-                                        <div className="text-center serviceBox">
-                                            <img
-                                                src="/new/assets/img/CONFERENCE-MEETING-ROOM.svg"
-                                                className="mx-auto"
-                                                alt="Varied Breakfast"
-                                            />
-                                            <h3 className='service-text'>Varied Breakfast</h3>
-                                        </div>
-                                        <div className="text-center serviceBox">
-
-                                            <a href="#" className='theme-btn'>Top Attraction</a>
-
-                                        </div>
-                                    </div> */}
+                                
                                 </div>
 
                             </div>

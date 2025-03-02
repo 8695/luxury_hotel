@@ -90,6 +90,7 @@ function PaymentDescription() {
 
             const newarray = response?.data?.map((it) => {
                 let exclusive_offer = it.exclusiveoffer ? JSON.parse(it.exclusiveoffer) : null;
+                console.log(exclusive_offer,"exclusive_offer")
                 let nominate_hotel = it.nominate_hotel ? JSON.parse(it.nominate_hotel) : null;
                 let packages = it.packages ? JSON.parse(it.packages) : null;
                 let addOns = it.addOns ? JSON.parse(it.addOns) : null;
@@ -310,6 +311,7 @@ function PaymentDescription() {
             formData2.append("request_to_visit", nominate?.request_to_visit === "true" ? "yes" : "no");
             formData2.append("hotel", hotel_details?._id || "");
             formData2.append("pay_amount", nominate?.pay_amount || "");
+            formData2.append("images",nominate?.file || "")
 
             apiRequests.push(request_create("POST", apis.CREATE_NOMAINATE, formData2));
         }
@@ -358,7 +360,7 @@ function PaymentDescription() {
         }
 
         const exclusive_offer = data.find((it) => it.key == "exclusive_offer");
-        console.log(exclusive_offer, "test");
+        console.log(exclusive_offer, "test==");
         if (exclusive_offer) {
             const formData = new FormData();
             formData.append("offer_name", exclusive_offer.offer_name);
@@ -369,7 +371,7 @@ function PaymentDescription() {
             formData.append("hotel", hotel_details?._id);
             formData.append("show_on_home", exclusive_offer?.show_on_home);
             formData.append('paymaent_status', payment_status);
-            formData.append('file', hotel_details.file);
+            formData.append('offer_image', exclusive_offer.file);
 
             apiRequests.push(request_create("POST", apis.CREATE_EXCLUSIVE, formData));
         }
@@ -379,7 +381,7 @@ function PaymentDescription() {
             await Promise.all(apiRequests);
             // Now call DELETE API
             const ids = defaultdata.map((it) => it._id);
-            await request_create("POST", apis.DELETE_ADD_TO_CART, { ids });
+            await request_create("POST", apis.DELETE_ADD_TO_CART, { ids,user_id:userdetails._id });
             console.log("Deleted add to cart items successfully");
         } catch (error) {
             console.error("Error in API requests:", error);

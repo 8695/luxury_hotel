@@ -1,7 +1,7 @@
 "use client"
 
 import Link from 'next/link'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 import CheckoutModal from '@component/modals/CheckoutModal';
 import { loadStripe } from '@stripe/stripe-js';
@@ -47,7 +47,8 @@ function SelectPackage() {
     const { request, response, loading } = useRequest(true);
     const { request: requetPaypal, response: responsePaypal } = useRequest(true);
     const { request: request_all_subscription, response: response_all_subscription, } = useRequest(true);
-    const [SelectPackage, setSelectPackage] = useState('')
+    const [SelectPackage, setSelectPackage] = useState('') 
+    const [ActivePackage, setActivePackage] = useState(``);
     const [planDuration, setplanDuration] = useState('')
     const [showModal, setShowModal] = useState(false);
     const [res_data, steRes_data] = useState(null)
@@ -57,21 +58,14 @@ function SelectPackage() {
     const [amount,setAmount] = useState(0);
     const { request: request_create_payment,response:response_create_payment } = useRequest(true);
     const querysearch = new URLSearchParams(window.location.search)
+    const { request: request_get,response:reponse_get } = useRequest(true);
+    
 
 
     const stripePromise = loadStripe('pk_live_51IhBByD3gzWFhFEcvzKD2S1fOTTiF2CjXgikLRqGH0yQvHR5QFQthkT5zoUe069NFb881KGo1Oj0C0G4xhdPf7dO00ilSXPHBD');
 
 
-    useEffect(() => {
-        request_all_subscription("GET", apis.GET_ALL_SUBSCRIPTION)
-        if (user_details?._id && hotel_details?._id) {
-
-            request("POST", apis.GET_HOTELS_ADDONS_DATA, {
-                "userID": user_details?._id,
-                "hotelId": hotel_details?._id
-            })
-        }
-    }, [])
+ 
 
 
     const all_subscription = useMemo(() => {
@@ -94,6 +88,37 @@ function SelectPackage() {
 
         }
     }, [response])
+    const default_addtocart_id=useRef()
+
+    const userdetails = localStorage.getItem("userdetails")
+    ? JSON.parse(localStorage.getItem("userdetails"))
+    : null;
+
+    const get_addtocart=async()=>{
+            const res_data=await request_get("POST",apis.GET_ADD_TO_CART,{user_id:userdetails?._id})
+            let objectsWithAddOns = res_data.data.find(item => item.packages && item.packages !== "\"\"");
+            objectsWithAddOns=JSON.parse(objectsWithAddOns?.packages)
+          
+
+             setActivePackage(objectsWithAddOns?.planId)
+            if(objectsWithAddOns){
+              default_addtocart_id.current=objectsWithAddOns?._id
+            }
+        
+          }
+
+          useEffect(() => {
+            request_all_subscription("GET", apis.GET_ALL_SUBSCRIPTION)
+            if (user_details?._id && hotel_details?._id) {
+    
+             request("POST", apis.GET_HOTELS_ADDONS_DATA, {
+                    "userID": user_details?._id,
+                    "hotelId": hotel_details?._id
+                    
+                })
+            }
+            get_addtocart()
+        }, [])
 
 
   const onSubmit =async () => {
@@ -117,9 +142,14 @@ function SelectPackage() {
           formData.append("nominate_hotel","")
           formData.append("file", "")
           formData.append("user_id", user_details?._id);
+          if(default_addtocart_id?.current){
+            formData.append("id",default_addtocart_id.current)
+          }
         
             
-         const  res_data=await request_create_payment("POST",apis.ADD_TO_CART,formData)
+         const  res_data=await request_create_payment("POST",apis.ADD_TO_CART,formData);
+         console.log(res_data,"res_data")
+         default_addtocart_id.current=res_data?.data?._id
          if(res_data){
             router.push('/dashboard/add-ons')
           }
@@ -133,50 +163,11 @@ function SelectPackage() {
     }
   },response_create_payment)
 
-//     const create_news = (paymaent_status) => {
 
+   
+ 
 
-
-
-//         request_create("POST", apis.SAVE_HOTEL_SUBSCRIPTION, {
-//             "userID": user_details?._id,
-//             "bestLuxTravellers": "",
-//             "exclusiveOffers": "",
-//             "travelNews": "",
-//             "videoBanner": "",
-//             "planId": SelectPackage,
-//             "hotelId": hotel_details?._id,
-//             "planDuration": planDuration?.duration
-//         })
-//     }
-// const apiCallAfterPaypalPayment=async()=>{
-//     const payload = sessionStorage.getItem('save-hotel')
-//     const paymentdata = sessionStorage.getItem('paymentdata')
-//     if (payload && paymentdata) {
-
-//        const res_subscription= await request_create("POST", apis.SAVE_HOTEL_SUBSCRIPTION, JSON.parse(payload))      
-//        if(res_subscription){
-//         sessionStorage.getItem('save-hotel')
-//        }
-
-//     const parsedPaymentData = typeof paymentdata === "string" ? JSON.parse(paymentdata) : paymentdata;
-//      const res_pay= await request_create_payment("POST", apis.PAYMENT_POST, {
-//         ...parsedPaymentData,
-//         paymentID: querysearch.get("paymentID"),
-//     }); 
-//     if(res_pay){
-//         sessionStorage.getItem('paymentdata')
-//     }
-
-// }
-
-    
-// }
-    // useEffect(() => {
-    //     if (querysearch.get("send_payment") == "true") {
-    //         apiCallAfterPaypalPayment()
-    //         }
-    // }, [querysearch.get("send_payment")])
+          
 
 
     return (
@@ -193,8 +184,10 @@ function SelectPackage() {
                         return(
                         <>
                         <div className="plan-cards" key={it._id}>
-                            <div className={`planCardBox ${it?._id==SelectPackage && "activeCard"}  ${it.name==="Celebrity AI Package" ? "text-white bg-red-600" : ""}`}>
+                            <div className={`planCardBox ${it?._id==(SelectPackage || ActivePackage) && "activeCard"}  ${it.name==="Celebrity AI Package" ? "text-white bg-red-600" : ""}`}>
                             {it?._id==SelectPackage &&<div className="activeplan">Active</div>}
+                            {it?._id==ActivePackage &&<div className="activeplan">Selected</div>}
+                            
                                 <h3 className="plan-name">  {it.name}</h3>
                                 <p className="plan-price">€ {it.price}
                                 <span className='text-capitalize'>{" " }{it?.durationMeasure}</span>

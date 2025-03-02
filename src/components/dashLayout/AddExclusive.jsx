@@ -1,6 +1,7 @@
+
 "use client"
-import { useEffect, useMemo } from "react";
-import { apis } from "@component/apiendpoints/api";
+import { useEffect, useMemo, useRef } from "react";
+import { apis, BASEURL } from "@component/apiendpoints/api";
 import useRequest from "@component/hooks/UseRequest";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -56,6 +57,8 @@ const AddExclusive = () => {
     const [showModal, setShowModal] = useState(false);
     const [res_data, steRes_data] = useState(null)
     const router = useRouter()
+      const { request: request_get,response:reponse_get } = useRequest(true);
+    
   
   const { request:requestget,response } = useRequest();
   const { hotel_add_on_Data } = useSelector((state) => state.siteSetting)
@@ -73,12 +76,44 @@ const AddExclusive = () => {
     
 
     const selectedType = watch("type");
+  const default_addtocart_id=useRef()
 
     const amountAddExclusive ={
       week:5,
       month:10,
     }
 
+    const get_addtocart=async()=>{
+      
+        const res_data=await request_get("POST",apis.GET_ADD_TO_CART,{user_id:userdetails?._id})
+        let objectsWithAddOns = res_data.data.find(item => item.exclusiveoffer && item.exclusiveoffer !== "\"\"");
+
+        console.log("get_addtocart",objectsWithAddOns,res_data.data)
+        if(objectsWithAddOns){
+          default_addtocart_id.current=objectsWithAddOns?._id
+          objectsWithAddOns=JSON.parse(objectsWithAddOns?.exclusiveoffer)
+          console.log(objectsWithAddOns,"objectsWithAddOns")
+         reset({
+      offer_name:objectsWithAddOns?.offer_name,
+      offer_url:objectsWithAddOns?.offer_url,
+      offer_description:objectsWithAddOns?.offer_description,
+      offer_from:objectsWithAddOns?.offer_from,
+      offer_to:objectsWithAddOns?.offer_to,
+      amount:objectsWithAddOns?.amount,
+      offer_image:objectsWithAddOns.file,
+      type:objectsWithAddOns.show_on_home?"payment":""
+    })
+    setPaidExclusiveOffer(objectsWithAddOns.show_on_home?true:false)
+    setPreview(`${BASEURL}/${objectsWithAddOns.file}`)
+        
+        
+          // setAddOnData(parsedAddOns)
+        }
+    
+      }
+
+
+      console.log(errors,"error")
   // const onSubmit = async (data) => {
   //   // const formData = new FormData();
   //   // formData.append("offer_name", data.offer_name);
@@ -160,6 +195,9 @@ const AddExclusive = () => {
       formData.append("nominate_hotel","")
       formData.append("file",getValues()?.offer_image ? getValues().offer_image?.[0] : "")
       formData.append("user_id", userdetails?._id);
+      if(default_addtocart_id?.current){
+        formData.append("id",default_addtocart_id.current)
+      }
     
         
       const res_data= await request("POST",apis.ADD_TO_CART,formData)
@@ -196,12 +234,16 @@ const AddExclusive = () => {
       
       return hotel_add_on_Data.outdata.find((item)=>item.details?.type === "exclusive_offer")
     }
+    
   },[hotel_add_on_Data])
 
   console.log(getOffer_details,"getOffer_details")
 
   useEffect(()=>{
-    requestget("GET",`${apis.GET_EXCLUSIVEOFFERS_BY_HOTEL_ID}/${hotel_details?._id}`)
+    if(hotel_details?._id){
+      requestget("GET",`${apis.GET_EXCLUSIVEOFFERS_BY_HOTEL_ID}/${hotel_details?._id}`)
+    }
+    get_addtocart()
   },[])
 const get_details=useMemo(()=>{
 if(response){
@@ -214,6 +256,7 @@ if(response){
       offer_description:response.hotel_offer?.offer_description,
       offer_from:response.hotel_offer?.offer_from,
       offer_to:response.hotel_offer?.offer_to,
+      
     })
   }
   return response.hotel_offer
@@ -286,7 +329,7 @@ const [preview, setPreview] = useState(null);
                 className="form-control"
               />
               <span className="error_message">
-                {errors["offer_name"] && `${errors.offer_name.message}`}
+                {errors["offer_name"] && errors.offer_name.message}
               </span>
             </div>
           </div>
@@ -305,7 +348,7 @@ const [preview, setPreview] = useState(null);
                 className="form-control"
               />
               <span className="error_message">
-                {errors["offer_url"] && `${errors.offer_url.message}`}
+                {errors["offer_url"] && errors.offer_url.message}
               </span>
             </div>
           </div>         
@@ -344,7 +387,7 @@ const [preview, setPreview] = useState(null);
                 className="form-control"
               />
               <span className="error_message">
-                {errors["offer_from"] && `${errors.offer_from.message}`}
+                {errors["offer_from"] && errors.offer_from.message}
               </span>
             </div>
           </div>
@@ -359,7 +402,7 @@ const [preview, setPreview] = useState(null);
                 className="form-control"
               />
               <span className="error_message">
-                {errors["offer_to"] && `${errors.offer_to.message}`}
+                {errors["offer_to"] && errors.offer_to.message}
               </span>
             </div>
           </div>
@@ -403,7 +446,9 @@ const [preview, setPreview] = useState(null);
                         <div className="col-md-12 mt-4">
                         <div className="form-group">
       <input
-        {...register("offer_image", {setValueAs:(v)=>v, required: "Please select an image",onChange:(e)=>{
+        {...register("offer_image", {setValueAs:(v)=>v, 
+          // required: "Please select an image",
+          onChange:(e)=>{
           handleImageChange(e)
         } })}
         className="hidden"
