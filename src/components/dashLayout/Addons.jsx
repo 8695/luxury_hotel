@@ -11,6 +11,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutModal from "@component/modals/CheckoutModal";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import AddOnsModal from "@component/modals/AddOnsModal";
 
 const paymentMethods = [
   {
@@ -88,6 +89,20 @@ const Addons = () => {
 
   }
 
+  const [showModalNews, setShowModalNews] = useState(false);
+
+  useEffect(() => {
+      const modalCount = sessionStorage.getItem("modalShownCount") || 0;
+
+      if (modalCount < 5) {
+          setShowModalNews(true);
+          sessionStorage.setItem("modalShownCount", Number(modalCount) + 1);
+      }
+  }, []);
+
+  const closeNewsLetter = () => {
+    setShowModalNews(false);
+  };
 
   
 
@@ -280,19 +295,25 @@ const Addons = () => {
               </div>
             </div>
           </div> */}
+          
         </div>
+       
 
-        <div className="footer-btn p-4 text-end mt-5">
-        <Link href="/dashboard/contact-info" className="next-btn">
+        <div className="footer-btn d-flex justify-content-end align-items-center gap-3">
+        <Link href="/dashboard/select-package" className="next-btn">
             Previous
           </Link>
           <button type="submit" className="save-btn" onClick={onSubmit}>
                       PROCEED TO CHECKOUT
                     </button>
-          <Link href="/dashboard/add-exclusive-offer" className="next-btn">
-          Continue
-          </Link>
+          <div className="text-center mb-5">
+        <p className="mb-4">If not Select any addon then</p>
+        <Link href="/dashboard/add-exclusive-offer" className="btn next-btn">
+            Continue
+        </Link>
+    </div>
         </div>
+        {showModalNews && (<AddOnsModal closeNewsLetter={closeNewsLetter}/>)}
       </form>
 
       {/* {showModal && res_data && (

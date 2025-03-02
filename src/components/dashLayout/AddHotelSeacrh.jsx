@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Map from '../Map'
-import AddOnsModal from '@component/modals/AddOnsModal'
 import toast from 'react-hot-toast'
 
 
@@ -68,23 +67,6 @@ function AddHotelSeacrh() {
     setSelectedHotel(null); 
   };
 
-  const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    const hasModalShown = localStorage.getItem("hasModalShown");
-
-    if (!hasModalShown) {
-      setShowModal(true);
-      localStorage.setItem("hasModalShown", "true"); // Store flag in localStorage
-    }
-  }, []);
-  
-  const closeNewsLetter =()=>{
-    setShowModal(false);
-  }
-
-
- 
 
   useEffect(() => {
     if (router?.query?.userDetails) {
@@ -146,7 +128,7 @@ function AddHotelSeacrh() {
           </div>
         </div>
       </form>
-      {showModal && (<AddOnsModal closeNewsLetter={closeNewsLetter}/>)}
+     
 
       {/* Render list only if no hotel is selected */}
       {!selectedHotel && hoteslList && hoteslList.map((it, i) => (

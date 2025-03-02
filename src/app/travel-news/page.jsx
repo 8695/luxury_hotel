@@ -1,16 +1,17 @@
 "use client"
 import HeadingWithoutSwiper from '@component/components/headingWithoutSwiper'
-import TravelNews from '@component/components/home/Travel-News'
 import React from 'react'
 
-import HeroBanner from '@component/components/home/HeroSection';
 import TravelNewsPage from '@component/components/TravelNewsPage';
+import VideoContainer from '@component/components/home/VideoContainer';
 
 function page() {
     
   return (
     <>
-    <HeroBanner/>
+    <section data-aos="zoom-in" className="hero-banner">
+        <VideoContainer />
+    </section>
     <HeadingWithoutSwiper name={"TRAVEL NEWS"} />
    
 

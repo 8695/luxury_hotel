@@ -9,6 +9,7 @@ import "aos/dist/aos.css"
 import Pagination from './commonPage/Pagination';
 import useRequest from '@component/hooks/UseRequest';
 import { apis, BASEURL } from '@component/apiendpoints/api';
+import HeadingWithoutSwiper from './headingWithoutSwiper';
 
 function FIndHotels() {
     const [data,setData]= useState([])
@@ -47,9 +48,24 @@ function FIndHotels() {
           // console.log("paginatedHotels",paginatedHotels,data);
 
   return (
-   <>
+   <>  
+       
+      
+       <div className="section-head">
+                    <div className="container">
+                        <div className="sectionInnerHead">
+                            <h2 className="section-heading">Luxury hotels selection</h2>
+                        </div>
+
+                    </div>
+
+                </div>
+       <div className='container'>
          <section className="newly-listed">
+          <div style={{marginTop:"-130px"}}>
+
          <FilterSection/>
+          </div>
          <div className="container whater-effect section-padding " data-aos="zoom-out-up">
 
           <div className="row">
@@ -77,6 +93,7 @@ function FIndHotels() {
   </div>
       
     </section>
+    </div>
    </>
     
   )

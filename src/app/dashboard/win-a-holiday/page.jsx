@@ -1,4 +1,6 @@
+"use client"
 import WinHolidayForm from "@component/components/dashLayout/WinHolidayForm";
+import AuthDasbard from "@component/helper/AuthDasbard";
 
 const page = () => {
     
@@ -9,4 +11,4 @@ const page = () => {
     )
 }
 
-export default page
+export default AuthDasbard(page);

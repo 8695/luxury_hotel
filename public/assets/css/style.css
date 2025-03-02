@@ -2283,13 +2283,31 @@ span.offer-time {
     font-weight: 500;
     margin-left: 15px;
 }
+.full-image{
+    width: 100%; /* Fill the width */
+    height: auto; /* Keep original aspect ratio */
+    object-fit: contain
+}
 
+/* .footer-btn {
+    padding-top: 40px;
+    border-top: 1px solid #b1aeae;
+    margin-top: 30px;
+    padding-bottom: 24px;
+} */
 .footer-btn {
     padding-top: 40px;
     border-top: 1px solid #b1aeae;
     margin-top: 30px;
     padding-bottom: 24px;
 }
+
+.footer-btn div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 .comman-heading4 {
     font-size: 1.25rem;

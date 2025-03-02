@@ -259,14 +259,14 @@ const TravelNewsSection = () => {
     setShowAddExclusiveOffer(false)
   }
 
-    useEffect(() => {
-                  const hasModalShown = localStorage.getItem("hasModalTravelShown");
-              
-                  if (!hasModalShown) {
-                    setTravelNewsModal(true);
-                    localStorage.setItem("hasModalTravelShown", "true"); // Store flag in localStorage
-                  }
-                }, []);
+  useEffect(() => {
+    const modalCount = sessionStorage.getItem("modalTravelCount") || 0;
+
+    if (modalCount < 5) {
+        setTravelNewsModal(true);
+        sessionStorage.setItem("modalTravelCount", Number(modalCount) + 1);
+    }
+}, []);
   
                 const closeNewsLetter = ()=>{
                   setTravelNewsModal(false)
@@ -579,263 +579,17 @@ const TravelNewsSection = () => {
                 </div>
               </div>
 
-              {/* <div className="col-md-12">
-                {!showAddExclusive && (
-                  <label
-                    className="form-label cursor-pointer"
-                    onClick={handleShowExclusiveOffer}
-                  >
-                    Publishing your "Exclusive Offer" on your Final News page is free (*optional)
-                  </label>
-                )}
-                {showAddExclusive && (
-                  <div className="row mt-2">
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <input
-
-                          {...register("offer_name", { required: "Offer name is required", setValueAs: v => v.trim() })}
-                          type="text"
-                          placeholder="Offer Title"
-                          className="form-control"
-                        />
-                        <span className="error_message">
-                          {errors["offer_name"] && `${errors.offer_name.message}`}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <input
-
-                          {...register("offer_url", { required: "Offer url is required", setValueAs: v => v.trim() })}
-                          type="text"
-                          placeholder="Enter Your website url where the offer could be redeem"
-                          className="form-control"
-                        />
-                        <span className="error_message">
-                          {errors["offer_url"] && `${errors.offer_url.message}`}
-                        </span>
-                      </div>
-                    </div>
-
-                   
-                    <div className="col-md-12">
-                      <div className="form-group">
-                    
-                        <input
-                          type="text"
-                          placeholder="Offer description"
-                          className="form-control"
-                          {...register("offer_description", { required: "Offer description is required" })}
-                        />
-                        <span className="error_message">
-                          {errors["offer_description"] && `${errors.offer_description.message}`}
-                        </span>
-                      </div>
-                    </div>
-                  
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label htmlFor="name" className="form-label">
-                          Offer valid from
-                        </label>
-                        <input
-                          {...register("offer_from", { required: "Offer from is required", })}
-                          type="date"
-                          className="form-control"
-                        />
-                        <span className="error_message">
-                          {errors["offer_from"] && `${errors.offer_from.message}`}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label htmlFor="name" className="form-label">
-                          Offer valid to
-                        </label>
-                        <input
-
-                          {...register("offer_to", { required: "Offer to is required" })}
-                          type="date"
-                          className="form-control"
-                        />
-                        <span className="error_message">
-                          {errors["offer_to"] && `${errors.offer_to.message}`}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="col-md-12">
-                      <div className="form-group">
-                        <label htmlFor="name" className="form-label">
-                          Publishing your Excusive Offer" on the Homepage, an additional fee applies
-                        </label>
-
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-4">
-                      <label>
-                        <input
-                          {...register("show_on_home")}
-                          type="radio"
-                          value="true"
-                          checked={paidExclusiveOffer === true}
-                          onChange={() => setPaidExclusiveOffer(true)}
-                          className="h-4 w-4 p-1"
-                       
-                        />
-                        Yes
-                      </label>
-                      <label>
-                        <input
-                          {...register("show_on_home")}
-                          type="radio"
-                          value="false"
-                          checked={paidExclusiveOffer === false}
-                          onChange={() => setPaidExclusiveOffer(false)}
-                          className="h-4 w-4 p-1"
-                       
-                        />
-                        No
-                      </label>
-                    </div>
-
-                    {paidExclusiveOffer && (
-                      <>
-                        <div className="col-md-12 mt-4">
-                          <div className="form-group">
-                            <input
-                              {...register("offer_image", { required: "Please select an image", setValueAs: (v) => v, onChange: (e) => handleImageChange(e) })}
-                              className="hidden"
-                              type="file"
-                              id="suraj"
-                              accept=".jpg,.jpeg,.png"
-
-                            />
-
-                            {!preview ? (
-                              <label htmlFor="suraj" className="form-label uploadBox cursor-pointer">
-                                <div className="flex items-center gap-3">
-                                  <svg
-                                    stroke="currentColor"
-                                    fill="currentColor"
-                                    strokeWidth={0}
-                                    viewBox="0 0 256 256"
-                                    className="text-xl"
-                                    height="1em"
-                                    width="1em"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path d="M228,144v64a12,12,0,0,1-12,12H40a12,12,0,0,1-12-12V144a12,12,0,0,1,24,0v52H204V144a12,12,0,0,1,24,0ZM96.49,80.49,116,61v83a12,12,0,0,0,24,0V61l19.51,19.52a12,12,0,1,0,17-17l-40-40a12,12,0,0,0-17,0l-40,40a12,12,0,1,0,17,17Z"></path>
-                                  </svg>
-                                  <p className="uppercase text-grayDark mb-0">Upload Image for your offer</p>
-                                </div>
-                              </label>
-                            ) : (
-                              <div className="relative mt-2">
-                                <img src={preview} alt="Selected" className="w-32 h-32 object-cover rounded-md shadow-md" />
-                                <button
-                                  type="button"
-                                  onClick={handleRemoveImage}
-                                  className="absolute -top-2 -right-3 bg-red-500 text-white p-1 rounded-2xl shadow-md"
-                                >
-                                  ✕
-                                </button>
-                              </div>
-                            )}
-
-                            {errors?.offer_image && <p className="text-red-500 text-xs mt-1">{errors?.offer_image?.message}</p>}
-                            {!preview && (
-                              <p className="text-xs uppercase leading-5 text-red-500 mt-1">Only JPG, JPEG, and PNG allowed</p>
-
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="col-md-12">
-                          <div className=' '>
-                            <div className="form-group" >
-                             
-                              <select
-                                className="form-control p-2"
-                                {...register("homepage",{onchange:(e) => {
-                                                    
-                                }})}
-                             
-                              >
-                                <option value="">SELECT OPTION</option>
-
-                                <option value={5} >
-                                  Week € 5
-                                </option>
-                                <option value={10} >
-                                  Month € 10
-                                </option>
-
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </>
-                    )}
-
-
-                    <div className='footer-btn text-end'>
-                      
-                      <button onClick={handlclose} className='next-btn'>  Cancel </button>
-                    
-                    </div>
-                  </div>
-                )}
-              </div> */}
-
-              <div className="col-span-full">
-                <h3 className="text-lg md:text-2.7xl font-bold uppercase mb-4">
-                  Price: €{parseFloat(watch("homepage") || 0) + parseFloat(amount)}
-                </h3>
-              </div>
-
-              {/* <div className="modal-overlay">
-                <div className="modal-content card shadow">
-                  <div className="plan-cardBox">
-                    {paymentMethods.map((method) => (
-                      <div className="plan-cardItem" key={method.id}>
-                        <input
-                          value={method.value}
-                          {...register("payment_method")}
-                          checked={watch("payment_method") === method.value}
-                          className="form-check-input"
-                          name="payment_method"
-                          type="radio"
-                          id={method.id}
-                        />
-                        <label className="form-check-label" htmlFor={method.id}>
-                          {method.label}
-                        </label>
-                        <img
-                          src={method.imgSrc}
-                          alt={method.label}
-                          className="card-img h-full object-contain"
-                        />
-                      </div>
-                    ))}
-
-                    <button type="submit" className="save-btn w-100">
-                      PROCEED TO CHECKOUT
-                    </button>
-
-                  </div>
-                </div>
-              </div> */}
+            
 
 
             </div>
-            <div className="footer-btn text-end">
-              <Link href="/dashboard/win-a-holiday" className="next-btn">Previous</Link>
+            <div className="footer-btn d-flex justify-content-end align-items-center gap-3">
+              <Link href="/dashboard/nominate-hotel" className="next-btn">Previous</Link>
               <button type="submit" className="save-btn">PROCEED TO CHECKOUT</button>
-
-              <Link href="/voter-info" className="next-btn">Continue</Link>
+              <div className="text-center mb-5">
+              <p className="mb-4">If Not create News then</p>
+              <Link href="/dashboard/voter-information" className="next-btn">Continue</Link>
+            </div>
             </div>
           </form>
         </section>

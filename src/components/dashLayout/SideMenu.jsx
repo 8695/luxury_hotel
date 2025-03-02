@@ -1,24 +1,27 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from "next/link";
 import useRequest from '@component/hooks/UseRequest';
 import { apis } from '@component/apiendpoints/api';
 import { usePathname, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+import SubscriptionCountdown from '../commonPage/SubsCriptionsCountDown';
 
 const SideMenu = () => {
 
     const { request, response, loading } = useRequest(true);
     const router = useRouter();
+    const [endDate,setEndDate] = useState(null)
+    const {request:requestCountDown,response:responseCountDown} = useRequest(true);
 
     const pathName = usePathname()
 
 
     console.log("pathName", pathName);
 
+    const userDetails = JSON.parse(localStorage.getItem("userdetails"));
     const handleLogout = () => {
         // Retrieve the user details from localStorage and parse it as JSON
-        const userDetails = JSON.parse(localStorage.getItem("userdetails"));
 
         if (userDetails && userDetails.authToken) {
             // Send the POST request with the authToken as the payload
@@ -39,6 +42,29 @@ const SideMenu = () => {
             router.push("/");
         }
     }, [response])
+
+    const hotel_details = localStorage.getItem("hotel_details")
+    ? JSON.parse(localStorage.getItem("hotel_details"))
+    : null;
+    const getCounDwn =async()=>{
+       try{
+
+           const response = await requestCountDown("POST", apis.GET_HOTELS_ADDONS_DATA, {
+               userID: userDetails?._id,
+               hotelId: hotel_details?._id,
+             });
+             console.log(response,"===")
+             if(response){
+               setEndDate(response?.data?.plan?.endDate)
+             }
+       }catch(error){
+        toast.error("Error in counding")
+       }
+    }
+
+    useEffect(()=>{
+        getCounDwn()
+    },[])
 
     return (
         <div className="side_nav">
@@ -355,6 +381,16 @@ const SideMenu = () => {
                             </svg>
                             <span className='title_dash_nav cursor-pointer' onClick={handleLogout}>Logout</span></p>
                     </div>
+                    {endDate && (
+
+                    <div className="dash-nav-li">
+                        <p className="dashboard-nav-item ">
+                           
+                            <span className='title_dash_nav cursor-pointer'>
+                                <SubscriptionCountdown endDate={endDate} />
+                                </span></p>
+                    </div>
+                    )}
                 </nav>
             </div>
         </div>

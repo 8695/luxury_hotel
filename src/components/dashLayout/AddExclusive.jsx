@@ -297,13 +297,13 @@ const [preview, setPreview] = useState(null);
   }
 
   useEffect(() => {
-    const hasModalShown = localStorage.getItem("hasModalAddExclusiveShown");
+    const modalCount = sessionStorage.getItem("modalAddExclusiveCount") || 0;
 
-    if (!hasModalShown) {
-      setShowNewsModal(true);
-      localStorage.setItem("hasModalAddExclusiveShown", "true"); // Store flag in localStorage
+    if (modalCount < 5) {
+        setShowNewsModal(true);
+        sessionStorage.setItem("modalAddExclusiveCount", Number(modalCount) + 1);
     }
-  }, []);
+}, []);
 
 // const isPayment = selectedType === "payment" || getOffer_details?.details?.name=="Homepage"
 
@@ -564,24 +564,21 @@ const [preview, setPreview] = useState(null);
             </>
 
           )} */}
-          <div className="footer-btn text-end">
+          <div className="footer-btn d-flex justify-content-end align-items-center gap-3">
             <Link href="/dashboard/add-ons" className="next-btn">
               Previous
             </Link>
-            {/* {!paidExclusiveOffer && ( */}
-
             <button type="submit" className="save-btn">
               Add Offer
             </button>
-            {/* ) */}
-            {/* } */}
+            <div className="text-center mb-5">
+            <p className="mb-4">If not Add Offer then</p>
             <Link href="/dashboard/win-a-holiday" className="next-btn">
               Continue
             </Link>
+            </div>
           </div>
-
-
-        </div>
+          </div>
       </form>
       {showNewsModal && (<AddExclusiveNewsModal closeNewsLetter={closeNewsLetter}/>)}
 

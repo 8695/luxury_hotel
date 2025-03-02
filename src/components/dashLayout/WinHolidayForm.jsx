@@ -99,13 +99,13 @@ function WinHolidayForm() {
   };
 
   useEffect(() => {
-      const hasModalShown = localStorage.getItem("hasModalWinHoliDayShown");
-  
-      if (!hasModalShown) {
+    const modalCount = sessionStorage.getItem("modalWinHolidayCount") || 0;
+
+    if (modalCount < 5) {
         setWinHolidayNewsModal(true);
-        localStorage.setItem("hasModalWinHoliDayShown", "true"); // Store flag in localStorage
-      }
-    }, []);
+        sessionStorage.setItem("modalWinHolidayCount", Number(modalCount) + 1);
+    }
+}, []);
 
     const closeNewsLetter =()=>{
       setWinHolidayNewsModal(false);
@@ -298,12 +298,15 @@ function WinHolidayForm() {
                     </div>
                   </div>
 
-                  <div className="footer-btn text-end">
+                  <div className="footer-btn d-flex justify-content-end align-items-center gap-3">
                     <Link href="/add-exclusive-offer" className="next-btn">Previous</Link>
                     <button type="submit" className="save-btn" disabled={loading}>
                       {loading ? "Submitting..." : "Submit"}
                     </button>
+                    <div className="text-center mb-5">
+                    <p className="mb-4">If not Add Holiday then</p>
                     <Link href="/dashboard/nominate-hotel" className="next-btn">Continue</Link>
+                  </div>
                   </div>
                 </div>
               </form>

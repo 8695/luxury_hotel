@@ -429,28 +429,6 @@ const Hotel_Info = () => {
                             <label htmlFor="countrySelect" className="form-label">
                                 Country <span>*</span>
                             </label>
-
-                            {/* <select
-                                    id="countrySelect"
-                                    {...register("country", {
-                                        required: "Please select a country", onChange: (e) => {
-                                            const val = JSON.parse(e.target.value);
-                                            setselectedCountry(val.country)
-                                        }
-
-                                    })}
-                                    className={
-                                        errors.countrySelect ? "form-control is-invalid" : "form-control"
-                                    }
-                                >
-                                    <option value="">-- Select a country --</option>
-                                    {countryData && countryData.map((it) => {
-                                        return (
-                                            <option key={it._id} value={JSON.stringify(it)}>{it.country}</option>
-                                        )
-                                    })}
-                                   
-                                </select> */}
                             <Controller
                                 name="country"
                                 control={control}

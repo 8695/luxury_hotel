@@ -36,7 +36,7 @@ const AuthDasbard = (WrappedComponent) => {
 
           console.log("reponse",response)
 
-          if (response?.data?.plan?.length>0) {
+          if (response?.data?.plan != null) {
             setIsChecking(true);
           } else {
             toast.error("You need to purchase a package first!");

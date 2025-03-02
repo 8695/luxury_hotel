@@ -97,16 +97,12 @@ function SelectPackage() {
     const get_addtocart=async()=>{
             const res_data=await request_get("POST",apis.GET_ADD_TO_CART,{user_id:userdetails?._id})
             let objectsWithAddOns = res_data.data.find(item => item.packages && item.packages !== "\"\"");
-            objectsWithAddOns=JSON.parse(objectsWithAddOns?.packages)
-          
-
-             setActivePackage(objectsWithAddOns?.planId)
             if(objectsWithAddOns){
               default_addtocart_id.current=objectsWithAddOns?._id
             }
-        
+            objectsWithAddOns=JSON.parse(objectsWithAddOns?.packages)
+             setActivePackage(objectsWithAddOns?.planId)
           }
-
           useEffect(() => {
             request_all_subscription("GET", apis.GET_ALL_SUBSCRIPTION)
             if (user_details?._id && hotel_details?._id) {
@@ -256,9 +252,9 @@ function SelectPackage() {
                     </div>
                 </div>
             </div> */}
-            <div className='footer-btn text-end'>
+            {/* <div className='footer-btn text-end'>
                 <Link href="/dashboard/preview-hotel" className='next-btn me-auto'>  Previous </Link>
-                {/* <button onClick={async () => {
+                <button onClick={async () => {
                     if (watch("payment_method") == "paypal") {
                         let redirect_uri = "http://localhost:3000/new/dashboard/select-package?send_payment=true"
                         sessionStorage.setItem('save-hotel', JSON.stringify({
@@ -307,12 +303,32 @@ function SelectPackage() {
                         "planDuration": planDuration?.duration
                     })
                     setShowModal(true)
-                }} className='save-btn'>  Proceed to payment </button> */}
+                }} className='save-btn'>  Proceed to payment </button>
                 <button onClick={onSubmit} className='save-btn'>
                    Proceed to checkout
                 </button>
+                <div>  
+                <p>if not purchase package then </p>
                 <Link href="/dashboard/add-ons" className='next-btn me-auto'>  Continue </Link>
-            </div>
+                </div>
+            </div> */}
+            <div className="footer-btn d-flex justify-content-end align-items-center gap-3">
+    <Link href="/dashboard/preview-hotel" className="btn next-btn ">
+        Previous
+    </Link>
+
+    <button onClick={onSubmit} className="btn save-btn">
+        Proceed to Checkout
+    </button>
+
+    <div className="text-center mb-5">
+        <p className="mb-4">If not purchase package then</p>
+        <Link href="/dashboard/add-ons" className="btn next-btn">
+            Continue
+        </Link>
+    </div>
+</div>
+
 
             {showModal && res_data && <Elements stripe={stripePromise}> <CheckoutModal response_data={res_data} stripePromise={stripePromise} setShowModal={setShowModal} amount={planDuration?.price} payment_method={watch("payment_method")} detils_data={getValues()} purpose="publish-news" time={planDuration?.duration + planDuration?.durationMeasure} create_function={create_news} redirect={"/dashboard/voter-information"} /></Elements>}
         </>

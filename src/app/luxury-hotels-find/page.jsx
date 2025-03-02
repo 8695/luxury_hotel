@@ -1,16 +1,16 @@
 import FIndHotels from '@component/components/FIndHotels'
-import HeadingWithoutSwiper from '@component/components/headingWithoutSwiper'
-import HeroBanner from '@component/components/home/HeroSection'
+import VideoContainer from '@component/components/home/VideoContainer'
 import React from 'react'
 
 function page() {
   return (
     <>
-    <HeroBanner/>
-    <HeadingWithoutSwiper name={"Luxury hotels selection"} />
-    <div className='container'>
+      <section data-aos="zoom-in" className="hero-banner">
+        <VideoContainer />
+    </section>
+
         <FIndHotels />
-    </div>
+    
     </>
   )
 }

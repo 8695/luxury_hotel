@@ -28,20 +28,29 @@ function TravelNewsPage() {
       const paginatedHotels =travelNews?.content?.slice((currentPage - 1) * perPage, currentPage * perPage) || [];
 
     console.log("latestNews",paginatedHotels)
+    const truncateText = (text, wordLimit) => {
+      if (!text) return ""; // Handle undefined or empty text
+      const words = text.split(" "); // Split into words
+      return words.length > wordLimit
+        ? words.slice(0, wordLimit).join(" ") + "..." // Keep only 4 words, add "..."
+        : text; // If text has 4 or fewer words, show as it is
+    };
   return (
     <>
       <div className="container whater-effect section-padding " data-aos="zoom-out-up">
 
     <div className="row">
                 {paginatedHotels?.map((hotel, index) => (
-                    <div className="col-lg-3 col-md-4 col-sm-6" key={index}>
+                    <div className="col-lg-3 col-md-4 col-sm-6 mt-4" key={index}>
                         <div className="hotel-cards overflow-hidden">
                             <div className="hotel-img">
                               <img src={`${BASEURL}/${hotel?.thumbnail_path}`} alt={hotel.name} />
                             </div>
                             <div className="hotel-content">
-                            <h4 className="hotel-name text-center">{hotel?.news_title}</h4>
-                                <div className="teams-name cursor-pointer" onClick={() => handleRoute(hotel?.slug)}>{hotel?.business_name}</div>
+                            <h4 className="hotel-name text-center">  {truncateText(hotel?.news_title, 4)}</h4>
+                                <div className="teams-name cursor-pointer" onClick={() => handleRoute(hotel?.slug)}>
+                                {truncateText(hotel?.business_name, 4)}
+                                </div>
                                 <p className="mb-2 text-black text-[15px] mt-2">{hotel?.createdAt ?? "15 May 2020 9:00 am"}</p>
 
                                 <div className="teams-role">{hotel.country?.country}</div>

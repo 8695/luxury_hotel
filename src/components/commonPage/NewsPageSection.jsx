@@ -88,7 +88,7 @@ function NewsPageSection({ news_id }) {
                 <section className="singleNewsSection pb-8" >
                     {/* <div className="container"> */}
                         <div className="single-news overflow-hidden relative">
-                            <img src={`${BASEURL}/${newsData?.thumbnail_path}`} alt="" />
+                            <img src={`${BASEURL}/${newsData?.thumbnail_path}`} alt="" className='img-fluid full-image' />
                             <div className="news-info p-4  absolute bottom-0 w-full text-white" style={{
                                 backdropFilter: "blur(15px)",
                                 backgroundColor: "rgba(255, 255, 255, 0.1)"

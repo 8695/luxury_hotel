@@ -46,13 +46,13 @@ const  LineAndBarChart = () => {
   },[response,responseReview])
 
   useEffect(() => {
-      const hasModalShown = localStorage.getItem("hasModalAnaltyicshown");
-  
-      if (!hasModalShown) {
+    const modalCount = sessionStorage.getItem("modalAnalyticsCount") || 0;
+
+    if (modalCount < 5) {
         setShowGoogleAnalyticsNews(true);
-        localStorage.setItem("hasModalAnaltyicshown", "true"); // Store flag in localStorage
-      }
-    }, []);
+        sessionStorage.setItem("modalAnalyticsCount", Number(modalCount) + 1);
+    }
+}, []);
     function closeNewsLetter(){
       setShowGoogleAnalyticsNews(false); //
     }

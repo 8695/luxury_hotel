@@ -267,11 +267,11 @@ const NominateHotel = () => {
     }
 
     useEffect(() => {
-        const hasModalShown = localStorage.getItem("hasModalNominateShown");
+        const modalCount = sessionStorage.getItem("modalNominateCount") || 0;
 
-        if (!hasModalShown) {
+        if (modalCount < 5) {
             setShowNomiNateHotelNews(true);
-            localStorage.setItem("hasModalNominateShown", "true"); // Store flag in localStorage
+            sessionStorage.setItem("modalNominateCount", Number(modalCount) + 1);
         }
     }, []);
 
@@ -620,11 +620,13 @@ const NominateHotel = () => {
                         </div>
                     </div> */}
 
-                    <div className="footer-btn text-end">
+                   <div className="footer-btn d-flex justify-content-end align-items-center gap-3">
                         <Link href="/dashboard/win-a-holiday" className="next-btn">Previous</Link>
                         <button type="submit" className="save-btn">PROCEED TO CHECKOUT</button>
-
-                        <Link href="/voter-info" className="next-btn">Continue</Link>
+                        <div className="text-center mb-5">
+                        <p className="mb-4">If not Nominate Hotel then</p>
+                        <Link href="/dashboard/travel-news" className="next-btn">Continue</Link>
+                    </div>
                     </div>
                 </div>
             </form>

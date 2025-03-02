@@ -231,6 +231,7 @@ const siteContentSlice = createSlice({
     hotel_highlight: [],
     hotel_facility: [],
     room_enimities: [],
+    hotel_subscription_details: [],
     loading: false,
     error: null,
     pass_files:null,
@@ -246,7 +247,10 @@ const siteContentSlice = createSlice({
    },
    updateLoading:(state,action)=>{
     state.loading=action.payload
-   }
+   },
+   set_hotel_subscription_details:(state,action)=>{
+    state.hotel_subscription_details=action.payload
+   }
 
   },
   extraReducers: (builder) => {

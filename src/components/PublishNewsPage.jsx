@@ -48,6 +48,14 @@ function PublishNewsPage() {
         const paginatedHotels =latestNews?.content?.slice((currentPage - 1) * perPage, currentPage * perPage) || [];
         console.log("paginatedHotels",paginatedHotels)
 
+        const truncateText = (text, wordLimit) => {
+          if (!text) return ""; // Handle undefined or empty text
+          const words = text.split(" "); // Split into words
+          return words.length > wordLimit
+            ? words.slice(0, wordLimit).join(" ") + "..." // Keep only 4 words, add "..."
+            : text; // If text has 4 or fewer words, show as it is
+        };
+
     return (
        <>
         <div className="container whater-effect section-padding " data-aos="zoom-out-up">
@@ -60,8 +68,8 @@ function PublishNewsPage() {
                                       <img src={`${BASEURL}/${hotel?.thumbnail_path}`} alt={hotel.name} />
                                     </div>
                                     <div className="hotel-content">
-                                    <h4 className="hotel-name text-center">{hotel?.news_title}</h4>
-                                        <div className="teams-name cursor-pointer" onClick={() => handleRoute(hotel?.slug)} >{hotel?.business_name}</div>
+                                    <h4 className="hotel-name text-center">{truncateText(hotel?.news_title, 4)}</h4>
+                                        <div className="teams-name cursor-pointer" onClick={() => handleRoute(hotel?.slug)} >{truncateText(hotel?.business_name, 4)}</div>
                                         <p className="mb-2 text-black text-[15px] mt-2">{hotel?.createdAt ?? "15 May 2020 9:00 am"}</p>
                                         <div className="teams-role">{hotel.country?.country}</div>
                                         <button className="text-[#846316] cursor-pointer" fdprocessedid="cmxd82" onClick={() => handleRoute(hotel?.slug)}>READ MORE</button>

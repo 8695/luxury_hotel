@@ -44,8 +44,22 @@ const LuxuryHotelResort = () => {
   };
 
   return (
+    <>
+      
+      <div className="section-head">
+                    <div className="container">
+                        <div className="sectionInnerHead">
+                            <h2 className="section-heading">Luxury hotels selection</h2>
+                        </div>
+
+                    </div>
+
+                </div>
+      
     <div className="container">
+    <div style={{marginTop:"-100px"}}>
       <FilterSection />
+      </div>
       <div className="container whater-effect section-padding" data-aos="zoom-out-up">
         <div className="row">
           {allHotels?.hotels?.map((hotel, index) => (
@@ -78,6 +92,7 @@ const LuxuryHotelResort = () => {
       <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />
       </div>
     </div>
+    </>
   );
 };
 
