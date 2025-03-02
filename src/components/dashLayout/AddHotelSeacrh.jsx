@@ -72,6 +72,7 @@ function AddHotelSeacrh() {
     if (router?.query?.userDetails) {
       try {
         const userDetails = JSON.parse(decodeURIComponent(router.query.userDetails));
+        console.log("userDetails",userDetails)
         // Save to localStorage
         localStorage.setItem("userdetails", JSON.stringify(userDetails));
       } catch (error) {
