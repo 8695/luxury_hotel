@@ -4,7 +4,7 @@ import useRequest from '@component/hooks/UseRequest'
 import { siteContentActions } from '@component/lib/slice/sitesSetting'
 import axios from 'axios'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 // import Link from 'next/link'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -67,20 +67,23 @@ function AddHotelSeacrh() {
     setSelectedHotel(null); 
   };
 
-
+  
+  const searchParams = useSearchParams();
+  
   useEffect(() => {
-    if (router?.query?.userDetails) {
-      try {
-        const userDetails = JSON.parse(decodeURIComponent(router.query.userDetails));
-        console.log("userDetails",userDetails)
-        // Save to localStorage
-        localStorage.setItem("userdetails", JSON.stringify(userDetails));
-      } catch (error) {
-        console.error("Error parsing user details from URL:", error);
-        toast.error("Error parsing user details from URL:", error);
-      }
-    }
-  }, [router?.query?.userDetails])
+    const userDetailsFromUrl = searchParams.get("userDetails");
+    console.log(router?.query?.userDetails,"query",userDetailsFromUrl);
+
+   if (userDetailsFromUrl) {
+     try {
+       const userDetails = JSON.parse(decodeURIComponent(userDetailsFromUrl));
+       localStorage.setItem("userdetails", JSON.stringify(userDetails));
+     } catch (error) {
+       console.error("Error parsing user details from URL:", error);
+       toast.error("Invalid user details.");
+     }
+   }
+ }, [searchParams]);
 
   return (
     <>

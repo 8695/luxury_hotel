@@ -67,8 +67,8 @@ const PublishNews = () => {
       months: 6,               // If months is static (like 6 months), set it here
       hotel: data.hotelName,   // Use the hotel name from the form input
     };
-    create_news("pending")
-    // request("POST", apis.ADD_NOMINEE_CHECKOUT_HOTEL, payload);
+    // create_news("pending")
+    request("POST", apis.ADD_NOMINEE_CHECKOUT_HOTEL, payload);
   };
 
   useEffect(() => {
