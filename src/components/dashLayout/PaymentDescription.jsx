@@ -379,7 +379,7 @@ function PaymentDescription() {
             await Promise.all(apiRequests);
             // Now call DELETE API
             const ids = defaultdata.map((it) => it._id);
-            await request_create("POST", apis.DELETE_ADD_TO_CART, { ids });
+            await request_create("POST", apis.DELETE_ADD_TO_CART, { ids,user_id:userdetails._id });
             console.log("Deleted add to cart items successfully");
         } catch (error) {
             console.error("Error in API requests:", error);
