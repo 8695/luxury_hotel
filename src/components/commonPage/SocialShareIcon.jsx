@@ -95,17 +95,7 @@ function SocialShareIcon() {
                 />
                 <span className="st-label">Email</span>
               </div>
-              <div
-                className="st-btn st-last"
-                data-network="sharethis"
-                style={{ display: "inline-block", backgroundColor: '#95D03A' }}
-              >
-                <img
-                  alt="sharethis sharing button"
-                  src="https://platform-cdn.sharethis.com/img/sharethis.svg"
-                />
-                <span className="st-label">Share</span>
-              </div>
+              
             </div>
     </>
   )

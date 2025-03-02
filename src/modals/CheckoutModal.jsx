@@ -44,7 +44,9 @@ const CheckoutModal = ({ setShowModal, response_data ,amount,payment_method,deti
                 }
             }
         })
-        console.log(result,"result");
+        console.log(result.error,"result");
+
+       
         if(result?.paymentIntent?.status==="succeeded"){
             let payload={
                 "payment_method": payment_method,
@@ -54,6 +56,7 @@ const CheckoutModal = ({ setShowModal, response_data ,amount,payment_method,deti
                 "paymentID": result.paymentIntent.id,
                 "purpose": purpose
             }
+           
             const create_payment=await request("POST",apis.PAYMENT_POST,payload)
             
             create_function(result?.paymentIntent?.status==="succeeded" ?"completed":"failed")
@@ -67,6 +70,9 @@ const CheckoutModal = ({ setShowModal, response_data ,amount,payment_method,deti
 
             }
 
+        }
+        if(result?.error){
+            toast.error(result?.error?.message)
         }
 
         

@@ -36,13 +36,13 @@ const TravelNews = () => {
     return (
         <>
             {isTravelNewsSelect && (
-                <section className="fourthcoming-section travelmargin0 mt-10" style={{  backgroundImage: 'url("/new/assets/img/4.png")',
+                <section className="fourthcoming-section travelmargin0 my-10" style={{  backgroundImage: 'url("/new/assets/img/new1.jpg")',
                     backgroundSize: 'cover'}}>
                     <div className="container">
                         <div className="container">
                             <div className="sectionInnerHead section-head">
                                 {/* <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0 my-5 uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">LATEST News</h1> */}
-                                <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0  uppercase border-l-4 pl-3 border-[#846316] text-[#846316">
+                                <h1 className="text-sm sm:text-xl md:text-sm lg:text-xl ml-2 md:ml-0  uppercase border-l-4 pl-3 border-[#846316] text-[#846316]">
                                     Travel News
                                 </h1>
                                 <div className="section-control">

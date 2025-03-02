@@ -57,7 +57,7 @@ dispatch(getHomeData())
     </div>
     <LuxGateWeek />
     <BrandSection/>  
-    <div style={{  backgroundImage: 'url("/new/assets/img/3.png")',
+    <div style={{  backgroundImage: 'url("/new/assets/img/new1.jpg")',
             backgroundSize: 'cover'}}>
     <LuxuryAward />
       </div>   

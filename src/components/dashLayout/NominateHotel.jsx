@@ -13,6 +13,7 @@ import Select from 'react-select';
 import SquarePayment from '@component/modals/SquarePaymentGateway';
 import NominateHotelNewsModal from '@component/modals/NominateHotelNewsModal';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 // const paymentMethods = [
 //     {
@@ -46,6 +47,7 @@ const NominateHotel = () => {
     const stripePromise = loadStripe('pk_live_51IhBByD3gzWFhFEcvzKD2S1fOTTiF2CjXgikLRqGH0yQvHR5QFQthkT5zoUe069NFb881KGo1Oj0C0G4xhdPf7dO00ilSXPHBD');
 
     const { request: request_create } = useRequest(true);
+    const router = useRouter()
 
     const { pass_information, countryData } = useSelector((state) => state.siteSetting)
 
@@ -256,8 +258,10 @@ const NominateHotel = () => {
         formData.append("user_id", user_details?._id)
         const res_data = await request("POST", apis.ADD_TO_CART, formData)
 
+        console.log("res_data",res_data);
+
         if (res_data) {
-            router.push('/dashboard/payment')
+            router.push('/dashboard/travel-news')
         }
     }
 

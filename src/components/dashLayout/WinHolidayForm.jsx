@@ -172,9 +172,9 @@ function WinHolidayForm() {
                         type="number"
                         placeholder="Number of Adults"
                         className="form-control"
-                        {...register("adult_attendees", { required: true })}
+                        {...register("adult_attendees")}
                       />
-                      {errors.adult_attendees && <span className="text-danger">This field is required</span>}
+                      {/* {errors.adult_attendees && <span className="text-danger">This field is required</span>} */}
                     </div>
                   </div>
 
@@ -187,9 +187,9 @@ function WinHolidayForm() {
                         type="number"
                         placeholder="Number of Children"
                         className="form-control"
-                        {...register("children_attendees", { required: true })}
+                        {...register("children_attendees")}
                       />
-                      {errors.children_attendees && <span className="text-danger">This field is required</span>}
+                      {/* {errors.children_attendees && <span className="text-danger">This field is required</span>} */}
                     </div>
                   </div>
 
@@ -294,7 +294,7 @@ function WinHolidayForm() {
                           condition
                         </span>
                       </span>
-                      {errors.agree_conditions && <span>You must agree to the conditions</span>}
+                      
                     </div>
                   </div>
 

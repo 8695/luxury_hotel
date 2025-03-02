@@ -35,19 +35,22 @@ const NewsletterSection = () => {
       {/* <h3 className="text-center">SUBSCRIBE NEWSLETTER</h3>    */}
       <div
           style={{
-            backgroundImage: 'url("/new/assets/img/transparent-bg.png")',
-            backgroundSize: "cover",
-            backgroundPosition: "center center",
+            // backgroundImage: 'url("/new/assets/img/transparent-bg.png")',
+            // backgroundSize: "cover",
+            // backgroundPosition: "center center",
             // padding: "100px 0",
+            // backgroundColor:"#846316",
             backgroundRepeat: "no-repeat",
-            bottom: "-250px",
-            left: "40%",
+            top:"40px",
+            left: "50%",
             transform: "translate(-50%)",
+            borderRadius: "25px",
+            // border: "1px solid golden"
           }}
-          className="container newsletter-section"
+          className="newsletter-section"
         >
        {/* <div className="newsletter-section"> */}
-      <section className="section-padding-newsletter">
+      <section className="section-padding-newsletter bg-[#fffcf5]">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center text-white ">
             {/* Left Side - Image */}

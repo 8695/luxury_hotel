@@ -208,6 +208,9 @@ const Hotel_visit = ({ params }) => {
   console.log("videoUrl", videoUrl, new_fetch_hotel_info)
 
 
+
+
+
   return (
     <>
       <section className='hotel-listing dashboard-section section-padding' style={{
@@ -382,35 +385,12 @@ const Hotel_visit = ({ params }) => {
                       </div>
                     )
                   )}
-                  <div className="text-center serviceBox">
-                    <a href="#" className="theme-btn">
-                      Hotel Facilities
-                    </a>
-                  </div>
+                 
                 </div>
 
-                <h3 className="comman-heading3">Transportation</h3>
-                <div className="grid  service-outerBox p-3 bg-gray my-3 rounded-xl shadow-sm">
-                  <div className="text-center serviceBox">
-                    <img src="/new/assets/img/Bar.svg" className="mx-auto" alt="Airport" />
-                    <h3 className="service-text mb-2">Airport</h3>
-                  </div>
-                  <div className="text-center serviceBox">
-                    <img src="/new/assets/img/Private-Driver.svg" className="mx-auto" alt="Train Station" />
-                    <h3 className="service-text">Train Station</h3>
-                  </div>
-                  <div className="text-center serviceBox">
-                    <img src="/new/assets/img/PARKING.svg" className="mx-auto" alt="Metro Station" />
-                    <h3 className="service-text">Metro Station</h3>
-                  </div>
-                  <div className="text-center serviceBox">
-                    <a href="#" className="theme-btn">
-                      Hotel Facilities
-                    </a>
-                  </div>
-                </div>
+               
 
-                <h3 className="comman-heading3">Top Attraction</h3>
+                <h3 className="comman-heading3">Hotel Aminities</h3>
                 <div className="grid  service-outerBox p-3 bg-gray my-3 rounded-xl shadow-sm">
                   {room_enimities?.map((it) =>
                     new_fetch_hotel_info?.hotel?.room_amenities.includes(it._id) && (
@@ -420,7 +400,7 @@ const Hotel_visit = ({ params }) => {
                       </div>
                     )
                   )}
-                  <div className="text-center serviceBox">Top Attraction</div>
+                  
                 </div>
               </div>
 

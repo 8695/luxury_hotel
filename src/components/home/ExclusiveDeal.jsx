@@ -14,7 +14,7 @@ const ExclusiveDeal = () => {
     console.log("getExclusiveOffers",filterExlusiveOffers)
     return (
         <>
-            <section className="ExclusiveDeal ExclusiveDealSec" style={{  backgroundImage: 'url("/new/assets/img/5.png")',
+            <section className="ExclusiveDeal ExclusiveDealSec" style={{  backgroundImage: 'url("/new/assets/img/new1.jpg")',
                 backgroundSize: 'cover'}}>
                 
                 <HearderNameSection name={"Exclusive Deal"} />

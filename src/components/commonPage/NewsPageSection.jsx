@@ -85,9 +85,9 @@ function NewsPageSection({ news_id }) {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center'
             }} >
-                <section className="singleNewsSection py-8" >
-                    <div className="container">
-                        <div className="single-news rounded-2xl overflow-hidden mx-8 relative">
+                <section className="singleNewsSection pb-8" >
+                    {/* <div className="container"> */}
+                        <div className="single-news overflow-hidden relative">
                             <img src={`${BASEURL}/${newsData?.thumbnail_path}`} alt="" />
                             <div className="news-info p-4  absolute bottom-0 w-full text-white" style={{
                                 backdropFilter: "blur(15px)",
@@ -98,7 +98,7 @@ function NewsPageSection({ news_id }) {
                                 </h3>
                             </div>
                         </div>
-                    </div>
+                    {/* </div> */}
                 </section>
                 <section className='nominate-hotel-section'>
                     <HearderNameIcon name={newsData?.business_name} />
@@ -193,6 +193,8 @@ function NewsPageSection({ news_id }) {
                                         </svg>
                                         {newsData?.email}{" "}
                                     </p>
+                                    {newsData?.facebook_page && (
+
                                     <p className="text-md flex">
                                         <span className="text-golden">
                                             <svg
@@ -210,6 +212,8 @@ function NewsPageSection({ news_id }) {
                                         </span>{" "}
                                         <a onClick={() => window.location.href = newsData?.facebook_page}>{newsData?.facebook_page}</a>{" "}
                                     </p>
+                                    )}
+                                    {newsData?.instagram_link && (
                                     <p className="text-md flex">
                                         <span className="text-golden">
                                             <svg
@@ -228,6 +232,7 @@ function NewsPageSection({ news_id }) {
 
                                         <a onClick={() => window.location.href = newsData?.instagram_link}>{newsData?.instagram_link}</a>{" "}
                                     </p>
+                                    )}
 
 
                                     <p className="text-md flex">
@@ -311,7 +316,7 @@ function NewsPageSection({ news_id }) {
                                             alt="facebook sharing button"
                                             src="https://platform-cdn.sharethis.com/img/facebook.svg"
                                         />
-                                        <span className="st-label">Share</span>
+                                        <span className="st-label" onClick={()=>window.location.href=`https://www.facebook.com/sharer.php?text=${encodeURIComponent(newsData?.news_description)}&url=${encodeURIComponent(route.asPath)}`}>facebook</span>
                                     </div>
                                     <div
                                         className="st-btn"
@@ -322,7 +327,7 @@ function NewsPageSection({ news_id }) {
                                             alt="twitter sharing button"
                                             src="https://platform-cdn.sharethis.com/img/twitter.svg"
                                         />
-                                        <span className="st-label">Tweet</span>
+                                        <span className="st-label" onClick={()=>window.location.href=`https://twitter.com/intent/tweet?text==${encodeURIComponent(newsData?.news_description)}&url=${encodeURIComponent(route.asPath)}`}>Tweet</span>
                                     </div>
                                     <div
                                         className="st-btn"
@@ -333,7 +338,7 @@ function NewsPageSection({ news_id }) {
                                             alt="whatsapp sharing button"
                                             src="https://platform-cdn.sharethis.com/img/whatsapp.svg"
                                         />
-                                        <span className="st-label">Share</span>
+                                        <span onClick={()=>window.location.href=`https://api.whatsapp.com/send/?text=${encodeURIComponent(newsData?.news_description)}type=custom_url&app_absent=0`} className="st-label">whatsapp</span>
                                     </div>
                                     <div
                                         className="st-btn"
@@ -344,7 +349,7 @@ function NewsPageSection({ news_id }) {
                                             alt="telegram sharing button"
                                             src="https://platform-cdn.sharethis.com/img/telegram.svg"
                                         />
-                                        <span className="st-label">Share</span>
+                                        <span className="st-label" onClick={() => window.open(`https://t.me/share/url?url=${encodeURIComponent(newsData?.news_description)}&text=${encodeURIComponent(newsData?.news_description)}`, '_blank')} >Telegram</span>
                                     </div>
                                     <div
                                         className="st-btn"
@@ -355,7 +360,9 @@ function NewsPageSection({ news_id }) {
                                             alt="linkedin sharing button"
                                             src="https://platform-cdn.sharethis.com/img/linkedin.svg"
                                         />
-                                        <span className="st-label">Share</span>
+                                        
+                                        <span className="st-label" onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(newsData?.news_description)}`, '_blank')} >LinkedIn</span>
+
                                     </div>
                                     <div
                                         className="st-btn"
@@ -366,7 +373,8 @@ function NewsPageSection({ news_id }) {
                                             alt="messenger sharing button"
                                             src="https://platform-cdn.sharethis.com/img/messenger.svg"
                                         />
-                                        <span className="st-label">Share</span>
+                                        
+                                        <span onClick={() => window.open(`https://www.facebook.com/dialog/send?link=${encodeURIComponent(newsData?.news_description)}&app_id=YOUR_APP_ID&redirect_uri=${encodeURIComponent(newsData?.news_description)}`, '_blank')} className="st-label">Messenger</span>
                                     </div>
                                     <div
                                         className="st-btn"
@@ -377,7 +385,8 @@ function NewsPageSection({ news_id }) {
                                             alt="snapchat sharing button"
                                             src="https://platform-cdn.sharethis.com/img/snapchat.svg"
                                         />
-                                        <span className="st-label" style={{ color: "black" }}>Snap</span>
+                                              <span onClick={() => window.open(`https://www.snapchat.com/share?url=${encodeURIComponent(newsData?.news_description)}`, '_blank')} className="st-label">Snapchat</span>
+
                                     </div>
                                     <div
                                         className="st-btn"
@@ -388,8 +397,8 @@ function NewsPageSection({ news_id }) {
                                             alt="email sharing button"
                                             src="https://platform-cdn.sharethis.com/img/email.svg"
                                         />
-                                        <span className="st-label">Email</span>
-                                    </div>
+                               <span onClick={() => window.location.href = `mailto:?subject=${encodeURIComponent(newsData?.news_title)}&body=${encodeURIComponent(newsData?.news_title + "\n" + newsData?.news_description)}`} className="st-label">Email</span>
+      </div>
 
                                 </div>
                             </div>

@@ -817,7 +817,7 @@ ul.footer-links.socialize li a i {
 
 .footer_wrapper {
     background: #D2122E;
-    padding: 142px 0 0;
+    padding: 75px 0 0;
     border-top: 1px solid #f1f1f1;
     /* background-image: linear-gradient(19deg, #001b23 0%, #ff3e21 100%);
     background-color: #712100; */
@@ -1789,7 +1789,7 @@ figure.banner-logo {
 }
 
 .newly-listed .swiper {
-    padding: 40px 6px 0 0;
+    padding: 40px 6px 40px 0;
     margin-bottom: 0;
 }
 
@@ -2798,7 +2798,7 @@ span.offer-time {
 } */
 
 .same-cards {
-    padding: 40px 0 0 0;
+    padding: 40px 0 40px 0;
     margin-block: 0;
     height: 100% !important;
     min-height: 380px;
@@ -3324,7 +3324,7 @@ span.offer-time {
 
 .rating {
     position: relative;
-    display: inline-flex;
+    /* display: inline-flex; */
 }
 
 .bg-star {
@@ -3486,12 +3486,12 @@ span.offer-time {
 }
 
 .single-news {
-    height: 450px;
+    height: 650px;
 }
 
 .single-news img {
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
     width: 100%;
 }
 
@@ -3989,7 +3989,7 @@ section.our-story {
     z-index: 94034;
 }
 #st-1.st-has-labels .st-btn {
-    min-width: 145px;
+    min-width: 134px;
 }
 #st-1 .st-btn {
     -moz-box-sizing: border-box;
@@ -4106,7 +4106,8 @@ section.our-story {
     .section-padding-newsletter {
         padding-top: 40px;
         padding-bottom: 40px;
-        /* border-radius: 30px; */
+        border: 1px solid goldenrod;
+        border-radius: 30px;
     }
     
 
