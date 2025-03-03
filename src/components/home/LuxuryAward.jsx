@@ -103,11 +103,7 @@ const LuxuryAward = () => {
                         <button className="bg-[#846316] text-white px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full hotelcountry cursor-pointer" onClick={()=>handleRoute(hotel?.hotelId?.slug)}>{hotel.hotelId?.country?.country ?? "America"}</button>
                       </div>
                       <div className="hotel-img-reflect">
-                          <img
-                            src={hotel?.hotelId?.images?.[0]}
-                            alt={hotel.name}
-                            className="hotel-main-image-reflect"
-                          />
+                      {hotel?.hotelId?.images?.[0]?.slice(0, 5) == "https" ? <img src={`${hotel?.hotelId?.images?.[0]}`} alt="Gallery 1" style={{ width: "100%", borderRadius: "8px" }} /> : <img src={`${BASEURL}/${hotel?.hotelId?.images?.[0]}`} alt="Gallery 1" style={{ borderRadius: "8px" }} />}
                           <div className="hotel-reflection"></div>
                         </div>
                     </div>
