@@ -245,6 +245,9 @@ const AddExclusive = () => {
     }
     get_addtocart()
   },[])
+
+  console.log("response",response)
+
 const get_details=useMemo(()=>{
 if(response){
   console.log(response,"response")
@@ -264,6 +267,7 @@ if(response){
 }
 },[response])
 const [preview, setPreview] = useState(null);
+console.log("preview",preview);
   const [error, setError] = useState("");
 
   const handleImageChange = (event) => {

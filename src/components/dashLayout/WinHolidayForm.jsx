@@ -9,6 +9,7 @@ import Link from "next/link";
 import Table from "./Table";
 import toast from "react-hot-toast";
 import WinHolidayNewsModal from "@component/modals/WinHolidayNewsModal";
+import { useRouter } from "next/navigation";
 
 function WinHolidayForm() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +30,7 @@ function WinHolidayForm() {
   const hotel_deatails = localStorage.getItem("hotel_details");
   const userdetailsJsonString = JSON.parse(userdetails);
   const hotelDetailsJsonString = JSON.parse(hotel_deatails);
+  const router = useRouter();
 
   const toggleCollapse = () => {
     setIsOpen(!isOpen);
@@ -67,6 +69,7 @@ function WinHolidayForm() {
   useEffect(() => {
     if (response) {
       reset();
+      router.push("/dashboard/nominate-hotel")
       setShowModal(!showModal);
     }
   }, [response]);

@@ -35,6 +35,8 @@ const Hotel_visit = ({ params }) => {
   } = useForm();
   const [ViewModal, setIViewModal] = useState(false);
   const [ShowMore, SetShowMore] = useState(false);
+  const [showVoteForm, setShowVoteForm] = useState(false);
+  const [showReviewForm, setShowReviewForm] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   // console.log("params", params)
   const GOOGLE_API_KEY = `AIzaSyAN-RY595XViAsgKD5nXRkH3zmtc6iqzjE`;
@@ -100,7 +102,13 @@ const Hotel_visit = ({ params }) => {
     }
   }
 
-
+  const truncateText = (text, wordLimit) => {
+    if (!text) return ""; // Handle undefined or empty text
+    const words = text.split(" "); // Split into words
+    return words.length > wordLimit
+      ? words.slice(0, wordLimit).join(" ") + "..." // Keep only 4 words, add "..."
+      : text; // If text has 4 or fewer words, show as it is
+  };
 
 
   useMemo(() => {
@@ -385,10 +393,10 @@ const Hotel_visit = ({ params }) => {
                       </div>
                     )
                   )}
-                 
+
                 </div>
 
-               
+
 
                 <h3 className="comman-heading3">Hotel Aminities</h3>
                 <div className="grid  service-outerBox p-3 bg-gray my-3 rounded-xl shadow-sm">
@@ -400,7 +408,7 @@ const Hotel_visit = ({ params }) => {
                       </div>
                     )
                   )}
-                  
+
                 </div>
               </div>
 
@@ -744,45 +752,76 @@ const Hotel_visit = ({ params }) => {
 
 
               <a
-                href='#'
-                data-bs-toggle="offcanvas" data-bs-target="#WriteReview" aria-controls="WriteReview"
+                onClick={() => setShowReviewForm(true)}
                 className="review-btn drawer-button tab font-bold btn uppercase text-golden hover:bg-transparent border-0 rounded-none hover:border-b-2 hover:border-golden bg-white -z-0 mr-4"
               >
                 Write Review
               </a>
-              <div className="offcanvas offcanvas-end custom-offcanvas" tabIndex="-1" id="WriteReview" aria-labelledby="WriteReviewLabel">
-                <div className="offcanvas-header">
-                  <h5 id="WriteReviewLabel">Write Review</h5>
-                  <button type="button" className="btn-close theme-btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M10 30L30 10M10 10L30 30" stroke="#FAFAFA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
+
+              {showReviewForm && (
+                <div className="offcanvas offcanvas-end custom-offcanvas show" tabIndex="-1">
+                  <div className="offcanvas-header">
+                    <h5 id="WriteReviewLabel">Write Review</h5>
+                    <button
+                      type="button"
+                      className="btn-close theme-btn-close text-reset"
+                      onClick={() => setShowReviewForm(false)}
+                      aria-label="Close"
+                    >
+                      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 30L30 10M10 10L30 30" stroke="#FAFAFA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="offcanvas-body">
+                    <ReviewForm new_fetch_hotel_info={new_fetch_hotel_info} setShowReviewForm={setShowReviewForm} />
+                  </div>
                 </div>
-                <div className="offcanvas-body">
-                  <ReviewForm new_fetch_hotel_info={new_fetch_hotel_info} />
-                </div>
-              </div>
+              )}
               <a
-                href='#'
-                data-bs-toggle="offcanvas" data-bs-target="#bestHotels" aria-controls="bestHotels"
-                className=" review-btn drawer-button tab font-bold btn uppercase text-golden hover:bg-transparent border-0 rounded-none hover:border-b-2 hover:border-golden bg-white -z-0 mr-4"
+                onClick={() => setShowVoteForm(true)}
+                className="review-btn drawer-button tab font-bold btn uppercase text-golden hover:bg-transparent border-0 rounded-none hover:border-b-2 hover:border-golden bg-white -z-0 mr-4"
               >
                 VOTE FOR THE BEST LUXURY HOTELS OF THE YEAR
               </a>
-              <div className="offcanvas offcanvas-end custom-offcanvas" tabIndex="-1" id="bestHotels" aria-labelledby="WriteReviewLabel">
-                <div className="offcanvas-header">
-                  <h5 id="WriteReviewLabel">VOTE FOR THE BEST LUXURY HOTELS OF THE YEAR</h5>
-                  <button type="button" className="btn-close theme-btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M10 30L30 10M10 10L30 30" stroke="#FAFAFA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
+
+
+              {showVoteForm && (
+                <div className="offcanvas offcanvas-end custom-offcanvas show">
+                  <div className="offcanvas-header">
+                    <h5 id="WriteReviewLabel">
+                      VOTE FOR THE BEST LUXURY HOTELS OF THE YEAR
+                    </h5>
+                    <button
+                      type="button"
+                      className="btn-close theme-btn-close text-reset"
+                      onClick={() => setShowVoteForm(false)}
+                    >
+                      <svg
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10 30L30 10M10 10L30 30"
+                          stroke="#FAFAFA"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="offcanvas-body">
+                    <VoteForm
+                      new_fetch_hotel_info={new_fetch_hotel_info}
+                      setShowVoteForm={setShowVoteForm}
+                    />
+                  </div>
                 </div>
-                <div className="offcanvas-body">
-                  <VoteForm new_fetch_hotel_info={new_fetch_hotel_info} />
-                </div>
-              </div>
+              )}
             </div>
             <h1 className="text-xl my-8 uppercase text-golden">Guest Reviews ({review_details?.length})</h1>
             <div className='row'>
@@ -849,51 +888,54 @@ const Hotel_visit = ({ params }) => {
             </div>
 
             <div className='row'>
-              {review_details && review_details.map((it) => {
-                return (<div key={it._id} className='col-md-4'>
-                  <div
-                    className="px-4 py-3 guest-review-box"
-                    tabIndex={-1}
-                    style={{ width: "100%", display: "inline-block" }}
-                  >
-                    <div className="box-guset">
-                      <div className="w-1/5">
-                        <img
-                          src={`${BASEURL}/${it?.reviewer_image}`}
-                          className="w-16 h-16 rounded-full"
-                        />
-                      </div>
-                      <div className="w-4/5">
-                        <h3 className="text-xl mb-0">{it.reviewer_name}</h3>
-                        <p className="flex gap-2 mb-0 text-lg items-center">
-                          {" "}
-                          <svg
-                            stroke="currentColor"
-                            fill="currentColor"
-                            strokeWidth={0}
-                            viewBox="0 0 512 512"
-                            height="1em"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M349.565 98.783C295.978 98.783 251.721 64 184.348 64c-24.955 0-47.309 4.384-68.045 12.013a55.947 55.947 0 0 0 3.586-23.562C118.117 24.015 94.806 1.206 66.338.048 34.345-1.254 8 24.296 8 56c0 19.026 9.497 35.825 24 45.945V488c0 13.255 10.745 24 24 24h16c13.255 0 24-10.745 24-24v-94.4c28.311-12.064 63.582-22.122 114.435-22.122 53.588 0 97.844 34.783 165.217 34.783 48.169 0 86.667-16.294 122.505-40.858C506.84 359.452 512 349.571 512 339.045v-243.1c0-23.393-24.269-38.87-45.485-29.016-34.338 15.948-76.454 31.854-116.95 31.854z" />
-                          </svg>{" "}
-                          {it.country}
-                        </p>
-                        <div className="flex gap-2">
-                          <StarRating rating={it?.overall_rating} />
+              {review_details
+                ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by newest first
+                .slice(0, 3) // Get only the latest 3 reviews
+                .map((it) => {
+                  return (
+                    <div key={it._id} className='col-md-4'>
+                      <div
+                        className="px-4 py-3 guest-review-box"
+                        tabIndex={-1}
+                        style={{ width: "100%", display: "inline-block" }}
+                      >
+                        <div className="box-guset">
+                          <div className="w-1/5">
+                            <img
+                              src={`https://i.ibb.co/5K4Gxwy/Ellipse-3.png`}
+                              className="w-16 h-16 rounded-full"
+                            />
+                          </div>
+                          <div className="w-4/5">
+                            <h3 className="text-xl mb-0">{it.reviewer_name}</h3>
+                            <p className="flex gap-2 mb-0 text-lg items-center">
+                              <svg
+                                stroke="currentColor"
+                                fill="currentColor"
+                                strokeWidth={0}
+                                viewBox="0 0 512 512"
+                                height="1em"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path d="M349.565 98.783C295.978 98.783 251.721 64 184.348 64c-24.955 0-47.309 4.384-68.045 12.013a55.947 55.947 0 0 0 3.586-23.562C118.117 24.015 94.806 1.206 66.338.048 34.345-1.254 8 24.296 8 56c0 19.026 9.497 35.825 24 45.945V488c0 13.255 10.745 24 24 24h16c13.255 0 24-10.745 24-24v-94.4c28.311-12.064 63.582-22.122 114.435-22.122 53.588 0 97.844 34.783 165.217 34.783 48.169 0 86.667-16.294 122.505-40.858C506.84 359.452 512 349.571 512 339.045v-243.1c0-23.393-24.269-38.87-45.485-29.016-34.338 15.948-76.454 31.854-116.95 31.854z" />
+                              </svg>
+                              {it.country}
+                            </p>
+                            <div className="flex gap-2">
+                              <StarRating rating={it?.overall_rating} />
+                            </div>
+                          </div>
                         </div>
+                        <p className="mb-0 mt-2">
+                          {truncateText(it?.review, 5)}
+                        </p>
                       </div>
                     </div>
-                    <p className="mb-0 mt-2">
-                      {it?.review}
-                    </p>
-                  </div>
-
-                </div>)
-              })}
-
+                  );
+                })}
             </div>
+
           </div>
           <div className='content-rightBox white-bg mt-5'
             style={{
@@ -983,8 +1025,8 @@ const Hotel_visit = ({ params }) => {
                 </span>
                 <a className="cursor-pointer" onClick={() => window.location.href = new_fetch_hotel_info?.hotel?.website}>
                   {new_fetch_hotel_info?.hotel?.website}
-                </a>              
-                </p>
+                </a>
+              </p>
             </div>
             <div className="w-full my-3 flex flex-col md:flex-row justify-between items-center gap-5">
               <div className="flex gap-3">

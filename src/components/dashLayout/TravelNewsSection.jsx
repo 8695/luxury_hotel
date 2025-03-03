@@ -308,9 +308,9 @@ const TravelNewsSection = () => {
               <div className="col-md-12">
                 <div className="form-group">
                   <input
-                    placeholder='Name of Hotel / Business'
+                    placeholder='Name of Hotel'
                     className="form-control"
-                    {...register("hotelName", { required: "Hotel/Business name is required" })}
+                    {...register("hotelName", { required: "Hotelname is required" })}
                   />
                   {errors.hotelName && (
                     <p className="text-red-500 text-sm">{errors.hotelName.message}</p>

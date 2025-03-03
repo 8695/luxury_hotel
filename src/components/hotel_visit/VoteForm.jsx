@@ -3,8 +3,9 @@ import { apis } from '@component/apiendpoints/api';
 import useRequest from '@component/hooks/UseRequest';
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
-function VoteForm({new_fetch_hotel_info}) {
+function VoteForm({new_fetch_hotel_info,setShowVoteForm}) {
 
     const {request:requestVote,resposne,loading} =useRequest(true)
     const {
@@ -23,23 +24,31 @@ function VoteForm({new_fetch_hotel_info}) {
           formData.append("nomination_type","traveller")
           formData.append("nominatoremail",data.nominatoremail)
           formData.append("leave_message",data.leave_message)
-         await requestVote("POST",`${apis.CREATE_NOMAINATE}`,formData)
+         const responseData = await requestVote("POST",`${apis.CREATE_NOMAINATE}`,formData)
+        
+         if(responseData?.status == true){
+          toast.success(responseData?.message)
+          reset()
+          setShowVoteForm(false)
+         }
         }
         catch (error) {
           console.log("error", error)
         }
       }
-
-      useEffect(()=>{
-        if(resposne){
-            reset({
-                nominatorName :" ",
-                nomination_type : ' ',
-                nominatoremail : " ",
-                leave_message :" ",
-            })
-        }
-      },[resposne])
+    
+      // useEffect(()=>{
+      //   if(resposne){
+      //     reset()
+      //       // reset({
+      //       //     nominatorName :" ",
+      //       //     nomination_type : ' ',
+      //       //     nominatoremail : " ",
+      //       //     leave_message :" ",
+      //       // })
+      //       setShowVoteForm(false)
+      //   }
+      // },[resposne])
   return (
     <>
      <form className="row px-3 pt-2" onSubmit={handleSubmit(submitVote)}>

@@ -3455,7 +3455,7 @@ span.offer-time {
     animation: rating-pop var(--animation-input, .25s) ease-out;
     height: 1.5rem;
     width: 1.5rem;
-    background-color: #000;
+    background-color: #ead412;
     --tw-bg-opacity: 1;
 }
 
@@ -4140,6 +4140,7 @@ section.our-story {
         border: 1px solid goldenrod;
         border-radius: 30px;
     }
+    
     
 
     
