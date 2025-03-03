@@ -289,12 +289,12 @@ const Hotel_Info = () => {
             console.log(imagesArray,"imagesArray")
 
             const hotelLogoFile = preview?.file || null;
-            console.log("hotelLogoFile",hotelLogoFile);
+            console.log("hotelLogoFile",getValues().hotel_logo[0]);
 
             console.log(imagesArray)
 
             // dispatch(siteContentActions.setFiles({ images: Array.isArray(data.images), hotel_logo: data.hotel_logo[0] }))
-            dispatch(siteContentActions.setFiles({ images: Array.from(data.images), hotel_logo: hotelLogoFile }));
+            dispatch(siteContentActions.setFiles({ images: Array.from(data.images), hotel_logo: getValues().hotel_logo[0]}));
 
             console.log(data.images)
             let payload = {

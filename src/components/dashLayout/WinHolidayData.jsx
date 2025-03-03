@@ -8,6 +8,7 @@ function WinHolidayData() {
 
       const [winHolidayData, setWinHolidayData] = useState([]);
       const [searchTerm, setSearchTerm] = useState("");
+      const [isTrue,setIsTrue] = useState(false)
 
     const { request: requestData, response: responseData, loading: loadingData } = useRequest(true);
     const userdetails = localStorage.getItem("userdetails");
@@ -23,6 +24,13 @@ function WinHolidayData() {
         }
         // }
       }, []);
+
+      useEffect(()=>{
+        if(isTrue){
+          requestData("GET", `${apis.GET_ALL_WIN_HOLIDAY__DATA_DASHBOARD}/${hotelDetailsJsonString?._id}`);
+        }
+       
+      },[isTrue])
 
        useEffect(() => {
           if (responseData) {
@@ -53,7 +61,7 @@ function WinHolidayData() {
                   />
                 </div>
               </div>
-              <Table winHolidayData={filteredData} />
+              <Table winHolidayData={filteredData} setIsTrue={setIsTrue} isTrue={isTrue}/>
             </div>
     </div>
   )

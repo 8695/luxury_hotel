@@ -43,6 +43,13 @@ function WinHolidayPage() {
   const handleNavigate = (slug) => {
     router.push(`/win-a-holiday/${slug}`);
   };
+  const truncateText = (text, wordLimit) => {
+    if (!text) return ""; // Handle undefined or empty text
+    const words = text.split(" "); // Split into words
+    return words.length > wordLimit
+      ? words.slice(0, wordLimit).join(" ") + "..." // Keep only 4 words, add "..."
+      : text; // If text has 4 or fewer words, show as it is
+  };
 
   return (
     <>
@@ -58,14 +65,19 @@ function WinHolidayPage() {
                     alt={hotel?.hotelId?.hotel_name || "Hotel"}
                   />
                 </div>
-                <div className="hotel-content">
+                <div className="hotel-content-win">
                   <button
                     onClick={() => handleNavigate(hotel?.slug)}
-                    className="bg-[#ffffff] text-[#846316] px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full text-center"
+                    className=" text-[#e3e1dd] px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full text-center"
                   >
-                    {hotel?.title}
+                    
+                    {truncateText(hotel?.title, 4)}
                   </button>
-                  {/* <p>End Date{moment(hotel?.competitionclosure).format("DD-MM-YY")}</p> */}
+                  <button onClick={() => handleNavigate(hotel?.slug)} className="bg-white text-golden px-3 py-2 rounded-md uppercase w-full blog-top-content" fdprocessedid="zpe1l">
+                   
+                    {truncateText(hotel?.hotelId?.hotel_name, 4)}
+                    </button>
+                  <p className="text-center bg-white rounded my-1">End Date {moment(hotel?.competitionclosure).format("DD-MM-YY")}</p>
                   <button className="bg-[#846316] text-white px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full">
                     {hotel?.hotelId?.country?.country || "Unknown Country"}
                   </button>

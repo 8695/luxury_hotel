@@ -1,18 +1,24 @@
 "use client"
 import WinHolidayModal from "@component/modals/WinHolidayModal";
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Table = ({ winHolidayData }) => {
+const Table = ({ winHolidayData,setIsTrue }) => {
   const [showModal, setShowModal] = useState(false);
   const [rowDataID, setRowDataId] = useState();
+
+  
 
   const handleShowModal = (id) => {
     setShowModal(true);
     setRowDataId(id)
   }
 
+
   const rowData = winHolidayData.find(item => item._id === rowDataID)
+  const winnerName = rowData?.applied_users.find((item)=>item?.winner === true)
+
+  console.log("winnerName",winnerName,rowData)
 
   return (
     <div className="table-responsive">
@@ -38,7 +44,11 @@ const Table = ({ winHolidayData }) => {
                 <td> {moment(item?.dateFrom).format("DD-MM-YYYY")}</td>
                 <td>{moment(item?.dateTo).format("DD-MM-YYYY")}</td>
                 <td>{item?.applied_users.length > 0 ? item?.applied_users.length + 1 : "0"}</td>
-                <td><div className="declared-status">{item?.resultDeclared ? item?.resultDeclared : "Not Declared"}</div></td>
+                <td>
+                  <div className="declared-status">
+                    {/* {item?.resultDeclared ? winnerName?.first_name + " " +  winnerName?.last_name : "Not Declared"} */}
+                    {item?.resultDeclared ? "Declared" : "Not Declared"}
+                    </div></td>
                 <td>
                   <div className="item-status"> {item?.status}</div>
                 </td>
@@ -50,7 +60,7 @@ const Table = ({ winHolidayData }) => {
               </tr>
             )
           })}
-          {showModal && (<WinHolidayModal rowData={rowData} setShowModal={setShowModal} />)}
+          {showModal && (<WinHolidayModal rowData={rowData} setShowModal={setShowModal} setIsTrue={setIsTrue}/>)}
         </tbody>
       </table>
     </div>

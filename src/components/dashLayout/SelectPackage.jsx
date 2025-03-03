@@ -96,12 +96,12 @@ function SelectPackage() {
 
     const get_addtocart=async()=>{
             const res_data=await request_get("POST",apis.GET_ADD_TO_CART,{user_id:userdetails?._id})
-            let objectsWithAddOns = res_data.data.find(item => item.packages && item.packages !== "\"\"");
+            let objectsWithAddOns = res_data?.data.find(item => item.packages && item.packages !== "\"\"");
             if(objectsWithAddOns){
               default_addtocart_id.current=objectsWithAddOns?._id
+              objectsWithAddOns=JSON.parse(objectsWithAddOns?.packages)
+               setActivePackage(objectsWithAddOns?.planId)
             }
-            objectsWithAddOns=JSON.parse(objectsWithAddOns?.packages)
-             setActivePackage(objectsWithAddOns?.planId)
           }
           useEffect(() => {
             request_all_subscription("GET", apis.GET_ALL_SUBSCRIPTION)

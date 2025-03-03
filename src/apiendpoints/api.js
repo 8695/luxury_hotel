@@ -44,12 +44,15 @@ export const apis={
     // win a holiday Api 
     WIN_A_HOLIDAY_API :`hotels/create-holiday`,
     GET_ALL_WIN_HOLIDAY_DATA :`hotels/get-holiday-hotels`,
-    GET_ALL_WIN_HOLIDAY__DATA_DASHBOARD:`hotels/get-holiday-hotels`,
+    GET_ALL_WIN_HOLIDAY__DATA_DASHBOARD:`hotels/get-all-holidays`,
     PAYMENT_POST:`payment`,
     // voter info mation api
     GET_ALL_VOTER_INFORMATION:`nominate/nominator-listing`,
     GET_SINGLE_VOTE_INFO:`nominate/nomination-detail`,
     GET_ALL_ADDONS:`addons`,
+    GET_HOLIDAY_DETAILS:`hotels/get-holiday-detail`,
+    APPLY_WIN_HOLIDAY: `hotels/apply-for-holiday`,
+    DECLARE_WINNER_HOLIDAY:`hotels/declare-winner`,
 
     //GRAPH API
     GET_ALL_DATA_FROM_GRAPH:`news/graph/data`,

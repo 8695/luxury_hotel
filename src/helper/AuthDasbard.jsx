@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 const AuthDasbard = (WrappedComponent) => {
 
-  console.log("WrappedComponent",WrappedComponent);
+ 
   return function ProtectedPage(props) {
     const router = useRouter();
     const { request, response, loading } = useRequest(true);
@@ -24,7 +24,7 @@ const AuthDasbard = (WrappedComponent) => {
             ? JSON.parse(localStorage.getItem("userdetails"))
             : null;
 
-          if (!user_details?._id || !hotel_details?._id) {
+          if (!user_details?._id ) {
             router.push("/dashboard/select-package");
             return;
           }
@@ -35,8 +35,8 @@ const AuthDasbard = (WrappedComponent) => {
           });
 
           console.log("reponse",response)
-
-          if (response?.data?.plan !=[]) {
+          
+          if (response?.data?.plan?.endDate) {
             setIsChecking(true);
           } else {
             toast.error("You need to purchase a package first!");

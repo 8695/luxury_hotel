@@ -80,16 +80,23 @@ const HotelPreview = () => {
 
 
 
-    const previewImages = hotel_details_fetch?.google_photos?.length > 0 ? hotel_details_fetch?.google_photos.slice(0, 6) : hotel_details_fetch?.images.slice(0, 6);
+    // const previewImages = hotel_details_fetch?.google_photos?.length > 0 ? hotel_details_fetch?.google_photos.slice(0, 6) : hotel_details_fetch?.images.slice(0, 6);
 
     
 
-    // Get remaining images
-    const remainingImages =  hotel_details_fetch?.google_photos?.length > 0 ? hotel_details_fetch?.google_photos.slice(6) : hotel_details_fetch?.images.slice(6);
+    // // Get remaining images
+    // const remainingImages =  hotel_details_fetch?.google_photos?.length > 0 ? hotel_details_fetch?.google_photos.slice(6) : hotel_details_fetch?.images.slice(6);
 
-    // useEffect(()=>{
-    //     response_distance("GET",`api/hotels/get-allhotel-latlong`)
-    // },[hotel_details_fetch])
+    const allImages = [
+        ...(hotel_details_fetch?.google_photos || []), 
+        ...(hotel_details_fetch?.images || [])
+      ];
+      
+      // Get preview images (first 6)
+      const previewImages = allImages.slice(0, 6);
+      
+      // Get remaining images (after the first 6)
+      const remainingImages = allImages.slice(6);
 
 
     useEffect(() => {
@@ -146,16 +153,7 @@ const HotelPreview = () => {
     };
     
 
-    // const getYouTubeEmbedURL = (url) => {
-    //     if (!url) return "";
-        
-    //     const videoIdMatch = url.match(
-    //         /(?:youtube\.com\/(?:shorts\/|watch\?v=)|youtu\.be\/)([^"&?\/\s]{11})/
-    //     );
-    //     console.log("url",url,videoIdMatch)
-
-    //     return videoIdMatch ? `https://www.youtube.com/embed/${videoIdMatch[1]}` : "";
-    // };
+  
 
     const getYouTubeEmbedURL = (url) => {
         if (!url) return "";

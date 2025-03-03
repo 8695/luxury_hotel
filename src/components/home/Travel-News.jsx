@@ -33,6 +33,13 @@ const TravelNews = () => {
     });
 
     // console.log("lastestNews", travelNews);
+    const truncateText = (text, wordLimit) => {
+        if (!text) return ""; // Handle undefined or empty text
+        const words = text.split(" "); // Split into words
+        return words.length > wordLimit
+          ? words.slice(0, wordLimit).join(" ") + "..." // Keep only 4 words, add "..."
+          : text; // If text has 4 or fewer words, show as it is
+      };
     return (
         <>
             {isTravelNewsSelect && (
@@ -113,13 +120,15 @@ const TravelNews = () => {
                                                 </div>
                                                 <div className="hotel-content">
                                                     <h4 className="hotel-name text-center hotelNames">
-                                                        {hotel?.news_title}
+                                                      
+                                                        {truncateText(hotel?.news_title, 4)}
                                                     </h4>
                                                     <button
                                                         onClick={() => handleRoute(hotel?.slug)}
                                                         className="bg-[#ffffff] hotelNames text-[#846316] px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full"
                                                     >
-                                                        {hotel?.business_name}
+                                                         {truncateText(hotel?.business_name, 4)}
+                                                     
                                                     </button>
                                                     <button className="bg-[#846316] text-white hotelcountry  px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full">
                                                         {hotel.country?.country || "N/A"}
