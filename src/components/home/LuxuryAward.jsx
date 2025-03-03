@@ -14,6 +14,7 @@ import "aos/dist/aos.css"; // Import AOS styles
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import HearderNameSection from "../hearderNameSection";
+import { BASEURL } from "@component/apiendpoints/api";
 
 
 const LuxuryAward = () => {
@@ -92,7 +93,8 @@ const LuxuryAward = () => {
                     <SwiperSlide key={index}>
                     <div className="hotel-cards">
                       <div className="hotel-img hotel-img-effect">
-                        <img src={hotel?.hotelId?.images?.[0]} alt={hotel.name} />
+                        {hotel?.hotelId?.images?.[0]?.slice(0, 5) == "https" ? <img src={`${hotel?.hotelId?.images?.[0]}`} alt="Gallery 1" style={{ width: "100%", borderRadius: "8px" }} /> : <img src={`${BASEURL}/${hotel?.hotelId?.images?.[0]}`} alt="Gallery 1" style={{ borderRadius: "8px" }} />}
+                       
                         <img src="./new/assets/img/runnerUp.png" className="hotel-of-yr-award"/>
                       </div>
                       <div className="hotel-content">
