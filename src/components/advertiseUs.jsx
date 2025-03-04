@@ -4,7 +4,6 @@ import HeroBanner from './home/HeroSection'
 import BrandSection from './home/BrandSection'
 import StoreInfo2 from './ourStory/storeInfo2'
 import TravelNews from './home/Travel-News'
-import HeadingWithoutSwiper from './headingWithoutSwiper'
 import LuxGateWeek from './home/LuxGateWeek'
 import HearderNameIcon from './hearderNameIcon';
 import LuxuryAward from './home/LuxuryAward'
@@ -15,6 +14,7 @@ import { BASEURL } from '@component/apiendpoints/api'
 import ContantUsSection from './commonPage/ContantUsSection'
 import Link from 'next/link'
 import { getBestLuxuryHotelOfYear, getExclusiveOffers, getLatestNews, getTravelNews } from '@component/lib/slice/sitesSetting'
+import VideoContainer from './home/VideoContainer'
 
 const advertiseUs = () => {
     const dispatch = useDispatch()
@@ -30,7 +30,7 @@ const advertiseUs = () => {
     const filterExlusiveOffers = exclusiveOffers?.hotel_offer?.filter((item) => item.show_on_home === true)
     return (
         <>
-            <HeroBanner />
+            <VideoContainer />
             <BrandSection />
             <StoreInfo2 />
             {/* <HeadingWithoutSwiper name={"TRAVEL NEWS"} /> */}
