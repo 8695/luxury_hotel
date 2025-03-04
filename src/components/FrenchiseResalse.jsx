@@ -1,11 +1,11 @@
 import React from 'react'
-import HeroBanner from './home/HeroSection'
 import HeadingWithoutSwiper from './headingWithoutSwiper'
+import VideoContainer from './home/VideoContainer'
 
 function FrenchiseResalse() {
     return (
         <>
-            <HeroBanner />
+            <VideoContainer />
             <HeadingWithoutSwiper name={"Franchise areas available"} />
             <section className=" ExclusiveDeal ExclusiveDealSec">
                 <div data-aos="zoom-in" className="container">

@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from 'react'
-import HeroBanner from './home/HeroSection'
 import HeadingWithoutSwiper from './headingWithoutSwiper'
 import AvailableOn from './availableOn'
 import WhatWeDoCommon from './WhatWeDoCommon'
@@ -10,6 +9,7 @@ import BrandSection from './home/BrandSection'
 import AdvertiseTestonimail from './commonPage/AdvertiseTestonimail'
 import ContantUsSection from './commonPage/ContantUsSection'
 import LuxuryAward from './home/LuxuryAward'
+import VideoContainer from './home/VideoContainer'
 
 function WhatWeDo() {
      const [isVisitHotel, setIsVisitHotel] = useState(false);
@@ -24,16 +24,16 @@ function WhatWeDo() {
     }
   return (
     <>
-    <HeroBanner />
+    <VideoContainer />
     <HeadingWithoutSwiper name={"Digital Campaign options"} />
     <WhatWeDoCommon />
     <AvailableOn />
     <HeadingWithoutSwiper name={"Print campaign options"} />
     <WhatWeDoCommon />
     <HeadingWithoutSwiper name={"NEW LUXE GETAWAYS EVERY WEEK"} />
-      <div style={{ backgroundImage: "url('/new/assets/img/hotel-inside.png')" }}>
+     
         <LuxGateWeek />
-      </div>
+      
       <HeadingWithoutSwiper name={"Tailor-Made Campaign"} />
       <WhatWeDoCommon />
       <HeadingWithoutSwiper name={"Request a team visit"} />
@@ -263,7 +263,10 @@ function WhatWeDo() {
             <BrandSection />
             <HeadingWithoutSwiper name={"Advertising testimonials"} />
             <AdvertiseTestonimail />
+            <div style={{  backgroundImage: 'url("/new/assets/img/new1.jpg")',
+            backgroundSize: 'cover'}}>
             <LuxuryAward />
+            </div>
             <ContantUsSection />
 
     </>

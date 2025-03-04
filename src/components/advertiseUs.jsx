@@ -36,14 +36,18 @@ const advertiseUs = () => {
             {/* <HeadingWithoutSwiper name={"TRAVEL NEWS"} /> */}
             <TravelNews />
             <HearderNameIcon name={"NEW LUXE GETAWAYS EVERY WEEK"} />
-            <div style={{ backgroundImage: "url('/new/assets/img/hotel-inside.png')" }}>
+          
                 <LuxGateWeek />
-            </div>
+            
+            <div style={{  backgroundImage: 'url("/new/assets/img/new1.jpg")',
+            backgroundSize: 'cover'}}>
             <LuxuryAward />
+            </div>
             <HearderNameIcon name={"Nominate Hotel"} />
             <NominateForm />
             <LatestNews />
-            <section className="ExclusiveDeal ExclusiveDealSec">
+            <section className="ExclusiveDeal ExclusiveDealSec" style={{  backgroundImage: 'url("/new/assets/img/new1.jpg")',
+                backgroundSize: 'cover'}}>
 
                 <HearderNameIcon name={"what we can do for you"} />
 

@@ -8,12 +8,12 @@ import toast from "react-hot-toast";
 
 function ContactUs() {
   const [switchTab, setSwitchTab] = useState(1);
-  const [showMaginePrint,setShowMagzinePrint] = useState(false);
-  const [showMaginePrintTravler,setShowMagzinePrintTravler] = useState(false);
-    const { request, response, loading } = useRequest(true);
-    const [visitHotel,setIsVisitHotel]=useState(false)
-   
-  
+  const [showMaginePrint, setShowMagzinePrint] = useState(false);
+  const [showMaginePrintTravler, setShowMagzinePrintTravler] = useState(false);
+  const { request, response, loading } = useRequest(true);
+  const [visitHotel, setIsVisitHotel] = useState(false)
+
+
 
   const {
     register,
@@ -32,19 +32,19 @@ function ContactUs() {
   };
 
   const onSubmitHotel = (data) => {
-    request("POST",apis.CONTACT_US_FORM,data) 
+    request("POST", apis.CONTACT_US_FORM, data)
     reset(); // Reset form fields after successful submission
   };
 
-  const onSubmitTravler=(data)=>{
-    request("POST",apis.CONTACT_US_FORM,data)
+  const onSubmitTravler = (data) => {
+    request("POST", apis.CONTACT_US_FORM, data)
   }
 
-  useEffect(()=>{
-    if(response){
-     toast.success(response?.message)
+  useEffect(() => {
+    if (response) {
+      toast.success(response?.message)
     }
-  },[response])
+  }, [response])
 
 
 
@@ -52,32 +52,30 @@ function ContactUs() {
     <div>
       <HeadingWithoutSwiper name={"CONTACT US"} />
       <section className="dashboard-section section_wrap" style={{
-                backgroundImage: `url('/new/assets/img/nominate-hotel-bg.png')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                padding:"40px 118px",
-            }}>
-        
+        backgroundImage: `url('/new/assets/img/nominate-hotel-bg.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        padding: "40px 118px",
+      }}>
+
         <div style={{
-                backgroundImage: `url('/new/assets/img/nominate-hotel-bg.png')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                padding: "14px 63px"
-            }}>
+          backgroundImage: `url('/new/assets/img/nominate-hotel-bg.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          padding: "14px 0px"
+        }}>
           {/* Tabs */}
           <div className="flex justify-start space-x-8 mb-6 border-b">
             <button
-              className={`pb-2 ${
-                switchTab === 1 ? "border-b-2 border-black" : ""
-              } text-gray-500`}
+              className={`pb-2 ${switchTab === 1 ? "border-b-2 border-black" : ""
+                } text-gray-500`}
               onClick={handleSetSwitchHotel}
             >
               HOTEL
             </button>
             <button
-              className={`pb-2 ${
-                switchTab === 2 ? "border-b-2 border-black" : ""
-              } text-gray-500`}
+              className={`pb-2 ${switchTab === 2 ? "border-b-2 border-black" : ""
+                } text-gray-500`}
               onClick={handleSetSwitchTravel}
             >
               TRAVELER
@@ -153,7 +151,7 @@ function ContactUs() {
                       value="true"
                       onChange={() => setIsVisitHotel(true)}
                       className="h-4 w-4"
-                      // onChange={()=>setIsVisitHotel(true)}
+                    // onChange={()=>setIsVisitHotel(true)}
                     />
                     Yes
                   </label>
@@ -164,11 +162,11 @@ function ContactUs() {
                       value="false"
                       onChange={() => setIsVisitHotel(false)}
                       className="h-4 w-4"
-                      // onChange={()=>setIsVisitHotel(false)}
+                    // onChange={()=>setIsVisitHotel(false)}
                     />
                     No
                   </label>
-                  
+
                 </div>
                 {visitHotel && (
                   <div className="flex space-x-4 mt-3">
@@ -217,7 +215,7 @@ function ContactUs() {
                       value="true"
                       onChange={() => setShowMagzinePrint(true)}
                       className="h-4 w-4"
-                      // onChange={()=>setSampleMagzine(true)}
+                    // onChange={()=>setSampleMagzine(true)}
                     />
                     Yes
                   </label>
@@ -228,36 +226,36 @@ function ContactUs() {
                       value="false"
                       onChange={() => setShowMagzinePrint(false)}
                       className="h-4 w-4"
-                      // onChange={()=>setSampleMagzine(false)}
+                    // onChange={()=>setSampleMagzine(false)}
                     />
                     No
                   </label>
-                  
+
                 </div>
                 {showMaginePrint && (
-  <div className="flex space-x-4 mt-3">
-    <label>
-      <input
-        {...register("magazineType")}
-        type="radio"
-        value="Digital"
-        checked={watch("magazineType") === "Digital"}
-        className="h-4 w-4"
-      />
-      Digital
-    </label>
-    <label>
-      <input
-        {...register("magazineType")}
-        type="radio"
-        value="Print"
-        checked={watch("magazineType") === "Print"}
-        className="h-4 w-4"
-      />
-      Print
-    </label>
-  </div>
-)}
+                  <div className="flex space-x-4 mt-3">
+                    <label>
+                      <input
+                        {...register("magazineType")}
+                        type="radio"
+                        value="Digital"
+                        checked={watch("magazineType") === "Digital"}
+                        className="h-4 w-4"
+                      />
+                      Digital
+                    </label>
+                    <label>
+                      <input
+                        {...register("magazineType")}
+                        type="radio"
+                        value="Print"
+                        checked={watch("magazineType") === "Print"}
+                        className="h-4 w-4"
+                      />
+                      Print
+                    </label>
+                  </div>
+                )}
 
 
                 {/* Submit Button */}
@@ -270,106 +268,106 @@ function ContactUs() {
               </div>
             </form>
           )}
-          {switchTab==2 && (
+          {switchTab == 2 && (
             <form className="space-y-6" onSubmit={handleSubmit(onSubmitTravler)}>
-            <div>
-              <input
-                type="text"
-                id="name"
-                placeholder="FULL NAME"
-                {...register("name", { required: true })}
-                className="form-control mt-3"
-              />
-            </div>
-      
-            <div>
-             
-              <input
-                type="email"
-                id="email"
-                placeholder="EMAIL ADDRESS"
-                {...register("email", { required: true })}
-                className="form-control mt-3"
-              />
-            </div>
-      
-            <div>
-              
-              <textarea
-                id="message"
-                rows="4"
-                {...register("message")}
-                placeholder="INQUIRY / MESSAGE"
-                className="form-control mt-3"
-              ></textarea>
-            </div>
-      
-            <div>
-              <p className="text-sm font-medium text-gray-700 mt-3">
-              Would you like to request a sample of our latest Magazine issue?
-              </p>
-              <div className="flex items-center space-x-4 mt-1">
-                <label className="flex items-center space-x-1">
-                  <input
-                    type="radio"
-                    value="true"
-                    {...register("sampleMagazine")}
-                    className="h-4 w-4"
-                    onChange={(e) => setShowMagzinePrintTravler(true)}
-                  />
-                  <span>YES</span>
-                </label>
-                <label className="flex items-center space-x-1">
-                  <input
-                    type="radio"
-                    value="false"
-                    {...register("sampleMagazine")}
-                    className="h-4 w-4"
-                    onChange={(e) => setShowMagzinePrintTravler(false)}
-                  />
-                  <span>NO</span>
-                </label>
+              <div>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="FULL NAME"
+                  {...register("name", { required: true })}
+                  className="form-control mt-3"
+                />
               </div>
-              {showMaginePrintTravler && (
-  <div className="flex items-center space-x-4 mt-1">
-    <label className="flex items-center space-x-1 mt-3">
-      <input
-        {...register("magazineType")}
-        type="radio"
-        value="Digital"
-        checked={watch("magazineType") === "Digital"}
-        className="h-4 w-4"
-      />
-      <span>Digital</span>
-    </label>
-    <label className="flex items-center space-x-1 mt-3">
-      <input
-        {...register("magazineType")}
-        type="radio"
-        value="Print"
-        checked={watch("magazineType") === "Print"}
-        className="h-4 w-4"
-      />
-      <span>Print</span>
-    </label>
-  </div>
-)}
 
-            </div>
-      
-            <div className="text-start mt-3">
-              <button
-                type="submit"
-                className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-6 rounded-md"
-              >
-                SUBMIT
-              </button>
-            </div>
-          </form>
-        )}
+              <div>
+
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="EMAIL ADDRESS"
+                  {...register("email", { required: true })}
+                  className="form-control mt-3"
+                />
+              </div>
+
+              <div>
+
+                <textarea
+                  id="message"
+                  rows="4"
+                  {...register("message")}
+                  placeholder="INQUIRY / MESSAGE"
+                  className="form-control mt-3"
+                ></textarea>
+              </div>
+
+              <div>
+                <p className="text-sm font-medium text-gray-700 mt-3">
+                  Would you like to request a sample of our latest Magazine issue?
+                </p>
+                <div className="flex items-center space-x-4 mt-1">
+                  <label className="flex items-center space-x-1">
+                    <input
+                      type="radio"
+                      value="true"
+                      {...register("sampleMagazine")}
+                      className="h-4 w-4"
+                      onChange={(e) => setShowMagzinePrintTravler(true)}
+                    />
+                    <span>YES</span>
+                  </label>
+                  <label className="flex items-center space-x-1">
+                    <input
+                      type="radio"
+                      value="false"
+                      {...register("sampleMagazine")}
+                      className="h-4 w-4"
+                      onChange={(e) => setShowMagzinePrintTravler(false)}
+                    />
+                    <span>NO</span>
+                  </label>
+                </div>
+                {showMaginePrintTravler && (
+                  <div className="flex items-center space-x-4 mt-1">
+                    <label className="flex items-center space-x-1 mt-3">
+                      <input
+                        {...register("magazineType")}
+                        type="radio"
+                        value="Digital"
+                        checked={watch("magazineType") === "Digital"}
+                        className="h-4 w-4"
+                      />
+                      <span>Digital</span>
+                    </label>
+                    <label className="flex items-center space-x-1 mt-3">
+                      <input
+                        {...register("magazineType")}
+                        type="radio"
+                        value="Print"
+                        checked={watch("magazineType") === "Print"}
+                        className="h-4 w-4"
+                      />
+                      <span>Print</span>
+                    </label>
+                  </div>
+                )}
+
+              </div>
+
+              <div className="text-start mt-3">
+                <button
+                  type="submit"
+                  className="bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-6 rounded-md"
+                >
+                  SUBMIT
+                </button>
+              </div>
+            </form>
+          )}
         </div>
-    </section>
-      </div>
+      </section>
+    </div>
   );
 }
 
