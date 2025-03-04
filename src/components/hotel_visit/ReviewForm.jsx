@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 
-function ReviewForm({ new_fetch_hotel_info, setShowReviewForm }) {
+function ReviewForm({ new_fetch_hotel_info, setShowReviewForm ,setIsTrue}) {
   const {
     register,
     handleSubmit,
@@ -54,6 +54,7 @@ function ReviewForm({ new_fetch_hotel_info, setShowReviewForm }) {
       if (response) {
         setShowReviewForm(false);
         reset()
+        setIsTrue(true);
         toast.success(response?.message)
         console.log("response", response)
       }

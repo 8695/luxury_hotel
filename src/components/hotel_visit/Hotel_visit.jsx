@@ -17,16 +17,6 @@ import ImagesModal from '@component/modals/ImagesModal'
 import SocialShareIcon from '../commonPage/SocialShareIcon'
 import toast from 'react-hot-toast'
 
-
-
-
-const truncateText = (text, wordLimit) => {
-  const words = text?.split(" ");
-  if (words?.length > wordLimit) {
-    return words?.slice(0, wordLimit).join(" ") + "...";
-  }
-  return text;
-};
 const Hotel_visit = ({ params }) => {
   const {
     register,
@@ -38,6 +28,7 @@ const Hotel_visit = ({ params }) => {
   const [showVoteForm, setShowVoteForm] = useState(false);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isTrue, setIsTrue] = useState(false);
   // console.log("params", params)
   const GOOGLE_API_KEY = `AIzaSyAN-RY595XViAsgKD5nXRkH3zmtc6iqzjE`;
   const { request: requestNearby, response: responseNearby, loading } = useRequest(true)
@@ -125,12 +116,16 @@ const Hotel_visit = ({ params }) => {
       }
       clear()
       setnew_fetch_hotel_info(responsefetch)
-
-
-
     }
 
   }, [responsefetch])
+
+  useEffect(()=>{
+    if(isTrue){
+      requestReiview("GET", `${apis.GET_HOTEL_REVIEWS}/${responsefetch.hotel._id}`)
+    }
+  },[isTrue])
+  
   useMemo(() => {
     if (!offer_details && responseExclusive_offer) {
 
@@ -741,11 +736,7 @@ const Hotel_visit = ({ params }) => {
                         </div>
                       )
                     }))}
-
                   </div>
-
-
-
                 </div>
               </div>
 
@@ -774,7 +765,7 @@ const Hotel_visit = ({ params }) => {
                     </button>
                   </div>
                   <div className="offcanvas-body">
-                    <ReviewForm new_fetch_hotel_info={new_fetch_hotel_info} setShowReviewForm={setShowReviewForm} />
+                    <ReviewForm new_fetch_hotel_info={new_fetch_hotel_info} setShowReviewForm={setShowReviewForm} setIsTrue={setIsTrue} />
                   </div>
                 </div>
               )}

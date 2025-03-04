@@ -10,9 +10,10 @@ import AddExclusivePublishNews from './AddExclusivePublishNews';
 import CheckoutModal from '@component/modals/CheckoutModal';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import toast from 'react-hot-toast';
+import { getLatestNews, getTravelNews } from '@component/lib/slice/sitesSetting';
 const paymentMethods = [
   {
     id: "credit",
@@ -43,6 +44,7 @@ const paymentMethods = [
 
 const PublishNews = () => {
   const [isVisitHotel, setIsVisitHotel] = useState(false);
+  const dispatch = useDispatch()
   const { register, handleSubmit, setValue, formState: { errors }, getValues, watch, reset, control } = useForm();
   console.log("errors", errors)
   const { request, response, loading } = useRequest(true);
@@ -68,7 +70,11 @@ const PublishNews = () => {
       hotel: data.hotelName,   // Use the hotel name from the form input
     };
     // create_news("pending")
-    request("POST", apis.ADD_NOMINEE_CHECKOUT_HOTEL, payload);
+   const response = request("POST", apis.ADD_NOMINEE_CHECKOUT_HOTEL, payload);
+   if(response){
+     dispatch(getLatestNews());
+     dispatch(getTravelNews())
+   }
   };
 
   useEffect(() => {
@@ -102,6 +108,7 @@ const PublishNews = () => {
     formdata.append('news_title', newsTitle);
     formdata.append('paymaent_status', paymaent_status);
     formdata.append('business_name', hotelName);
+    formdata.append('amount', amount)
 
     formdata.append("offer_name", getValues().offer_name)
     formdata.append("offer_url", getValues().offer_url)
