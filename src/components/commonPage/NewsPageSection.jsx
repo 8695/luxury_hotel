@@ -175,7 +175,10 @@ function NewsPageSection({ news_id }) {
                                 <h1 className="text-xl font-bold mb-3 text-golden uppercase">
                                     Our Contact Details
                                 </h1>
-                                <div className="flex items-center gap-4">
+                                <div className="row">
+                                    <div className='col-md-12'>
+                                     <div className='col-md-3'>
+
                                     <p className="text-md flex">
                                         <span className="text-golden" />{" "}
                                         <svg
@@ -193,8 +196,9 @@ function NewsPageSection({ news_id }) {
                                         </svg>
                                         {newsData?.email}{" "}
                                     </p>
+                                     </div>
                                     {newsData?.facebook_page && (
-
+                                     <div className='col-md-3'>
                                     <p className="text-md flex">
                                         <span className="text-golden">
                                             <svg
@@ -212,8 +216,10 @@ function NewsPageSection({ news_id }) {
                                         </span>{" "}
                                         <a onClick={() => window.location.href = newsData?.facebook_page}>{newsData?.facebook_page}</a>{" "}
                                     </p>
+                                    </div>
                                     )}
                                     {newsData?.instagram_link && (
+                                        <div className='col-md-3'>
                                     <p className="text-md flex">
                                         <span className="text-golden">
                                             <svg
@@ -232,8 +238,10 @@ function NewsPageSection({ news_id }) {
 
                                         <a onClick={() => window.location.href = newsData?.instagram_link}>{newsData?.instagram_link}</a>{" "}
                                     </p>
+                                    </div>
                                     )}
 
+                                    <div className='col-md-3'>
 
                                     <p className="text-md flex">
                                         <span className="text-golden">
@@ -276,6 +284,8 @@ function NewsPageSection({ news_id }) {
                                         </span>
                                         <a onClick={() => window.location.href = newsData?.website_url}>{newsData?.website_url}</a>
                                     </p>
+                                    </div>
+                                    </div>
                                 </div>
                                 <div className="w-full flex flex-col md:flex-row justify-between items-center gap-5">
                                     <div className="flex gap-3">
