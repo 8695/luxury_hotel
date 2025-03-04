@@ -1,5 +1,5 @@
-// export const BASEURL=  "https://backend.luxuryhotelsplatform.com"
-export const BASEURL=  "http://localhost:3200"
+export const BASEURL=  "https://backend.luxuryhotelsplatform.com"
+// export const BASEURL=  "http://localhost:3200"
 
 export const apis={
     LOGIN:  `representatives/login`,
