@@ -576,7 +576,7 @@ console.log("preview",preview);
               Add Offer
             </button>
             <div className="text-center mb-5">
-            <p className="mb-4">If not Add Offer then</p>
+            <p className="mb-4">(If not Add Offer then Press)</p>
             <Link href="/dashboard/win-a-holiday" className="next-btn">
               Continue
             </Link>

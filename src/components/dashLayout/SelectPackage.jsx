@@ -322,7 +322,7 @@ function SelectPackage() {
     </button>
 
     <div className="text-center mb-5">
-        <p className="mb-4">If not purchase package then</p>
+        <p className="mb-4">(If not purchase package then press)</p>
         <Link href="/dashboard/add-ons" className="btn next-btn">
             Continue
         </Link>

@@ -269,7 +269,7 @@ function Previewhotel() {
                             <Link href="/dashboard/hotel-info" className='next-btn'>Previous </Link>
                             <button type='submit' className='save-btn'>Save </button>
 
-                            <Link href="/dashboard/hotel-info" className='next-btn'>Next </Link>
+                            <Link href="/dashboard/hotel-info" className='next-btn'>Continue </Link>
                         </div>
                     </div>
                 </form>

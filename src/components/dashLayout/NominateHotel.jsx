@@ -624,7 +624,7 @@ const NominateHotel = () => {
                         <Link href="/dashboard/win-a-holiday" className="next-btn">Previous</Link>
                         <button type="submit" className="save-btn">PROCEED TO CHECKOUT</button>
                         <div className="text-center mb-5">
-                        <p className="mb-4">If not Nominate Hotel then</p>
+                        <p className="mb-4">(If not Nominate Hotel then press)</p>
                         <Link href="/dashboard/travel-news" className="next-btn">Continue</Link>
                     </div>
                     </div>

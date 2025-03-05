@@ -1,6 +1,5 @@
-"use client"
 import NominateHotel from '@component/components/dashLayout/NominateHotel'
-import AuthDasbard from '@component/helper/AuthDasbard';
+// import AuthDasbard from '@component/helper/AuthDasbard';
 import React from 'react'
 
 const Page = () => {
@@ -12,4 +11,4 @@ const Page = () => {
     )
 }
 
-export default AuthDasbard(Page);
+export default Page;

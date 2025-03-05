@@ -307,7 +307,7 @@ const Addons = () => {
                       PROCEED TO CHECKOUT
                     </button>
           <div className="text-center mb-5">
-        <p className="mb-4">If not Select any addon then</p>
+        <p className="mb-4">(If not Select any addon then press) </p>
         <Link href="/dashboard/add-exclusive-offer" className="btn next-btn">
             Continue
         </Link>

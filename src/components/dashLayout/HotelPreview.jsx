@@ -179,10 +179,6 @@ const HotelPreview = () => {
     const selectedHighLights = hotel_highlight.filter(facility => 
         hotel_details_fetch?.hotel_highlights.includes(facility._id)
     );
-    
-
- 
-
     return (
         <>
             <section className='hotel-listing dashHotel-listing section-padding p-0' style={{
@@ -555,7 +551,7 @@ const HotelPreview = () => {
                             <div className='footer-btn text-end'>
                                 <Link href="/dashboard/nominate-hotel" className='next-btn'>Previous</Link>
 
-                                <Link href="/dashboard/review" className='next-btn'>Continue</Link>
+                                <Link href="/dashboard/reviews" className='next-btn'>Continue</Link>
                             </div>
                         </div>
 

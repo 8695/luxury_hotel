@@ -307,7 +307,7 @@ function WinHolidayForm() {
                       {loading ? "Submitting..." : "Submit"}
                     </button>
                     <div className="text-center mb-5">
-                    <p className="mb-4">If not Add Holiday then</p>
+                    <p className="mb-4">(If not Add Holiday then Press)</p>
                     <Link href="/dashboard/nominate-hotel" className="next-btn">Continue</Link>
                   </div>
                   </div>
