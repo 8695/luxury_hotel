@@ -19,6 +19,7 @@ import useRequest from '@component/hooks/UseRequest';
 import { apis } from '@component/apiendpoints/api';
 import CounrtyAnaltics from './CounrtyAnaltics';
 import GooGleAnalyticsNews from '@component/modals/GooGleAnalyticsNews';
+import toast from 'react-hot-toast';
 
 // Register required Chart.js components
 ChartJS.register(LineElement, BarElement, PointElement, LinearScale, CategoryScale, Legend, Tooltip);
@@ -56,10 +57,54 @@ const  LineAndBarChart = () => {
     function closeNewsLetter(){
       setShowGoogleAnalyticsNews(false); //
     }
+
+     const { request: requestCheckPackage, response: reponseCheckPage, loading: loadingCheckPage } = useRequest(true);
+    
+    
+      const [isChecking, setIsChecking] = useState(false);
+    
+      useEffect(() => {
+        const checkSubscription = async () => {
+          try {
+            const hotel_details = localStorage.getItem("hotel_details")
+              ? JSON.parse(localStorage.getItem("hotel_details"))
+              : null;
+            const user_details = localStorage.getItem("userdetails")
+              ? JSON.parse(localStorage.getItem("userdetails"))
+              : null;
+    
+            // if (!user_details?._id ) {
+            //   router.push("/dashboard/select-package");
+            //   return;
+            // }
+    
+            const response = await requestCheckPackage("POST", apis.GET_HOTELS_ADDONS_DATA, {
+              userID: user_details?._id,
+              hotelId: hotel_details?._id,
+            });
+    
+            console.log("reponse", response)
+    
+            if (response?.data?.plan?.endDate) {
+              setIsChecking(true);
+            } else {
+              toast.error("if you want to see the data of this page then You need to purchase a package first!");
+    
+            }
+          } catch (error) {
+            console.error("Subscription check failed:", error);
+            toast.error("Error checking subscription!");
+    
+          }
+        };
+    
+        checkSubscription();
+      }, []);
   
   
   return (
     <div>
+      {isChecking ? (<>
       <h4>Analtics For Website Visits</h4>
       <LineChart lineChartData={lineChartData} />
       <h4>Analtics For Review</h4>
@@ -67,6 +112,13 @@ const  LineAndBarChart = () => {
       <h4>Analytics for Countries Guest Coming From</h4>
       <CounrtyAnaltics barChartData={barChartData}/>
 
+   
+
+      </>) : (<>
+        <h3 className="comman-heading3">
+              if you want to see the data of this page then You need to purchase a package first!
+            </h3>
+      </>)}
       <div className='footer-btn text-end'>
             <Link href="/dashboard/edit-hotel" className='next-btn me-auto'>  Previous </Link>
                 {/* <a href='' className='save-btn'>  Proceed to payment </a>
