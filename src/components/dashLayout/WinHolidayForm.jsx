@@ -302,7 +302,7 @@ function WinHolidayForm() {
                   </div>
 
                   <div className="footer-btn d-flex justify-content-end align-items-center gap-3">
-                    <Link href="/add-exclusive-offer" className="next-btn">Previous</Link>
+                    <Link href="/dashboard/add-exclusive-offer" className="next-btn">Previous</Link>
                     <button type="submit" className="save-btn" disabled={loading}>
                       {loading ? "Submitting..." : "Submit"}
                     </button>

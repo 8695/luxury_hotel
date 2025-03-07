@@ -65,6 +65,20 @@ const SideMenu = () => {
     useEffect(()=>{
         getCounDwn()
     },[])
+    const dashboardPaths = [
+        "/dashboard",
+        "/dashboard/hotel-info",
+        "/dashboard/facilities-amenities",
+        "/dashboard/contact-info",
+      ];
+
+      const isSubmenuActive = [
+        "/dashboard/add-ons",
+        "/dashboard/add-exclusive-offer",
+        "/dashboard/win-a-holiday",
+        "/dashboard/nominate-hotel",
+        "/dashboard/travel-news",
+      ]
 
     return (
         <div className="side_nav">
@@ -91,62 +105,166 @@ const SideMenu = () => {
                 </Link>
                 <nav className="dashboard-nav-list">
 
-                    <div className={`dash-nav-li`}>
-                        <p className={`dashboard-nav-item scroll  myProfile subMenuLink collapsed ${pathName === "/dashboard" || pathName === "/dashboard/hotel-info" || pathName === "/dashboard/facilities-amenities" || pathName === "/dashboardcontact-info" ? "bg-[#846316] text-white rounded-md" : ""}`} data-bs-toggle="collapse"
-                            data-bs-target="#historySUbmenu">
-                            <span className="icon_holder">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    strokeWidth="1.5" stroke="currentColor" aria-hidden="true"
-                                    data-slot="icon">
-                                    <path strokeLinecap="round" strokeLinejoin="round"
-                                        d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z">
-                                    </path>
-                                </svg>
-                            </span>
-                            <Link href="/dashboard/manage-profile" className={`title_dash_nav ${pathName === "/dashboard" || pathName === "/dashboard/hotel-info" || pathName === "/dashboard/facilities-amenities" || pathName === "/dashboardcontact-info" ? " text-white" : ""}`}>
-                                Manage Profile
-                            </Link >
-                            <span className="arrowIconSubmenu ms-auto">
-                                <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M7.70832 7.70734C7.52079 7.89481 7.26648 8.00013 7.00132 8.00013C6.73616 8.00013 6.48185 7.89481 6.29432 7.70734L0.63732 2.05034C0.541809 1.9581 0.465627 1.84775 0.413218 1.72575C0.360809 1.60374 0.333223 1.47252 0.332069 1.33974C0.330915 1.20696 0.356217 1.07529 0.406498 0.952389C0.456779 0.829493 0.531032 0.71784 0.624925 0.623948C0.718817 0.530055 0.830469 0.455802 0.953365 0.405521C1.07626 0.35524 1.20794 0.329939 1.34072 0.331092C1.4735 0.332246 1.60472 0.359833 1.72672 0.412242C1.84873 0.464651 1.95907 0.540832 2.05132 0.636343L7.00132 5.58634L11.9513 0.636343C12.1399 0.454185 12.3925 0.35339 12.6547 0.355669C12.9169 0.357947 13.1677 0.463116 13.3531 0.648524C13.5385 0.833932 13.6437 1.08474 13.646 1.34694C13.6483 1.60914 13.5475 1.86174 13.3653 2.05034L7.70832 7.70734Z" fill="currentColor" />
-                                </svg>
-                            </span>
-                        </p>
-                        <ul className="subMenuSide collapse title_dash_nav" id="historySUbmenu">
-                            <li>
-                                <Link href="/dashboard" className={`${pathName === "/dashboard" ? "active" : ""}`}>
-                                    <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1.5 1L7.5 7L1.5 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                    Search By Google</Link>
-                            </li>
-                            <li>
-                                <Link href="/dashboard/hotel-info" className={`${pathName === "/dashboard/hotel-info" ? "active" : ""}`}>
-                                    <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1.5 1L7.5 7L1.5 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-                                    Hotel Info</Link>
-                            </li>
-                            <li>
-                                <Link href="/dashboard/facilities-amenities" className={`${pathName === "/dashboard/facilities-amenities" ? "active" : ""}`}>
-                                    <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1.5 1L7.5 7L1.5 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-
-                                    Facilities and Amenities
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/dashboard/contact-info" className={`${pathName === "/dashboard/contact-info" ? "active" : ""}`}>
-                                    <svg width="9" height="14" viewBox="0 0 9 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1.5 1L7.5 7L1.5 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    </svg>
-
-                                    Contact Info
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
+                    <div className="dash-nav-li">
+                         <p
+                           className={`dashboard-nav-item scroll myProfile subMenuLink collapsed ${
+                             dashboardPaths.includes(pathName)
+                               ? "bg-[#846316] text-white rounded-md"
+                               : ""
+                           }`}
+                           data-bs-toggle="collapse"
+                           data-bs-target="#historySUbmenu"
+                         >
+                           <span className="icon_holder">
+                             <svg
+                               xmlns="http://www.w3.org/2000/svg"
+                               fill="none"
+                               viewBox="0 0 24 24"
+                               strokeWidth="1.5"
+                               stroke="currentColor"
+                               aria-hidden="true"
+                               data-slot="icon"
+                             >
+                               <path
+                                 strokeLinecap="round"
+                                 strokeLinejoin="round"
+                                 d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"
+                               />
+                             </svg>
+                           </span>
+                           <Link
+                             href="/dashboard/manage-profile"
+                             className={`title_dash_nav ${
+                               dashboardPaths.includes(pathName) ? "text-white" : ""
+                             }`}
+                           >
+                             Manage Profile
+                           </Link>
+                           <span className="arrowIconSubmenu ms-auto">
+                             <svg
+                               width="14"
+                               height="8"
+                               viewBox="0 0 14 8"
+                               fill="none"
+                               xmlns="http://www.w3.org/2000/svg"
+                             >
+                               <path
+                                 fillRule="evenodd"
+                                 clipRule="evenodd"
+                                 d="M7.70832 7.70734C7.52079 7.89481 7.26648 8.00013 7.00132 8.00013C6.73616 8.00013 6.48185 7.89481 6.29432 7.70734L0.63732 2.05034C0.541809 1.9581 0.465627 1.84775 0.413218 1.72575C0.360809 1.60374 0.333223 1.47252 0.332069 1.33974C0.330915 1.20696 0.356217 1.07529 0.406498 0.952389C0.456779 0.829493 0.531032 0.71784 0.624925 0.623948C0.718817 0.530055 0.830469 0.455802 0.953365 0.405521C1.07626 0.35524 1.20794 0.329939 1.34072 0.331092C1.4735 0.332246 1.60472 0.359833 1.72672 0.412242C1.84873 0.464651 1.95907 0.540832 2.05132 0.636343L7.00132 5.58634L11.9513 0.636343C12.1399 0.454185 12.3925 0.35339 12.6547 0.355669C12.9169 0.357947 13.1677 0.463116 13.3531 0.648524C13.5385 0.833932 13.6437 1.08474 13.646 1.34694C13.6483 1.60914 13.5475 1.86174 13.3653 2.05034L7.70832 7.70734Z"
+                                 fill="currentColor"
+                               />
+                             </svg>
+                           </span>
+                         </p>
+                   
+                         {/* Submenu that opens automatically based on pathname */}
+                         <ul
+                           className={`subMenuSide collapse title_dash_nav ${
+                             dashboardPaths.includes(pathName) ? "show" : ""
+                           }`}
+                           id="historySUbmenu"
+                         >
+                           <li>
+                             <Link
+                               href="/dashboard"
+                               className={`${pathName === "/dashboard" ? "active" : ""}`}
+                             >
+                               <svg
+                                 width="9"
+                                 height="14"
+                                 viewBox="0 0 9 14"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                               >
+                                 <path
+                                   d="M1.5 1L7.5 7L1.5 13"
+                                   stroke="currentColor"
+                                   strokeWidth="2"
+                                   strokeLinecap="round"
+                                   strokeLinejoin="round"
+                                 />
+                               </svg>
+                               Search By Google
+                             </Link>
+                           </li>
+                           <li>
+                             <Link
+                               href="/dashboard/hotel-info"
+                               className={`${
+                                 pathName === "/dashboard/hotel-info" ? "active" : ""
+                               }`}
+                             >
+                               <svg
+                                 width="9"
+                                 height="14"
+                                 viewBox="0 0 9 14"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                               >
+                                 <path
+                                   d="M1.5 1L7.5 7L1.5 13"
+                                   stroke="currentColor"
+                                   strokeWidth="2"
+                                   strokeLinecap="round"
+                                   strokeLinejoin="round"
+                                 />
+                               </svg>
+                               Hotel Info
+                             </Link>
+                           </li>
+                           <li>
+                             <Link
+                               href="/dashboard/facilities-amenities"
+                               className={`${
+                                 pathName === "/dashboard/facilities-amenities" ? "active" : ""
+                               }`}
+                             >
+                               <svg
+                                 width="9"
+                                 height="14"
+                                 viewBox="0 0 9 14"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                               >
+                                 <path
+                                   d="M1.5 1L7.5 7L1.5 13"
+                                   stroke="currentColor"
+                                   strokeWidth="2"
+                                   strokeLinecap="round"
+                                   strokeLinejoin="round"
+                                 />
+                               </svg>
+                               Facilities and Amenities
+                             </Link>
+                           </li>
+                           <li>
+                             <Link
+                               href="/dashboard/contact-info"
+                               className={`${
+                                 pathName === "/dashboard/contact-info" ? "active" : ""
+                               }`}
+                             >
+                               <svg
+                                 width="9"
+                                 height="14"
+                                 viewBox="0 0 9 14"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg"
+                               >
+                                 <path
+                                   d="M1.5 1L7.5 7L1.5 13"
+                                   stroke="currentColor"
+                                   strokeWidth="2"
+                                   strokeLinecap="round"
+                                   strokeLinejoin="round"
+                                 />
+                               </svg>
+                               Contact Info
+                             </Link>
+                           </li>
+                         </ul>
+                       </div>
 
                     <div className="dash-nav-li">
                         <Link href="/dashboard/preview-hotel"
@@ -180,7 +298,7 @@ const SideMenu = () => {
                     </div>
 
                       <div className={`dash-nav-li`}>
-                        <p className={`dashboard-nav-item scroll  myProfile subMenuLink collapsed ${pathName === "/dashboard" || pathName === "/dashboard/hotel-info" || pathName === "/dashboard/facilities-amenities" || pathName === "/dashboardcontact-info" ? "bg-[#846316] text-white rounded-md" : ""}`} data-bs-toggle="collapse"
+                        <p className={`dashboard-nav-item scroll  myProfile subMenuLink collapsed ${isSubmenuActive.includes(pathName) ? "bg-[#846316] text-white rounded-md" : ""}`} data-bs-toggle="collapse"
                             data-bs-target="#filterData">
                             <span className="icon_holder">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -191,7 +309,7 @@ const SideMenu = () => {
                                     </path>
                                 </svg>
                             </span>
-                            <Link href="/dashboard/manage-profile" className={`title_dash_nav ${pathName === "/dashboard" || pathName === "/dashboard/hotel-info" || pathName === "/dashboard/facilities-amenities" || pathName === "/dashboardcontact-info" ? " text-white" : ""}`}>
+                            <Link href="/dashboard/manage-profile" className={`title_dash_nav ${pathName === "/dashboard/add-ons" || pathName === "/dashboard/add-exclusive-offer" || pathName === "/dashboard/win-a-holiday" || pathName === "/dashboard/nominate-hotel" || pathName === "/dashboard/travel-news" ? " text-white" : ""}`}>
                               Extra  Features
                             </Link >
                             <span className="arrowIconSubmenu ms-auto">
@@ -200,7 +318,9 @@ const SideMenu = () => {
                                 </svg>
                             </span>
                         </p>
-                        <ul className="subMenuSide collapse title_dash_nav" id="filterData">
+                        <ul className={`subMenuSide collapse title_dash_nav ${
+          isSubmenuActive.includes(pathName) ? "show" : ""
+        }`} id="filterData">
                             <li>
                                 <Link
                                     className={`dashboard-nav-item scroll updatePassword ${pathName === "/dashboard/add-ons" ? "active" : ""}`}

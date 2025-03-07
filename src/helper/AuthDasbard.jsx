@@ -39,7 +39,7 @@ const AuthDasbard = (WrappedComponent) => {
           if (response?.data?.plan?.endDate) {
             setIsChecking(true);
           } else {
-            toast.error("You need to purchase a package first!");
+            toast.error("if you want to see the data of this page then You need to purchase a package first!");
             router.push("/dashboard/select-package");
           }
         } catch (error) {

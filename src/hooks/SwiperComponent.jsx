@@ -17,8 +17,8 @@ const SwiperComponent = () => {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       }}
-      loop={true}
-      slidesPerView={4} // Adjust the number of slides visible at once
+      // loop={true}
+      slidesPerView={3} // Adjust the number of slides visible at once
       // breakpoints={{
       //   768: {
       //     slidesPerView: 2, // 2 slides on medium screens

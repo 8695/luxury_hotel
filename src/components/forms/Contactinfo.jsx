@@ -17,7 +17,7 @@ const Contactinfo = () => {
         const { request: requestedit, response: responseedit,loading:loadingedit } = useRequest();
         const hotel_details =localStorage.getItem("hotel_details") ? JSON.parse(localStorage.getItem("hotel_details") ):null
 
-      console.log("hotel_logo", pass_files.hotel_logo);
+      
     const onSubmit = async (data) => {
         const formdata = new FormData
         const { about, additional_information, country, lat, description, location, long, map_url, meta_description, meta_tags, meta_target_age_groups, meta_target_country, meta_title, other_facilities, restaurants_bars, rooms_suites, spa_wellness, website, youtube, hotel_name,google_photos } = gethotel_info
@@ -70,6 +70,7 @@ const Contactinfo = () => {
         formdata.append("actual_person_name", data.actual_person_name ?? "")
         formdata.append("actual_person_telephone", data.actual_person_telephone ?? "")
         formdata.append("actual_person_email", data.actual_person_email ?? "")
+        formdata.append("google_photos", google_photos)
 
         
         

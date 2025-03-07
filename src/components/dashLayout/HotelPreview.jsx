@@ -549,9 +549,9 @@ const HotelPreview = () => {
                                 </div>
                             </div>
                             <div className='footer-btn text-end'>
-                                <Link href="/dashboard/nominate-hotel" className='next-btn'>Previous</Link>
+                                <Link href="/dashboard/contact-info" className='next-btn'>Previous</Link>
 
-                                <Link href="/dashboard/reviews" className='next-btn'>Continue</Link>
+                                <Link href="/dashboard/select-package" className='next-btn'>Continue</Link>
                             </div>
                         </div>
 

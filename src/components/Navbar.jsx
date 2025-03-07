@@ -112,7 +112,7 @@ const Navbar = () => {
                                 </Link>
                               </li>
                               <li>
-                                <a onClick={handleLogout} className='text-gray-950'>
+                                <a onClick={handleLogout} className='text-gray-950 cursor-pointer'>
                                   <i className="ion-log-out " /> Logout
                                 </a>
                               </li>

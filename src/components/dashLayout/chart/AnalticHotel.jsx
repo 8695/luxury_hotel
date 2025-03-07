@@ -68,7 +68,7 @@ const  LineAndBarChart = () => {
       <CounrtyAnaltics barChartData={barChartData}/>
 
       <div className='footer-btn text-end'>
-            <Link href="/dashboard/select-package" className='next-btn me-auto'>  Previous </Link>
+            <Link href="/dashboard/edit-hotel" className='next-btn me-auto'>  Previous </Link>
                 {/* <a href='' className='save-btn'>  Proceed to payment </a>
             <Link href="/dashboard/hotel-analytics" className='next-btn me-auto'>  Next </Link> */}
             </div>

@@ -7,6 +7,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { Controller, useForm } from 'react-hook-form';
 import CheckoutModal from '@component/modals/CheckoutModal';
 import SquarePayment from '@component/modals/SquarePaymentGateway';
+import Link from 'next/link';
 
 const paymentMethods = [
     {
@@ -487,6 +488,11 @@ function PaymentDescription() {
                         <button type="submit" onClick={onSubmit} className="save-btn" style={{ width: "98%", margin: "0px" }}>PROCEED TO CHECKOUT</button>
                     </div>
                 </div>
+                <div className='footer-btn text-end'>
+                                <Link href="/dashboard/travel-news" className='next-btn'>Previous</Link>
+
+                                <Link href="/dashboard/voter-information" className='next-btn'>Continue</Link>
+                            </div>
             </div>
 
             {/* Payment Button */}

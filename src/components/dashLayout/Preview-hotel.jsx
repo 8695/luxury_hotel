@@ -266,10 +266,10 @@ function Previewhotel() {
                         </div>
 
                         <div className='footer-btn text-end'>
-                            <Link href="/dashboard/hotel-info" className='next-btn'>Previous </Link>
+                            <Link href="/dashboard/reviews" className='next-btn'>Previous </Link>
                             <button type='submit' className='save-btn'>Save </button>
 
-                            <Link href="/dashboard/hotel-info" className='next-btn'>Continue </Link>
+                            <Link href="/dashboard/hotel-analytics" className='next-btn'>Continue </Link>
                         </div>
                     </div>
                 </form>

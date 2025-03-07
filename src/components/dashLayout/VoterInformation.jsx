@@ -14,6 +14,8 @@ import useRequest from "@component/hooks/UseRequest";
 import { apis } from "@component/apiendpoints/api";
 import moment from "moment";
 import VoteinfoModal from "@component/modals/VoteinfoModal";
+import Link from "next/link";
+import toast from "react-hot-toast";
 
 export default function VoterInformation() {
   const [searchTerm, setSearchTerm] = useState(""); // State for search term
@@ -21,6 +23,7 @@ export default function VoterInformation() {
   const [reviewsPerPage, setReviewsPerPage] = useState(2); // Number of reviews per page
   const [voterInfo, setVoterInfo] = useState([]);
   const { request, response, loading } = useRequest(true);
+  const { request:requestCheckPackage, response:reponseCheckPage, loading:loadingCheckPage } = useRequest(true);
   const [voteInfoModal, setVoteInfoModal] = useState(false);
   const [singleVoterInfoData, setSingleVoterInfoData] = useState(null);
   const { request: singleVoteInfoRequest, response: singleVoteResponse, loading: singleLoading } = useRequest(true);
@@ -37,10 +40,7 @@ export default function VoterInformation() {
   }, [])
 
   const showSingleVoteInfo = (voteId) => {
-
     singleVoteInfoRequest("GET", `${apis.GET_SINGLE_VOTE_INFO}/${voteId}`)
-
-
   }
 
   useEffect(() => {
@@ -60,48 +60,46 @@ export default function VoterInformation() {
     }
 
   }, [response])
-  // const reviews = [
-  //   {
-  //     name: "John Doe",
-  //     // email: "john.doe@gmail.com",
-  //     title: "New listed hotel",
-  //     // department: "IT department",
-  //     // status: "Active",
-  //     message: "Senior",
-  //   },
-  //   {
-  //     name: "Alex Ray",
-  //     // email: "alex.ray@gmail.com",
-  //     title: "Taj hotel",
-  //     // department: "Finance",
-  //     // status: "Onboarding",
-  //     message: "Good Hotel",
-  //   },
-  //   {
-  //     name: "Kate Hunington",
-  //     // email: "kate.hunington@gmail.com",
-  //     title: "Sunny Hotel",
-  //     // department: "UI/UX",
-  //     // status: "Awaiting",
-  //     message: "management is good", 
-  //   },
-  //   {
-  //     name: "Jake Smith",
-  //     // email: "jake.smith@gmail.com",
-  //     title: "maldives hotel",
-  //     // department: "Product",
-  //     // status: "Active",
-  //     message: "Room is not good",
-  //   },
-  //   {
-  //     name: "Alice Johnson",
-  //     // email: "alice.johnson@gmail.com",
-  //     title: "Marketing Manager",
-  //     // department: "Marketing",
-  //     // status: "Onboarding",
-  //     message: "Senior",
-  //   },
-  // ];
+
+  const [isChecking, setIsChecking] = useState(false);
+
+  useEffect(() => {
+    const checkSubscription = async () => {
+      try {
+        const hotel_details = localStorage.getItem("hotel_details")
+          ? JSON.parse(localStorage.getItem("hotel_details"))
+          : null;
+        const user_details = localStorage.getItem("userdetails")
+          ? JSON.parse(localStorage.getItem("userdetails"))
+          : null;
+
+        // if (!user_details?._id ) {
+        //   router.push("/dashboard/select-package");
+        //   return;
+        // }
+
+        const response = await requestCheckPackage("POST", apis.GET_HOTELS_ADDONS_DATA, {
+          userID: user_details?._id,
+          hotelId: hotel_details?._id,
+        });
+
+        console.log("reponse",response)
+        
+        if (response?.data?.plan?.endDate) {
+          setIsChecking(true);
+        } else {
+          toast.error("if you want to see the data of this page then You need to purchase a package first!");
+          
+        }
+      } catch (error) {
+        console.error("Subscription check failed:", error);
+        toast.error("Error checking subscription!");
+        
+      }
+    };
+
+    checkSubscription();
+  }, []);
 
   // Filter reviews based on the search term
   const filteredReviews = voterInfo.filter(
@@ -124,6 +122,8 @@ export default function VoterInformation() {
     <>
       <h3 className="comman-heading3">Read All Voter InFormation</h3>
       <div className="white-box">
+        {isChecking ? (
+          <>
         {voterInfo?.length > 0 ? (<>
           <div className="with-input-btn">
             <div className="form-group  w-100">
@@ -204,10 +204,22 @@ export default function VoterInformation() {
 
         </>) : (<h3 className="comman-heading3">No Voter InFormation</h3>
         )}
+          </>
+        ) : (<>
+        <h3 className="comman-heading3">
+           if you want to see the data of this page then You need to purchase a package first!
+        </h3>
+        </>)}
 
+<div className='footer-btn text-end'>
+                                <Link href="/dashboard/payment" className='next-btn'>Previous</Link>
 
+                                <Link href="/dashboard/win-holiday-data" className='next-btn'>Continue</Link>
+                            </div>
         {voteInfoModal && (<VoteinfoModal singleVoterInfoData={singleVoterInfoData} setVoteInfoModal={setVoteInfoModal} />)}
-
-      </div> </>
+    
+      </div> 
+      
+      </>
   );
 }
