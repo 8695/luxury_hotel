@@ -31,7 +31,7 @@ const SwiperComponent = ({newlyListedHotel}) => {
   return (
     <Swiper
     className="newly-listedSwiper"
-    spaceBetween={24}
+    spaceBetween={5}
     slidesPerView={3}
     loop={true} // ✅ Enables infinite looping
     autoplay={{
@@ -47,7 +47,7 @@ const SwiperComponent = ({newlyListedHotel}) => {
      
       {newlyListedHotel?.hotels?.map((hotel, index) => (
         <SwiperSlide key={index}>
-          <div className="hotel-cards" data-aos="zoom-out-up">
+          <div className="hotel-cards" data-aos="zoom-out-up" style={{width:"19rem"}} >
             <div className="hotel-img">
               <img src={hotel?.coverPhoto ?? "/new/assets/img/noImage.png"} alt={hotel.name} />
             </div>

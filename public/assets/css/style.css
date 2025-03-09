@@ -1809,7 +1809,8 @@ figure.banner-logo {
 }
 
 .hotel-img {
-    height: 370px;
+    /* height: 370px; */
+    height: 26rem;
 }
 
 .hotel-img img {
@@ -1852,7 +1853,7 @@ figure.banner-logo {
 }
 
 .card__content>div {
-    border-radius: 20px;
+    border-radius: 6px;
     overflow: hidden;
 }
 
@@ -2600,7 +2601,7 @@ span.offer-time {
 }
 
 .whater-effect .hotel-content {
-    padding: 3px 11px 20px;
+    padding: 3px 11px 1px;
     backdrop-filter: blur(15px);
     margin-inline: 16px;
     /* position: relative; */
@@ -2641,9 +2642,9 @@ span.offer-time {
     overflow: hidden;
 }
 
-.Magazines-section .hotel-img {
+/* .Magazines-section .hotel-img {
     height: 360px;
-}
+} */
 
 .social-link img {
     height: 38px;
@@ -2658,7 +2659,7 @@ span.offer-time {
 }
 
 .Magazines-section .whater-effect .hotel-content {
-    margin-top: -70px;
+    margin-top: -94px;
     margin-bottom: 30px;
 }
 
@@ -3299,7 +3300,7 @@ span.offer-time {
 }
 
 .box {
-    border: 1px solid white;
+    border: 1px solid rgb(22, 20, 20);
     width: 20rem;
     aspect-ratio: 20 / 26;
     position: relative;
@@ -3342,7 +3343,7 @@ span.offer-time {
 }
 
 .review-section {
-    background: url(./assets/img/sea-view.png);
+    background: url("/img/what-we-do/hotel-sea-view-dark.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center top;

@@ -70,7 +70,7 @@ function FIndHotels() {
 
           <div className="row">
             {data?.map((hotel, index) => (
-                <div className="col-lg-3 col-md-4 col-sm-6" key={index}>
+                <div className="col-lg-3 col-md-4 col-sm-6" key={index} style={{marginRight:"-13px"}}>
                     <div className="hotel-cards overflow-hidden">
                         <div className="hotel-img">
                           <img src={hotel?.coverPhoto} alt={hotel.name} />

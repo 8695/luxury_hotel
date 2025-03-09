@@ -5,7 +5,7 @@ const StoreInfo = () => {
     return (
         <>
             <HeadingWithoutSwiper name={"Our story"} />
-            <section className="our-story py-14 " style={{ backgroundImage: `url("/new/assets/img/hotel-moskva.png")` }}>
+            <section className="our-story py-14 " style={{ backgroundImage: `url("/new/assets/img/2.png")`,backgroundSize: 'cover' }}>
                 <div className="px-5 text-white flex justify-center mx-auto max-w-7xl">
                     <div className="col-md-7">
                         <div className='store-left-content'>

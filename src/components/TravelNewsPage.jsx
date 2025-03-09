@@ -41,7 +41,7 @@ function TravelNewsPage() {
 
     <div className="row">
                 {paginatedHotels?.map((hotel, index) => (
-                    <div className="col-lg-3 col-md-4 col-sm-6 mt-4" key={index}>
+                    <div className="col-lg-3 col-md-4 col-sm-6 mt-4" key={index} style={{marginRight:"-13px"}}>
                         <div className="hotel-cards overflow-hidden">
                             <div className="hotel-img">
                               <img src={`${BASEURL}/${hotel?.thumbnail_path}`} alt={hotel.name} />

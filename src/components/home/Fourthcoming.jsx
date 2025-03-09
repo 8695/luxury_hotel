@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -11,41 +11,31 @@ import { BASEURL } from "@component/apiendpoints/api";
 
 const Fourthcoming = () => {
     const { upcomingMagazine } = useSelector((state) => state?.siteSetting);
+
+    // Always use the first magazine for the right-side display
     const initialMagazine = upcomingMagazine?.data?.[0] || null;
+    console.log(upcomingMagazine, "`initia`l")
 
     return (
-        <section className="fourthcoming-section coming-sectionEdition">
+        <section className="fourthcoming-section coming-sectionEdition" style={{  backgroundImage: 'url("/new/assets/img/1.png")',
+            backgroundSize: 'cover',}}>
             <HeadingWithoutSwiper name={"FOURTHCOMING LUXURY HOTEL EDITIONS"} />
-            
-            {/* Golden Line */}
-          {/* Golden Line */}
-<div className="relative w-full flex justify-center my-6">
-    <img 
-        src="/new/assets/img/1.png" 
-        alt="Golden Line"
-        className="w-4/5"
-        style={{
-            position: "absolute",
-            top: "-30px",
-            left: "50%",
-            transform: "translateX(-50%) rotate(-15deg)",  
-            zIndex: 10,
-            pointerEvents: "none",
-        }}
-    />
-</div>
-
-            
+            {/* <h2 className="text-center pt-6 mt-0 text-white">FOURTHCOMING LUXURY HOTEL EDITIONS</h2> */}
             <div className="container">
                 <div className="grid mt-10 grid-cols-12 gap-4">
                     {/* Left Side - Magazine Covers */}
                     <div className="col-span-full md:col-span-4">
                         <div className="relativeBox">
+                            {/* Navigation buttons must be inside the Swiper container */}
                             <div className="swiper-button-prev" id="custom-prev"></div>
                             <div className="swiper-button-next" id="custom-next"></div>
+
                             <Swiper
                                 modules={[Autoplay, Navigation]}
-                                navigation={{ prevEl: "#custom-prev", nextEl: "#custom-next" }}
+                                navigation={{
+                                    prevEl: "#custom-prev",
+                                    nextEl: "#custom-next",
+                                }}
                                 spaceBetween={10}
                                 slidesPerView={1}
                                 className="p-0"
@@ -68,8 +58,14 @@ const Fourthcoming = () => {
                         <div className="relativeBox">
                             <Swiper
                                 modules={[Autoplay, Navigation]}
-                                navigation={{ prevEl: "#custom-prev", nextEl: "#custom-next" }}
-                                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                                navigation={{
+                                    prevEl: "#custom-prev",
+                                    nextEl: "#custom-next",
+                                }}
+                                autoplay={{
+                                    delay: 3000,
+                                    disableOnInteraction: false,
+                                }}
                                 loop={true}
                                 spaceBetween={10}
                                 slidesPerView={1}
@@ -87,7 +83,6 @@ const Fourthcoming = () => {
                             </Swiper>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>

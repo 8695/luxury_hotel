@@ -61,7 +61,7 @@ const TravelNews = () => {
                         </div>
 
                         <div className="row whater-effect travel-news-sec">
-                            <div className="col-md-3" data-aos="fade-left">
+                            <div className="col-md-3" data-aos="fade-left" style={{marginLeft:"10px"}}>
                                 <div className="same-cards">
                                     <div
                                         style={{
@@ -93,10 +93,10 @@ const TravelNews = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-9 relative" data-aos="fade-right">
+                            <div className="col-md-9 relative" data-aos="fade-right" style={{marginLeft:"-10px"}}>
                                 <Swiper
                                     className="newly-listedSwiper"
-                                    spaceBetween={24}
+                                    spaceBetween={0}
                                     modules={[Navigation, Pagination, EffectFlip, Autoplay]} // ✅ Added Autoplay module
                                     navigation={{
                                         prevEl: ".swiper-button-prev",
@@ -111,7 +111,7 @@ const TravelNews = () => {
                                 >
                                     {travelNews?.content?.map((hotel, index) => (
                                         <SwiperSlide key={index}>
-                                            <div className="hotel-cards">
+                                            <div className="hotel-cards" style={{width:'19rem'}}>
                                                 <div className="hotel-img">
                                                     <img
                                                         src={`${BASEURL}/${hotel?.thumbnail_path}`}
@@ -120,7 +120,6 @@ const TravelNews = () => {
                                                 </div>
                                                 <div className="hotel-content">
                                                     <h4 className="hotel-name text-center hotelNames">
-                                                      
                                                         {truncateText(hotel?.news_title, 4)}
                                                     </h4>
                                                     <button
@@ -128,7 +127,6 @@ const TravelNews = () => {
                                                         className="bg-[#ffffff] hotelNames text-[#846316] px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full"
                                                     >
                                                          {truncateText(hotel?.business_name, 4)}
-                                                     
                                                     </button>
                                                     <button className="bg-[#846316] text-white hotelcountry  px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full">
                                                         {hotel.country?.country || "N/A"}

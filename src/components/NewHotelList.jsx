@@ -63,7 +63,7 @@ const NewlyListedHotels = () => {
               </div>
               </div>
             </div>
-            <div className="col-md-9" data-aos="fade-right"> <SwiperComponent newlyListedHotel={newlyListedHotel} /></div>
+            <div className="col-md-9" data-aos="fade-right" style={{marginLeft:"-9px"}}> <SwiperComponent newlyListedHotel={newlyListedHotel} /></div>
           </div>
         </div>
       </div> 

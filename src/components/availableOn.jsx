@@ -5,7 +5,7 @@ const AvailableOn = () => {
     return (
         <>
             <HeadingWithoutSwiper name={"available On"} />
-            <div className="available-on" style={{ backgroundImage: `url("/new/assets/img/available-in.png")` }}>
+            <div className="available-on" style={{ backgroundImage: `url("/new/assets/img/2.png")`,backgroundSize: 'cover'}}>
                 <div className='container'>
                     <div className="available-info">
                         <div className="available-in grayBox">

@@ -44,13 +44,13 @@ const Magazines = () => {
             
             <div className="row">
                 {paginatedHotels.map((hotel, index) => (
-                    <div className="col-lg-3 col-md-4 col-sm-6" key={index}>
+                    <div className="col-lg-3 col-md-4 col-sm-6" key={index} style={{marginRight:"-13px"}}>
                         <div className="hotel-cards">
                             <div className="hotel-img">
                                 <img src={hotel.img} alt={hotel.magazinesName} />
                             </div>
                             <div className="hotel-content">
-                                <div className="magazines-name">{hotel.magazinesName}</div>
+                            <button class="bg-golden text-white px-3 py-1  rounded-md my-3 uppercase w-full" fdprocessedid="dxd8ai">{hotel.magazinesName}</button>
                                 <ul className="social-link">
                                     {commonSocialLinks.map((link, linkIndex) => (
                                         <li key={linkIndex}>

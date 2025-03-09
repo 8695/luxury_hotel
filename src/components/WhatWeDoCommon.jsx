@@ -13,7 +13,7 @@ function WhatWeDoCommon() {
 
   return (
     <> 
-      <section className="flex flex-col items-center campaign-section" style={{ backgroundImage: 'url(./assets/img/print-campaign.png)' }}>
+      <section className="flex flex-col items-center campaign-section" style={{ backgroundImage: 'url(./assets/img/1.png)',backgroundSize: 'cover' }}>
         <div className="flex flex-col lg:flex-row gap-16 items-center justify-center w-full">
           
           {/* Image Swiper */}
@@ -62,9 +62,9 @@ function WhatWeDoCommon() {
               controller={{ control: controlledSwiper }}
             >
               <SwiperSlide>
-                <div className="p-5 text-justify">
+                <div className="p-5 text-justify ">
                   <img src="./assets/img/logo.svg" className="w-56 mb-6 mx-auto" alt="logo" />
-                  <p className="text-white"> Lorem ipsum dolor sit amet consectetur. Pharetra viverra
+                  <p className="text-black"> Lorem ipsum dolor sit amet consectetur. Pharetra viverra
                         vitae leo et. Sed eget a nisl est tellus neque. Platea mi
                         mattis quis varius vel proin. Consectetur pretium quis nunc
                         volutpat. Feugiat cursus pellentesque in mauris id euismod
@@ -79,7 +79,7 @@ function WhatWeDoCommon() {
               <SwiperSlide>
                 <div className="p-5 text-justify">
                   <img src="./assets/img/logo.svg" className="w-56 mb-6 mx-auto" alt="logo" />
-                  <p className="text-white"> Lorem ipsum dolor sit amet consectetur. Pharetra viverra
+                  <p className="text-black"> Lorem ipsum dolor sit amet consectetur. Pharetra viverra
                         vitae leo et. Sed eget a nisl est tellus neque. Platea mi
                         mattis quis varius vel proin. Consectetur pretium quis nunc
                         volutpat. Feugiat cursus pellentesque in mauris id euismod

@@ -30,7 +30,7 @@ function WhatWeDo() {
     <AvailableOn />
     <HeadingWithoutSwiper name={"Print campaign options"} />
     <WhatWeDoCommon />
-    <HeadingWithoutSwiper name={"NEW LUXE GETAWAYS EVERY WEEK"} />
+    
      
         <LuxGateWeek />
       
@@ -38,13 +38,15 @@ function WhatWeDo() {
       <WhatWeDoCommon />
       <HeadingWithoutSwiper name={"Request a team visit"} />
       
-      <div style={{
+      <div 
+      className='dashboard-section section_wrap'
+      style={{
                 backgroundImage: `url('/new/assets/img/nominate-hotel-bg.png')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 padding: "14px 63px"
             }}>
-      <form onSubmit={handleSubmit(onSubmitHotel)}>
+      <form onSubmit={handleSubmit(onSubmitHotel)} style={{paddingLeft:"54px",paddingRight:"54px"}}>
               <div className="row">
             <div className="col-md-12">
                 <div className="form-group">
