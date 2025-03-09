@@ -68,7 +68,7 @@ function Footer() {
                     <Link href="/franchise-resale">FRANCHISE RESALE</Link>
                   </li>
                   <li>
-                    <Link href="#">COLLABORATIVE ADVANTAGES</Link>
+                    <Link href="/colaborative-advantages">COLLABORATIVE ADVANTAGES</Link>
                   </li>
                   <li>
                     <Link href="/Contact-us">CONTACT US</Link>

@@ -65,11 +65,11 @@ const LuxuryAward = () => {
 
             <Swiper className='newly-listedSwiper'
               spaceBetween={-10}
-              autoplay={{
-                delay: 2000, // ✅ Auto-scroll every 2 seconds
-                disableOnInteraction: false, // ✅ Keeps autoplay running even after user interaction
-              }}
-              loop={true} 
+              // autoplay={{
+              //   delay: 2000, // ✅ Auto-scroll every 2 seconds
+              //   disableOnInteraction: false, // ✅ Keeps autoplay running even after user interaction
+              // }}
+              // loop={true} 
               navigation={{
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
@@ -102,10 +102,31 @@ const LuxuryAward = () => {
                           <button className="bg-[#ffffff] text-[#846316] px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full hotelNames cursor-pointer" onClick={() => handleRoute(hotel?.hotelId?.slug)}>{hotel.hotelName}</button>
                           <button className="bg-[#846316] text-white px-3 py-1 blog-bottom-content rounded-md mt-3 uppercase w-full hotelcountry cursor-pointer" onClick={() => handleRoute(hotel?.hotelId?.slug)}>{hotel.hotelId?.country?.country ?? "America"}</button>
                         </div>
-                        <div className="hotel-img-reflect">
-                          {hotel?.hotelId?.images?.[0]?.slice(0, 5) == "https" ? <img src={`${hotel?.hotelId?.images?.[0]}`} alt="Gallery 1" style={{ width: "92%", borderRadius: "8px" }} /> : <img src={`${BASEURL}/${hotel?.hotelId?.images?.[0]}`} alt="Gallery 1" style={{  width: "92%", borderRadius: "8px" }} />}
-                          <div className="hotel-reflection"></div>
+                        <div className="hotel-img-reflect" >
+                          {hotel?.hotelId?.images?.[0]?.slice(0, 5) == "https" ? <img src={`${hotel?.hotelId?.images?.[0]}`} alt="Gallery 1" style={{ width: "100%", borderRadius: "8px" ,opacity:"0.4" }} /> : <img src={`${BASEURL}/${hotel?.hotelId?.images?.[0]}`} alt="Gallery 1" style={{  width: "100%", borderRadius: "8px",opacity:"0.4" }} />}
+                          <div className="hotel-reflection">
+
+                          </div>
                         </div>
+                        {/* <div style={{
+        position: 'absolute',
+        bottom: '-170px',
+        left: 0,
+        right: 0,
+        height: '60px',
+        background: `linear-gradient(to bottom, 
+          rgba(255, 255, 255, 0.3) 0%,
+          rgba(255, 255, 255, 0.15) 30%,
+          rgba(255, 255, 255, 0.05) 60%,
+          rgba(255, 255, 255, 0) 100%)`,
+        borderRadius: '0 0 1rem 1rem',
+        transform: 'scaleY(-1)',
+        opacity: 0.8,
+        zIndex: 1
+      }}>
+
+{hotel?.hotelId?.images?.[0]?.slice(0, 5) == "https" ? <img src={`${hotel?.hotelId?.images?.[0]}`} alt="Gallery 1" style={{ width: "92%", borderRadius: "8px" }} /> : <img src={`${BASEURL}/${hotel?.hotelId?.images?.[0]}`} alt="Gallery 1" style={{  width: "92%", borderRadius: "8px" }} />}
+      </div> */}
                       </div>
                     </SwiperSlide>
 

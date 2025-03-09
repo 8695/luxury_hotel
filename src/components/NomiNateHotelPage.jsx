@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 
 import HeadingWithoutSwiper from './headingWithoutSwiper';
 import NominateForm from './nominateForm';
+import LuxGateWeek from './home/LuxGateWeek';
+import VideoContainer from './home/VideoContainer';
 
 function NominateHotelPage() {
    const hotelData = [
@@ -44,62 +46,8 @@ function NominateHotelPage() {
   
     return (
         <>
-        <div style={{ backgroundImage: "url('/new/assets/img/hotel-inside.png')" }}>
-       
-      <div
-        className="flex justify-center items-center py-[30px] bg-cover bg-center"
-      >
-        {/* Container */}
-        <div className="flex gap-8 p-4 rounded-lg shadow-lg">
-          {/* Sidebar Buttons */}
-          <div className="flex flex-col space-y-4">
-            {hotelData.map((hotel) => (
-              <button
-                key={hotel.country}
-                className={`px-4 py-2 ${
-                  hotel.country === selectedCountry
-                    ? "bg-red-600 text-white"
-                    : "bg-white border border-gray-300 text-[#9e7922]"
-                } rounded-md hover:bg-gray-100`}
-                onClick={() => setSelectedCountry(hotel.country)}
-              >
-                {hotel.country}
-              </button>
-            ))}
-          </div>
-  
-          {/* Main Content */}
-          <div
-            className="flex flex-col bg-white p-4 rounded-md"
-            style={{ width: "820px" }}
-          >
-           <div style={{display:"flex",
-            justifyContent:"space-between"}}>
-           
-  
-            <h1 style={{color:"red",fontSize:"1.25rem"}}>LUXURY HOTELS</h1>
-  
-            <span style={{color:"#a17800",fontSize:"1.25rem"}}>
-              {selectedHotel.name}
-            </span>
-           </div>
-  
-            {/* YouTube Video */}
-            <div className="w-[775px] h-[315px]">
-              <iframe
-                width="100%"
-                height="315"
-                src={selectedHotel?.youtubeLink}
-                title={selectedHotel?.name}
-                className="rounded-lg border"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
+        <VideoContainer />
+        <LuxGateWeek />
        <HeadingWithoutSwiper name={"Nominate Hotel"}/>
        <div
   style={{
